@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Про мене | SAYVAN</title>
+  <style>
+    /* Основні скидання та шрифти */
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+      background-color: #0f0f12; /* Сучасний темний фон */
+      color: #e0e0e6;
+      line-height: 1.7;
+      /* Збільшуємо верхній відступ, щоб контент був під шапкою 80px */
+      padding: 120px 20px 60px 20px; 
+    }
+
+    /* --- СТИЛІ ШАПКИ (HEADER) --- */
+    header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 80px;
+
+  /* --- ГОЛОВНІ ЗМІНИ ТУТ --- */
+  display: grid;
+  grid-template-columns: 1fr auto 1fr; /* Ділимо шапку на 3 колонки */
+  align-items: center;                 /* Вирівнювання по вертикалі */
+
+  padding: 0 80px;
+  box-sizing: border-box;
+  background: rgba(10, 10, 10, 0.85);
+  backdrop-filter: blur(12px);
+  z-index: 1000;
+}
+
+    @keyframes headerDown {
+      from { transform: translateY(-100%); }
+      to { transform: translateY(0); }
+    }
+
+    .logo {
+      color: white;
+      font-size: 30px;
+      font-weight: 800;
+      letter-spacing: 2px;
+      font-family: 'Inter', sans-serif;
+    }
+
+   .nav {
+  display: flex;
+  gap: 40px;
+  justify-self: center; /* Центрує меню всередині центральної колонки */
+}
+
+    .nav a {
+      color: #bdbdbd;
+      text-decoration: none;
+      font-size: 17px;
+      transition: 0.3s;
+      font-family: 'Inter', sans-serif;
+    }
+
+    .nav a:hover {
+      color: white;
+    }
+
+    /* --- ОСНОВНИЙ КОНТЕЙНЕР --- */
+    .container {
+      max-width: 900px;
+      margin: 0 auto;
+    }
+
+    /* --- СТИЛІ ТА АНІМАЦІЯ ЗАГОЛОВКА --- */
+    .header-section {
+      text-align: center;
+      margin-bottom: 50px;
+    }
+
+    .main-title {
+      font-size: 3rem;
+      font-weight: 800;
+      letter-spacing: 1px;
+      color: #ffffff;
+      display: inline-block;
+      opacity: 0;
+      transform: translateY(-20px);
+      animation: fadeInTitle 0.8s ease-out forwards;
+    }
+
+    .title-line {
+      height: 4px;
+      width: 0;
+      background: linear-gradient(90deg, #ff4655, #ff8533);
+      margin: 15px auto 0 auto;
+      border-radius: 2px;
+      animation: expandLine 1s ease-out 0.6s forwards;
+    }
+
+    @keyframes fadeInTitle {
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @keyframes expandLine {
+      to {
+        width: 100px;
+      }
+    }
+
+    /* --- СТИЛІ КОНТЕНТУ --- */
+    .subtitle {
+      font-size: 1.4rem;
+      color: #ff8533;
+      text-align: center;
+      margin-bottom: 40px;
+      font-weight: 600;
+    }
+
+    .fade-in-card {
+      background: #18181c;
+      border: 1px solid #2a2a32;
+      border-radius: 12px;
+      padding: 30px;
+      margin-bottom: 30px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+      
+      opacity: 0;
+      transform: translateY(30px);
+      transition: opacity 0.8s ease, transform 0.8s ease;
+    }
+
+    .fade-in-card.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .fade-in-card h2 {
+      color: #ffffff;
+      font-size: 1.6rem;
+      margin-bottom: 15px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .fade-in-card ul {
+      list-style: none;
+      padding-left: 0;
+    }
+
+    .fade-in-card li {
+      margin-bottom: 12px;
+      position: relative;
+      padding-left: 25px;
+    }
+
+    .fade-in-card li::before {
+      content: "▹";
+      position: absolute;
+      left: 0;
+      color: #ff4655;
+      font-weight: bold;
+    }
+
+    .quote-box {
+      border-left: 4px solid #ff4655;
+      padding-left: 20px;
+      font-style: italic;
+      color: #b0b0ba;
+      margin-top: 15px;
+    }
+
+    .cta-section {
+      text-align: center;
+      margin-top: 50px;
+    }
+
+    .btn {
+      display: inline-block;
+      padding: 14px 32px;
+      background: linear-gradient(90deg, #ff4655, #ff8533);
+      color: #fff;
+      text-decoration: none;
+      font-weight: bold;
+      border-radius: 30px;
+      transition: transform 0.3s, box-shadow 0.3s;
+    }
+
+    .btn:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 8px 25px rgba(255, 70, 85, 0.4);
+    }
+
+    /* Адаптивність для мобільних */
+    @media (max-width: 768px) {
+      header {
+        padding: 0 20px;
+      }
+      .nav {
+        gap: 15px;
+      }
+      .nav a {
+        font-size: 14px;
+      }
+      .main-title { font-size: 2.2rem; }
+      .subtitle { font-size: 1.1rem; }
+      body { padding-top: 100px; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Шапка сайту -->
+  <header class="header">
+    <div class="logo">SAYVAN</div>
+    <nav class="nav">
+      <a href="main.html">Головна</a>
+      <a href="service.html">Послуги</a>
+      <a href="portfolio.html">Відгуки</a>
+      <a href="about.html" class="active">Про мене</a>
+    </nav>
+  </header> <!-- Обов'язково закриваємо шапку тут! -->
+
+  <!-- Основний контент сторінки -->
+  <div class="container">
+    
+    <div class="header-section">
+      <h1 class="main-title">Про мене</h1>
+      <div class="title-line"></div>
+    </div>
+
+    <p class="subtitle">Відеомейкер, монтажер та майбутній режисер</p>
+
+    <!-- Блок 1 -->
+    <div class="fade-in-card">
+      <p>Вже понад <strong>3 роки</strong> я живу світлом, кадрами, темпоритмом та анімацією. Те, що колись починалося як захоплення візуальним мистецтвом, сьогодні переросло у професійну діяльність та головну справу мого життя.</p>
+    </div>
+
+    <!-- Блок 2 -->
+    <div class="fade-in-card">
+      <h2>🎬 Мій підхід: Більше, ніж просто картинка</h2>
+      <p>Основна відмінність моєї роботи — це <strong>режисерський погляд</strong>. Навчаючись на режисера, я зрозумів головне: відео має не просто красиво виглядати, воно має розповідати історію, викликати емоції та вирішувати завдання клієнта.</p>
+      <div class="quote-box">
+        «Я не просто нарізаю кадри під музику — я будую драматургію, працюю з атмосферою та створюю саунд-дизайн, який занурює глядача з перших секунд.»
+      </div>
+    </div>
+
+    <!-- Блок 3 -->
+    <div class="fade-in-card">
+      <h2>🛠 Що я вмію та роблю:</h2>
+      <ul>
+        <li><strong>Професійна відеозйомка:</strong> Робота з композицією, світлом, ракурсами та постановкою кадрів.</li>
+        <li><strong>Відеомонтаж будь-якої складності:</strong> Динамічні промо-ролики, Reels/TikToks, YouTube-контент та іміджеві відео.</li>
+        <li><strong>Анімація та Motion Design:</strong> Створення стильної 2D-анімації, плавної графіки, титрів та плашок.</li>
+        <li><strong>Режисура та сценарій:</strong> Допомога у розробці концепції, розкадровці та реалізації ідеї «з нуля».</li>
+      </ul>
+    </div>
+
+    <!-- Блок 4 -->
+    <div class="fade-in-card">
+      <h2>🚀 Чому варто працювати зі мною?</h2>
+      <ul>
+        <li><strong>Комплексний підхід:</strong> Закриваю повний цикл виробництва (Pre-production, Production, Post-production).</li>
+        <li><strong>Увага до деталей:</strong> Кожен перехід, колір та звуковий ефект мають свою мету.</li>
+        <li><strong>Відповідальність:</strong> Дотримання дедлайнів та чітке виконання ТЗ.</li>
+      </ul>
+    </div>
+
+    <!-- Заклик до дії -->
+    <div class="cta-section fade-in-card">
+      <h2>Готові створити щось круте разом?</h2>
+      <p style="margin-bottom: 20px;">Обговоримо ваш майбутній проєкт!</p>
+      <a href="https://t.me/SAYVAN_KINO" class="btn">Зв'язатися зі мною</a>
+    </div>
+
+  </div>
+
+  <script>
+    document.addEventListener("DOMContentLoaded", function() {
+      const observerOptions = {
+        threshold: 0.15
+      };
+
+      const observer = new IntersectionObserver((entries, observer) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('visible');
+            observer.unobserve(entry.target);
+          }
+        });
+      }, observerOptions);
+
+      const cards = document.querySelectorAll('.fade-in-card');
+      cards.forEach(card => {
+        observer.observe(card);
+      });
+    });
+  </script>
+
+</body>
+</html>

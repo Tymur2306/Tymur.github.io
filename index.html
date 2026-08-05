@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SAYVAN_KINO</title>
+    <style>
+        /* Загальні стилі для всієї сторінки */
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            background-color: #0a0a0a;
+            color: white;
+            font-family: 'Inter', sans-serif;
+            overflow-x: hidden;
+        }
+
+        /* ---------- ШАПКА ---------- */
+        .header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 80px;
+
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+
+            padding: 0 80px;
+            background: rgba(10, 10, 10, 0.85);
+            backdrop-filter: blur(12px);
+
+            z-index: 1000;
+            animation: headerDown 0.8s ease;
+        }
+
+        .logo {
+            color: white;
+            font-size: 30px;
+            font-weight: 800;
+            letter-spacing: 2px;
+        }
+
+        .nav {
+            display: flex;
+            gap: 40px;
+        }
+
+        .nav a {
+            color: #bdbdbd;
+            text-decoration: none;
+            font-size: 17px;
+            transition: 0.3s;
+        }
+
+        .nav a:hover, .nav a.active {
+            color: white;
+        }
+
+        .header-btn {
+            text-decoration: none;
+            background: #0088cc;
+            color: white;
+            padding: 12px 25px;
+            border-radius: 50px;
+            font-weight: 600;
+            transition: 0.3s;
+        }
+
+        .header-btn:hover {
+            transform: scale(1.05);
+        }
+
+        /* ---------- ГОЛОВНА СЕКЦІЯ ---------- */
+        .hero-section {
+            display: flex;
+            align-items: center;
+            justify-content: space-evenly;
+            min-height: 100vh;
+            width: 100vw;
+            padding: 100px 100px 0 100px; /* Додали відступ зверху під fixed-шапку */
+        }
+
+        .content { 
+            max-width: 600px; 
+            opacity: 0;
+            animation: textLeft 1s ease forwards;
+            animation-delay: 0.3s;
+        }
+
+        h1 {
+            font-size: clamp(60px, 8vw, 120px);
+            line-height: 0.9;
+            color: white;
+            margin: 0 0 30px 0;
+            text-transform: uppercase;
+            font-weight: 800;
+        }
+
+        p {
+            font-size: 20px;
+            color: #a0a0a0;
+            margin-bottom: 40px;
+            line-height: 1.6;
+        }
+
+        .image-container img {
+            margin-left: 75px;
+            width: 400px;
+            height: auto;
+            border-radius: 40px;
+            opacity: 0;
+            animation: imageRight 1.2s ease forwards;
+            animation-delay: 0.6s;
+        }
+
+        /* ---------- СТАТИСТИКА ---------- */
+        .stats {
+            display: flex;
+            align-items: center;
+            gap: 40px;
+            margin-top: 50px;
+        }
+
+        .stat {
+            padding-right: 40px;
+            border-right: 1px solid #333;
+        }
+
+        .stat:last-child {
+            border-right: none;
+            padding-right: 0;
+        }
+
+        .stat h2 {
+            color: white;
+            font-size: 48px;
+            margin: 0;
+            font-weight: 800;
+        }
+
+        .stat span {
+            color: #8f8f8f;
+            font-size: 16px;
+        }
+
+        /* ---------- АНІМАЦІЇ ---------- */
+        @keyframes headerDown {
+            from {
+                opacity: 0;
+                transform: translateY(-60px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes textLeft {
+            from {
+                opacity: 0;
+                transform: translateX(-80px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        @keyframes imageRight {
+            from {
+                opacity: 0;
+                transform: translateX(80px) scale(0.9);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0) scale(1);
+            }
+        }
+
+        /* Адаптивність для малих екранів */
+        @media (max-width: 900px) {
+            .hero-section {
+                flex-direction: column;
+                padding: 120px 20px 50px 20px;
+                text-align: center;
+            }
+            .image-container img {
+                margin-left: 0;
+                margin-top: 40px;
+                width: 100%;
+                max-width: 350px;
+            }
+            .stats {
+                justify-content: center;
+            }
+            .header {
+                padding: 0 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Шапка сайту -->
+    <header class="header">
+        <div class="logo">SAYVAN</div>
+
+        <nav class="nav">
+            <a href="main.html" class="active">Головна</a>
+            <a href="service.html">Послуги</a>
+            <a href="portfolio.html">Відгуки</a>
+            <a href="about.html">Про мене</a>
+        </nav>
+
+        <a href="https://t.me/SAYVAN_KINO" target="_blank" class="header-btn">Написати</a>
+    </header>
+
+    <!-- Головна секція -->
+    <section class="hero-section">
+
+        <div class="content">
+            <h1>VIDEO <br> PRODUCTION</h1>
+
+            <p>
+                Професійна зйомка та монтаж відео будь-якої складності.
+                Перетворюю ваші ідеї на якісний контент.
+            </p>
+
+            <div class="stats">
+                <div class="stat">
+                    <h2 class="counter" data-target="3">0</h2>
+                    <span>Роки досвіду</span>
+                </div>
+
+                <div class="stat">
+                    <h2 class="counter" data-target="70">0</h2>
+                    <span>Проєктів</span>
+                </div>
+
+                <div class="stat">
+                    <h2 class="counter" data-target="100">0</h2>
+                    <span>Задоволених клієнтів</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="image-container">
+            <img src="https://res.cloudinary.com/dspihbagc/image/upload/v1784023633/444444444444_xjwhee.png" alt="Video Creator">
+        </div>
+
+    </section>
+
+    <!-- Скрипт лічильників -->
+   <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            const counters = document.querySelectorAll(".counter");
+
+            counters.forEach(counter => {
+                const target = +counter.dataset.target;
+                let count = 0;
+                
+                // Встановлюємо фіксовану швидкість: що вище число, то більший крок
+                const duration = 2000; // Анімація триватиме 2 секунди (2000 мс)
+                const steps = 60; // 60 кадрів
+                const increment = target / steps;
+                const stepTime = duration / steps;
+
+                const updateCounter = () => {
+                    count += increment;
+
+                    if (count < target) {
+                        counter.innerText = Math.floor(count);
+                        setTimeout(updateCounter, stepTime);
+                    } else {
+                        counter.innerText = target + "+";
+                    }
+                };
+
+                updateCounter();
+            });
+        });
+    </script>
+
+</body>
+</html>
