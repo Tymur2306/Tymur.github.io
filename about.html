@@ -1,311 +1,405 @@
 <!DOCTYPE html>
 <html lang="uk">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Про мене | SAYVAN</title>
-  <style>
-    /* Основні скидання та шрифти */
-    * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-    }
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Про адвоката | Професійний захист та правова допомога</title>
+    <style>
+        :root {
+            --navy: #0F172A;
+            --navy-light: #1E293B;
+            --accent: #C5A059;
+            --accent-hover: #B08D46;
+            --bg-light: #F8FAFC;
+            --text-dark: #334155;
+            --text-muted: #64748B;
+            --white: #FFFFFF;
+        }
 
-    body {
-      font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
-      background-color: #0f0f12; /* Сучасний темний фон */
-      color: #e0e0e6;
-      line-height: 1.7;
-      /* Збільшуємо верхній відступ, щоб контент був під шапкою 80px */
-      padding: 120px 20px 60px 20px; 
-    }
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+        }
 
-    /* --- СТИЛІ ШАПКИ (HEADER) --- */
-    header {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 80px;
+        body {
+            background-color: var(--bg-light);
+            color: var(--text-dark);
+            line-height: 1.6;
+            padding-bottom: 70px;
+        }
 
-  /* --- ГОЛОВНІ ЗМІНИ ТУТ --- */
-  display: grid;
-  grid-template-columns: 1fr auto 1fr; /* Ділимо шапку на 3 колонки */
-  align-items: center;                 /* Вирівнювання по вертикалі */
+        @media (min-width: 768px) {
+            body { padding-bottom: 0; }
+        }
 
-  padding: 0 80px;
-  box-sizing: border-box;
-  background: rgba(10, 10, 10, 0.85);
-  backdrop-filter: blur(12px);
-  z-index: 1000;
-}
+        /* Шапка */
+        .header {
+            background-color: var(--navy);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
 
-    @keyframes headerDown {
-      from { transform: translateY(-100%); }
-      to { transform: translateY(0); }
-    }
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 1.5rem;
+        }
 
-    .logo {
-      color: white;
-      font-size: 30px;
-      font-weight: 800;
-      letter-spacing: 2px;
-      font-family: 'Inter', sans-serif;
-    }
+        .logo {
+            color: var(--white);
+            font-size: 1.3rem;
+            font-weight: 700;
+            text-decoration: none;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
 
-   .nav {
-  display: flex;
-  gap: 40px;
-  justify-self: center; /* Центрує меню всередині центральної колонки */
-}
+        .logo span { color: var(--accent); }
 
-    .nav a {
-      color: #bdbdbd;
-      text-decoration: none;
-      font-size: 17px;
-      transition: 0.3s;
-      font-family: 'Inter', sans-serif;
-    }
+        .nav-menu {
+            display: flex;
+            list-style: none;
+            gap: 1.5rem;
+        }
 
-    .nav a:hover {
-      color: white;
-    }
+        .nav-link {
+            color: #E2E8F0;
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
 
-    /* --- ОСНОВНИЙ КОНТЕЙНЕР --- */
-    .container {
-      max-width: 900px;
-      margin: 0 auto;
-    }
+        .nav-link:hover, .nav-link.active { color: var(--accent); }
 
-    /* --- СТИЛІ ТА АНІМАЦІЯ ЗАГОЛОВКА --- */
-    .header-section {
-      text-align: center;
-      margin-bottom: 50px;
-    }
+        .btn-contact {
+            background-color: var(--accent);
+            color: var(--navy);
+            padding: 0.6rem 1.2rem;
+            border-radius: 4px;
+            font-weight: 600;
+            text-decoration: none;
+            transition: background-color 0.3s;
+        }
 
-    .main-title {
-      font-size: 3rem;
-      font-weight: 800;
-      letter-spacing: 1px;
-      color: #ffffff;
-      display: inline-block;
-      opacity: 0;
-      transform: translateY(-20px);
-      animation: fadeInTitle 0.8s ease-out forwards;
-    }
+        .btn-contact:hover { background-color: var(--accent-hover); }
 
-    .title-line {
-      height: 4px;
-      width: 0;
-      background: linear-gradient(90deg, #ff4655, #ff8533);
-      margin: 15px auto 0 auto;
-      border-radius: 2px;
-      animation: expandLine 1s ease-out 0.6s forwards;
-    }
+        .hamburger {
+            display: none;
+            cursor: pointer;
+            background: none;
+            border: none;
+            color: var(--white);
+            font-size: 1.8rem;
+        }
 
-    @keyframes fadeInTitle {
-      to {
-        opacity: 1;
-        transform: translateY(0);
-      }
-    }
+        /* Заголовок сторінки */
+        .page-banner {
+            background-color: var(--navy);
+            color: var(--white);
+            padding: 3rem 1.5rem;
+            text-align: center;
+            border-bottom: 3px solid var(--accent);
+        }
 
-    @keyframes expandLine {
-      to {
-        width: 100px;
-      }
-    }
+        .page-banner h1 {
+            font-size: 2.2rem;
+            margin-bottom: 0.5rem;
+        }
 
-    /* --- СТИЛІ КОНТЕНТУ --- */
-    .subtitle {
-      font-size: 1.4rem;
-      color: #ff8533;
-      text-align: center;
-      margin-bottom: 40px;
-      font-weight: 600;
-    }
+        .page-banner p {
+            color: #94A3B8;
+            font-size: 1.1rem;
+        }
 
-    .fade-in-card {
-      background: #18181c;
-      border: 1px solid #2a2a32;
-      border-radius: 12px;
-      padding: 30px;
-      margin-bottom: 30px;
-      box-shadow: 0 10px 30px rgba(0,0,0,0.3);
-      
-      opacity: 0;
-      transform: translateY(30px);
-      transition: opacity 0.8s ease, transform 0.8s ease;
-    }
+        /* Контентний блок */
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 3rem 1.5rem;
+        }
 
-    .fade-in-card.visible {
-      opacity: 1;
-      transform: translateY(0);
-    }
+        /* Секція з фото та короткими фактами */
+        .about-hero {
+            display: grid;
+            grid-template-columns: 340px 1fr;
+            gap: 2.5rem;
+            align-items: center;
+            background: var(--white);
+            padding: 2.5rem;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+            margin-bottom: 3rem;
+        }
 
-    .fade-in-card h2 {
-      color: #ffffff;
-      font-size: 1.6rem;
-      margin-bottom: 15px;
-      display: flex;
-      align-items: center;
-      gap: 10px;
-    }
+        .about-img-placeholder {
+            width: 100%;
+            height: 480px;
+            background-color: var(--navy-light);
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+        }
 
-    .fade-in-card ul {
-      list-style: none;
-      padding-left: 0;
-    }
+        .about-img-placeholder img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: center top;
+            display: block;
+        }
 
-    .fade-in-card li {
-      margin-bottom: 12px;
-      position: relative;
-      padding-left: 25px;
-    }
+        .about-summary h2 {
+            font-size: 1.8rem;
+            color: var(--navy);
+            margin-bottom: 1rem;
+        }
 
-    .fade-in-card li::before {
-      content: "▹";
-      position: absolute;
-      left: 0;
-      color: #ff4655;
-      font-weight: bold;
-    }
+        .about-summary p {
+            margin-bottom: 1.2rem;
+            color: var(--text-dark);
+            font-size: 1.05rem;
+        }
 
-    .quote-box {
-      border-left: 4px solid #ff4655;
-      padding-left: 20px;
-      font-style: italic;
-      color: #b0b0ba;
-      margin-top: 15px;
-    }
+        .badges {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.8rem;
+            margin-top: 1.5rem;
+        }
 
-    .cta-section {
-      text-align: center;
-      margin-top: 50px;
-    }
+        .badge {
+            background: #F1F5F9;
+            color: var(--navy);
+            padding: 0.5rem 1rem;
+            border-radius: 6px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            border-left: 3px solid var(--accent);
+        }
 
-    .btn {
-      display: inline-block;
-      padding: 14px 32px;
-      background: linear-gradient(90deg, #ff4655, #ff8533);
-      color: #fff;
-      text-decoration: none;
-      font-weight: bold;
-      border-radius: 30px;
-      transition: transform 0.3s, box-shadow 0.3s;
-    }
+        /* Блок принципів роботи */
+        .principles-section {
+            background: var(--navy);
+            color: var(--white);
+            padding: 2.5rem;
+            border-radius: 12px;
+            margin-bottom: 3rem;
+        }
 
-    .btn:hover {
-      transform: translateY(-3px);
-      box-shadow: 0 8px 25px rgba(255, 70, 85, 0.4);
-    }
+        .principles-section h2 {
+            color: var(--accent);
+            margin-bottom: 1rem;
+            font-size: 1.6rem;
+        }
 
-    /* Адаптивність для мобільних */
-    @media (max-width: 768px) {
-      header {
-        padding: 0 20px;
-      }
-      .nav {
-        gap: 15px;
-      }
-      .nav a {
-        font-size: 14px;
-      }
-      .main-title { font-size: 2.2rem; }
-      .subtitle { font-size: 1.1rem; }
-      body { padding-top: 100px; }
-    }
-  </style>
+        .principles-section p {
+            font-size: 1.1rem;
+            line-height: 1.8;
+            color: #E2E8F0;
+        }
+
+        .quote-box {
+            margin-top: 1.5rem;
+            padding-left: 1.5rem;
+            border-left: 4px solid var(--accent);
+            font-style: italic;
+            color: #CBD5E1;
+        }
+
+        /* Часова лінія (Досвід та Освіта) */
+        .section-title {
+            font-size: 1.8rem;
+            color: var(--navy);
+            margin-bottom: 2rem;
+            text-align: center;
+        }
+
+        .timeline {
+            position: relative;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 1rem 0;
+        }
+
+        .timeline-item {
+            background: var(--white);
+            padding: 1.5rem;
+            border-radius: 8px;
+            margin-bottom: 1.5rem;
+            box-shadow: 0 4px 6px -1px rgba(0,0,0,0.05);
+            border-left: 4px solid var(--accent);
+        }
+
+        .timeline-date {
+            font-weight: 700;
+            color: var(--accent);
+            font-size: 0.95rem;
+            text-transform: uppercase;
+            margin-bottom: 0.3rem;
+        }
+
+        .timeline-title {
+            font-size: 1.2rem;
+            color: var(--navy);
+            margin-bottom: 0.5rem;
+        }
+
+        .timeline-desc {
+            color: var(--text-muted);
+            font-size: 0.95rem;
+        }
+
+        /* Плаваюча кнопка для мобільного */
+        .mobile-call-btn {
+            display: none;
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            background-color: var(--accent);
+            color: var(--navy);
+            text-align: center;
+            padding: 1rem;
+            font-weight: 700;
+            text-decoration: none;
+            z-index: 999;
+            box-shadow: 0 -2px 10px rgba(0,0,0,0.15);
+        }
+
+        /* Адаптивність під телефон */
+        @media (max-width: 768px) {
+            .nav-menu {
+                display: none;
+                width: 100%;
+                flex-direction: column;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                background-color: var(--navy);
+                padding: 1rem;
+            }
+
+            .hamburger { display: block; }
+            .nav-container.active .nav-menu { display: flex; }
+            .mobile-call-btn { display: block; }
+            .header .btn-contact { display: none; }
+
+            .about-hero {
+                grid-template-columns: 1fr;
+                padding: 1.5rem;
+            }
+
+            .about-img-placeholder {
+                max-width: 340px;
+                height: 480px;
+                margin: 0 auto;
+            }
+
+            .page-banner h1 { font-size: 1.8rem; }
+            .principles-section { padding: 1.5rem; }
+        }
+    </style>
 </head>
 <body>
 
-  <!-- Шапка сайту -->
-  <header class="header">
-    <div class="logo">SAYVAN</div>
-    <nav class="nav">
-      <a href="index.html">Головна</a>
-      <a href="service.html">Послуги</a>
-      <a href="portfolio.html">Відгуки</a>
-      <a href="about.html" class="active">Про мене</a>
-    </nav>
-  </header> <!-- Обов'язково закриваємо шапку тут! -->
+    <!-- Шапка сайту -->
+    <header class="header">
+        <div class="nav-container">
+            <a href="index.html" class="logo">Адвокат <span>Право</span></a>
+            <button class="hamburger" onclick="toggleMenu()">☰</button>
+            <ul class="nav-menu">
+                <li><a href="index.html" class="nav-link">Головна</a></li>
+                <li><a href="about.html" class="nav-link active">Про мене</a></li>
+                <li><a href="services.html" class="nav-link">Послуги</a></li>
+                <li><a href="cases.html" class="nav-link">Справи</a></li>
+            </ul>
+            <a href="tel:+380937222592" class="btn-contact">Зв'язатися</a>
+        </div>
+    </header>
 
-  <!-- Основний контент сторінки -->
-  <div class="container">
-    
-    <div class="header-section">
-      <h1 class="main-title">Про мене</h1>
-      <div class="title-line"></div>
+    <!-- Баннер сторінки -->
+    <section class="page-banner">
+        <h1>Про адвоката</h1>
+        <p>Кваліфікований правовий захист з 15-річним досвідом практики</p>
+    </section>
+
+    <div class="container">
+
+        <!-- Основна картка з фото та короткими даними -->
+        <section class="about-hero">
+            <div class="about-img-placeholder">
+                <img src="kovalenko-k (1).jpg" alt="Адвокат">
+            </div>
+            <div class="about-summary">
+                <h2>Адвокатська діяльність та досвід</h2>
+                <p>Маю практичний досвід роботи понад 15 років у сфері цивільного, господарського, земельного та сімейного законодавства України.</p>
+                <p>Забезпечую повний супровід справ у судах України в цивільному, господарському та адміністративному процесах.</p>
+                
+                <div class="badges">
+                    <span class="badge">🎓 Вища юридична освіта</span>
+                    <span class="badge">📜 Свідоцтво від 27.02.2012</span>
+                    <span class="badge">⚖️ 15+ років практики</span>
+                </div>
+            </div>
+        </section>
+
+        <!-- Принципи та філософія -->
+        <section class="principles-section">
+            <h2>Принципи роботи та філософія</h2>
+            <p>
+                Маю на меті надати кваліфіковану правову допомогу та отримати за це відповідний гонорар. Намагаюсь робити свою справу так, щоб клієнт не тільки отримав позитивний результат, а й мав бажання звернутися до мене знову при виникненні інших питань, а також рекомендував мене як фахівця.
+            </p>
+            <div class="quote-box">
+                «Робота "не на кількість, а на якість" генерує найкращу рекламу — рекомендацію Адвоката близьким, знайомим та колегам.»
+            </div>
+        </section>
+
+        <!-- Хронологія досвіду та освіти -->
+        <h2 class="section-title">Освіта та професійний шлях</h2>
+        <div class="timeline">
+
+            <div class="timeline-item">
+                <div class="timeline-date">2003 – 2008 рр.</div>
+                <div class="timeline-title">Національна юридична академія України імені Ярослава Мудрого</div>
+                <div class="timeline-desc">
+                    Здобув вищу юридичну освіту за спеціальністю «Право / Правознавство». Кваліфікація — юрист-спеціаліст.
+                </div>
+            </div>
+
+            <div class="timeline-item">
+                <div class="timeline-date">27.02.2012 року – по теперішній час</div>
+                <div class="timeline-title">Офіційна адвокатська діяльність</div>
+                <div class="timeline-desc">
+                    Здійснюю адвокатську діяльність на підставі Свідоцтва про право на заняття адвокатською діяльністю. Надаю правову допомогу та здійснюю захист прав, свобод і законних інтересів фізичних та юридичних осіб.
+                </div>
+            </div>
+
+            <div class="timeline-item">
+                <div class="timeline-date">15+ років досвіду</div>
+                <div class="timeline-title">Судова практика та представництво</div>
+                <div class="timeline-desc">
+                    Спеціалізація та супровід складних справ у цивільному, господарському, адміністративному та сімейному процесах по всій території України.
+                </div>
+            </div>
+
+        </div>
+
     </div>
 
-    <p class="subtitle">Відеомейкер, монтажер та майбутній режисер</p>
+    <!-- Мобільна кнопка виклику -->
+    <a href="tel:+380937222592" class="mobile-call-btn">📞 Зв'язатися з адвокатом</a>
 
-    <!-- Блок 1 -->
-    <div class="fade-in-card">
-      <p>Вже понад <strong>3 роки</strong> я живу світлом, кадрами, темпоритмом та анімацією. Те, що колись починалося як захоплення візуальним мистецтвом, сьогодні переросло у професійну діяльність та головну справу мого життя.</p>
-    </div>
-
-    <!-- Блок 2 -->
-    <div class="fade-in-card">
-      <h2>🎬 Мій підхід: Більше, ніж просто картинка</h2>
-      <p>Основна відмінність моєї роботи — це <strong>режисерський погляд</strong>. Навчаючись на режисера, я зрозумів головне: відео має не просто красиво виглядати, воно має розповідати історію, викликати емоції та вирішувати завдання клієнта.</p>
-      <div class="quote-box">
-        «Я не просто нарізаю кадри під музику — я будую драматургію, працюю з атмосферою та створюю саунд-дизайн, який занурює глядача з перших секунд.»
-      </div>
-    </div>
-
-    <!-- Блок 3 -->
-    <div class="fade-in-card">
-      <h2>🛠 Що я вмію та роблю:</h2>
-      <ul>
-        <li><strong>Професійна відеозйомка:</strong> Робота з композицією, світлом, ракурсами та постановкою кадрів.</li>
-        <li><strong>Відеомонтаж будь-якої складності:</strong> Динамічні промо-ролики, Reels/TikToks, YouTube-контент та іміджеві відео.</li>
-        <li><strong>Анімація та Motion Design:</strong> Створення стильної 2D-анімації, плавної графіки, титрів та плашок.</li>
-        <li><strong>Режисура та сценарій:</strong> Допомога у розробці концепції, розкадровці та реалізації ідеї «з нуля».</li>
-      </ul>
-    </div>
-
-    <!-- Блок 4 -->
-    <div class="fade-in-card">
-      <h2>🚀 Чому варто працювати зі мною?</h2>
-      <ul>
-        <li><strong>Комплексний підхід:</strong> Закриваю повний цикл виробництва (Pre-production, Production, Post-production).</li>
-        <li><strong>Увага до деталей:</strong> Кожен перехід, колір та звуковий ефект мають свою мету.</li>
-        <li><strong>Відповідальність:</strong> Дотримання дедлайнів та чітке виконання ТЗ.</li>
-      </ul>
-    </div>
-
-    <!-- Заклик до дії -->
-    <div class="cta-section fade-in-card">
-      <h2>Готові створити щось круте разом?</h2>
-      <p style="margin-bottom: 20px;">Обговоримо ваш майбутній проєкт!</p>
-      <a href="https://t.me/SAYVAN_KINO" class="btn">Зв'язатися зі мною</a>
-    </div>
-
-  </div>
-
-  <script>
-    document.addEventListener("DOMContentLoaded", function() {
-      const observerOptions = {
-        threshold: 0.15
-      };
-
-      const observer = new IntersectionObserver((entries, observer) => {
-        entries.forEach(entry => {
-          if (entry.isIntersecting) {
-            entry.target.classList.add('visible');
-            observer.unobserve(entry.target);
-          }
-        });
-      }, observerOptions);
-
-      const cards = document.querySelectorAll('.fade-in-card');
-      cards.forEach(card => {
-        observer.observe(card);
-      });
-    });
-  </script>
-
+    <script>
+        function toggleMenu() {
+            document.querySelector('.nav-container').classList.toggle('active');
+        }
+    </script>
 </body>
 </html>

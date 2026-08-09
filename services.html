@@ -1,0 +1,434 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Послуги адвоката | Професійний правовий захист</title>
+    <style>
+        :root {
+            --navy: #0F172A;
+            --navy-light: #1E293B;
+            --accent: #C5A059;
+            --accent-hover: #B08D46;
+            --bg-light: #F8FAFC;
+            --text-dark: #334155;
+            --text-muted: #64748B;
+            --white: #FFFFFF;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+        }
+
+        body {
+            background-color: var(--bg-light);
+            color: var(--text-dark);
+            line-height: 1.6;
+            padding-bottom: 70px;
+        }
+
+        @media (min-width: 768px) {
+            body { padding-bottom: 0; }
+        }
+
+        /* Шапка */
+        .header {
+            background-color: var(--navy);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 1.5rem;
+        }
+
+        .logo {
+            color: var(--white);
+            font-size: 1.3rem;
+            font-weight: 700;
+            text-decoration: none;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .logo span { color: var(--accent); }
+
+        .nav-menu {
+            display: flex;
+            list-style: none;
+            gap: 1.5rem;
+        }
+
+        .nav-link {
+            color: #E2E8F0;
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+
+        .nav-link:hover, .nav-link.active { color: var(--accent); }
+
+        .btn-contact {
+            background-color: var(--accent);
+            color: var(--navy);
+            padding: 0.6rem 1.2rem;
+            border-radius: 4px;
+            font-weight: 600;
+            text-decoration: none;
+            transition: background-color 0.3s;
+        }
+
+        .btn-contact:hover { background-color: var(--accent-hover); }
+
+        .hamburger {
+            display: none;
+            cursor: pointer;
+            background: none;
+            border: none;
+            color: var(--white);
+            font-size: 1.8rem;
+        }
+
+        /* Баннер */
+        .page-banner {
+            background-color: var(--navy);
+            color: var(--white);
+            padding: 3rem 1.5rem;
+            text-align: center;
+            border-bottom: 3px solid var(--accent);
+        }
+
+        .page-banner h1 {
+            font-size: 2.2rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .page-banner p {
+            color: #94A3B8;
+            font-size: 1.1rem;
+        }
+
+        /* Контейнер */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 3rem 1.5rem;
+        }
+
+        /* Заголовки розділів */
+        .section-title {
+            font-size: 1.8rem;
+            color: var(--navy);
+            margin-bottom: 2rem;
+            text-align: center;
+        }
+
+        /* Сітка з деталізованими квадратиками послуг */
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 2rem;
+            margin-bottom: 4rem;
+        }
+
+        .service-card {
+            background: var(--white);
+            border-radius: 12px;
+            padding: 2.2rem;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+            transition: transform 0.3s, box-shadow 0.3s;
+            border-top: 4px solid var(--accent);
+            display: flex;
+            flex-direction: column;
+        }
+
+        .service-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.1);
+        }
+
+        .service-icon {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .service-title {
+            font-size: 1.4rem;
+            color: var(--navy);
+            margin-bottom: 0.8rem;
+        }
+
+        .service-desc {
+            color: var(--text-muted);
+            font-size: 0.98rem;
+            margin-bottom: 1.2rem;
+            flex-grow: 1;
+        }
+
+        .service-list {
+            list-style: none;
+            margin-bottom: 1.5rem;
+            border-top: 1px solid #F1F5F9;
+            padding-top: 1rem;
+        }
+
+        .service-list li {
+            position: relative;
+            padding-left: 1.3rem;
+            margin-bottom: 0.6rem;
+            font-size: 0.92rem;
+            color: var(--text-dark);
+        }
+
+        .service-list li::before {
+            content: "✓";
+            position: absolute;
+            left: 0;
+            color: var(--accent);
+            font-weight: bold;
+        }
+
+        /* Блок про супровід у судах */
+        .info-box {
+            background: var(--navy);
+            color: var(--white);
+            padding: 2.5rem;
+            border-radius: 12px;
+            margin-bottom: 4rem;
+        }
+
+        .info-box h2 {
+            color: var(--accent);
+            margin-bottom: 1rem;
+            font-size: 1.6rem;
+        }
+
+        .info-box p {
+            color: #E2E8F0;
+            font-size: 1.05rem;
+            line-height: 1.8;
+        }
+
+        /* Секція "Як ми працюємо" у квадратиках */
+        .process-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+            margin-bottom: 2rem;
+        }
+
+        .process-card {
+            background: var(--white);
+            border-radius: 12px;
+            padding: 2rem 1.5rem;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+            border-left: 4px solid var(--accent);
+            position: relative;
+            transition: transform 0.3s;
+        }
+
+        .process-card:hover {
+            transform: translateY(-3px);
+        }
+
+        .process-number {
+            font-size: 1.8rem;
+            font-weight: 800;
+            color: var(--accent);
+            margin-bottom: 0.5rem;
+        }
+
+        .process-card-title {
+            font-size: 1.2rem;
+            color: var(--navy);
+            margin-bottom: 0.5rem;
+            font-weight: 700;
+        }
+
+        .process-card-desc {
+            color: var(--text-muted);
+            font-size: 0.95rem;
+            line-height: 1.5;
+        }
+
+        /* Мобільна кнопка */
+        .mobile-call-btn {
+            display: none;
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            background-color: var(--accent);
+            color: var(--navy);
+            text-align: center;
+            padding: 1rem;
+            font-weight: 700;
+            text-decoration: none;
+            z-index: 999;
+            box-shadow: 0 -2px 10px rgba(0,0,0,0.15);
+        }
+
+        @media (max-width: 768px) {
+            .nav-menu {
+                display: none;
+                width: 100%;
+                flex-direction: column;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                background-color: var(--navy);
+                padding: 1rem;
+            }
+
+            .hamburger { display: block; }
+            .nav-container.active .nav-menu { display: flex; }
+            .mobile-call-btn { display: block; }
+            .header .btn-contact { display: none; }
+            .page-banner h1 { font-size: 1.8rem; }
+            .services-grid, .process-grid { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Шапка -->
+    <header class="header">
+        <div class="nav-container">
+            <a href="index.html" class="logo">Адвокат <span>Право</span></a>
+            <button class="hamburger" onclick="toggleMenu()">☰</button>
+            <ul class="nav-menu">
+                <li><a href="index.html" class="nav-link">Головна</a></li>
+                <li><a href="about.html" class="nav-link">Про мене</a></li>
+                <li><a href="services.html" class="nav-link active">Послуги</a></li>
+                <li><a href="cases.html" class="nav-link">Справи</a></li>
+            </ul>
+            <a href="tel:+380937222592" class="btn-contact">Зв'язатися</a>
+        </div>
+    </header>
+
+    <!-- Баннер -->
+    <section class="page-banner">
+        <h1>Спеціалізація та Послуги</h1>
+        <p>Кваліфікована правова допомога та захист ваших інтересів</p>
+    </section>
+
+    <div class="container">
+
+        <!-- Напрямки у вигляді деталізованих квадратиків -->
+        <h2 class="section-title">Основні напрямки практики</h2>
+        <div class="services-grid">
+
+            <!-- Квадратик 1: Цивільне право -->
+            <div class="service-card">
+                <div class="service-icon">🏛️</div>
+                <h3 class="service-title">Цивільне законодавство</h3>
+                <p class="service-desc">Захист прав та інтересів фізичних осіб у цивільних правовідносинах і майнових спорах.</p>
+                <ul class="service-list">
+                    <li>Спори щодо права власності</li>
+                    <li>Стягнення боргів та заборгованостей</li>
+                    <li>Договірні спори та зобов'язання</li>
+                    <li>Відшкодування шкоди та збитків</li>
+                </ul>
+            </div>
+
+            <!-- Квадратик 2: Господарське право -->
+            <div class="service-card">
+                <div class="service-icon">💼</div>
+                <h3 class="service-title">Господарське право</h3>
+                <p class="service-desc">Правовий захист бізнесу, супровід суб'єктів господарювання та договірних відносин.</p>
+                <ul class="service-list">
+                    <li>Абонентський супровід бізнесу</li>
+                    <li>Спори між підприємствами та ФОП</li>
+                    <li>Стягнення дебіторської заборгованості</li>
+                    <li>Правовий аналіз та розробка договорів</li>
+                </ul>
+            </div>
+
+            <!-- Квадратик 3: Земельне право -->
+            <div class="service-card">
+                <div class="service-icon">🌳</div>
+                <h3 class="service-title">Земельне законодавство</h3>
+                <p class="service-desc">Вирішення складних спорів щодо права власності, користування та оренди землі.</p>
+                <ul class="service-list">
+                    <li>Спори щодо меж земельних ділянок</li>
+                    <li>Захист прав на земельну частку (пай)</li>
+                    <li>Угоди купівлі-продажу та оренди землі</li>
+                    <li>Оскарження незаконних рішень держорганів</li>
+                </ul>
+            </div>
+
+            <!-- Квадратик 4: Сімейне право -->
+            <div class="service-card">
+                <div class="service-icon">👨‍👩‍👧‍👦</div>
+                <h3 class="service-title">Сімейне право</h3>
+                <p class="service-desc">Делікатне та професійне вирішення сімейних конфлікти з дотриманням ваших інтересів.</p>
+                <ul class="service-list">
+                    <li>Розірвання шлюбу (розлучення)</li>
+                    <li>Поділ спільного майна подружжя</li>
+                    <li>Стягнення та зміна розміру аліментів</li>
+                    <li>Визначення місця проживання дитини</li>
+                </ul>
+            </div>
+
+        </div>
+
+        <!-- Блок про супровід у судах -->
+        <section class="info-box">
+            <h2>Представництво та супровід у судах</h2>
+            <p>
+                Забезпечую повний супровід справ у судах України в цивільному, господарському та адміністративному процесах. Захист прав, свобод і законних інтересів фізичних та юридичних осіб здійснюється на основі понад 15-річного практичного досвіду.
+            </p>
+        </section>
+
+        <!-- Блок "Як ми працюємо" в квадратиках -->
+        <h2 class="section-title">Як ми працюємо</h2>
+        <div class="process-grid">
+
+            <div class="process-card">
+                <div class="process-number">01</div>
+                <div class="process-card-title">Звернення</div>
+                <div class="process-card-desc">Первинний зв'язок по телефону</div>
+            </div>
+
+            <div class="process-card">
+                <div class="process-number">02</div>
+                <div class="process-card-title">Аналіз документів</div>
+                <div class="process-card-desc">Вивчення матеріалів справи, детальна оцінка ризиків та перспектив.</div>
+            </div>
+
+            <div class="process-card">
+                <div class="process-number">03</div>
+                <div class="process-card-title">Стратегія та Угода</div>
+                <div class="process-card-desc">Узгодження плану дій, фіксування вартості та підписання договору.</div>
+            </div>
+
+            <div class="process-card">
+                <div class="process-number">04</div>
+                <div class="process-card-title">Захист та Результат</div>
+                <div class="process-card-desc">Повний правовий супровід у суді або держустановах до фінального рішення.</div>
+            </div>
+
+        </div>
+
+    </div>
+
+    <!-- Мобільна кнопка -->
+    <a href="tel:+380937222592" class="mobile-call-btn">📞 Зв'язатися з адвокатом</a>
+
+    <script>
+        function toggleMenu() {
+            document.querySelector('.nav-container').classList.toggle('active');
+        }
+    </script>
+</body>
+</html>

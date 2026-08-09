@@ -1,0 +1,461 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Судова практика та Справи | Адвокат Права</title>
+    <style>
+        :root {
+            --navy: #0F172A;
+            --navy-light: #1E293B;
+            --accent: #C5A059;
+            --accent-hover: #B08D46;
+            --bg-light: #F8FAFC;
+            --text-dark: #334155;
+            --text-muted: #64748B;
+            --white: #FFFFFF;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+        }
+
+        body {
+            background-color: var(--bg-light);
+            color: var(--text-dark);
+            line-height: 1.6;
+            padding-bottom: 70px;
+        }
+
+        @media (min-width: 768px) {
+            body { padding-bottom: 0; }
+        }
+
+        /* Шапка */
+        .header {
+            background-color: var(--navy);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 1.5rem;
+        }
+
+        .logo {
+            color: var(--white);
+            font-size: 1.3rem;
+            font-weight: 700;
+            text-decoration: none;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .logo span { color: var(--accent); }
+
+        .nav-menu {
+            display: flex;
+            list-style: none;
+            gap: 1.5rem;
+        }
+
+        .nav-link {
+            color: #E2E8F0;
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+
+        .nav-link:hover, .nav-link.active { color: var(--accent); }
+
+        .btn-contact {
+            background-color: var(--accent);
+            color: var(--navy);
+            padding: 0.6rem 1.2rem;
+            border-radius: 4px;
+            font-weight: 600;
+            text-decoration: none;
+            transition: background-color 0.3s;
+        }
+
+        .btn-contact:hover { background-color: var(--accent-hover); }
+
+        .hamburger {
+            display: none;
+            cursor: pointer;
+            background: none;
+            border: none;
+            color: var(--white);
+            font-size: 1.8rem;
+        }
+
+        /* Баннер */
+        .page-banner {
+            background-color: var(--navy);
+            color: var(--white);
+            padding: 3rem 1.5rem;
+            text-align: center;
+            border-bottom: 3px solid var(--accent);
+        }
+
+        .page-banner h1 {
+            font-size: 2.2rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .page-banner p {
+            color: #94A3B8;
+            font-size: 1.1rem;
+        }
+
+        /* Контейнер */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 3rem 1.5rem;
+        }
+
+        .section-title {
+            font-size: 1.8rem;
+            color: var(--navy);
+            margin-bottom: 2rem;
+            text-align: center;
+        }
+
+        /* Блок статистики */
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 1.5rem;
+            margin-bottom: 3.5rem;
+        }
+
+        .stat-card {
+            background: var(--white);
+            padding: 1.8rem;
+            border-radius: 10px;
+            text-align: center;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+            border-bottom: 3px solid var(--accent);
+        }
+
+        .stat-number {
+            font-size: 2.2rem;
+            font-weight: 800;
+            color: var(--accent);
+            margin-bottom: 0.3rem;
+        }
+
+        .stat-label {
+            color: var(--text-dark);
+            font-size: 0.95rem;
+            font-weight: 600;
+        }
+
+        /* Сітка справ (квадратики) */
+        .cases-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
+            gap: 2rem;
+            margin-bottom: 3rem;
+        }
+
+        .case-card {
+            background: var(--white);
+            border-radius: 12px;
+            padding: 2rem;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+            border-top: 4px solid var(--accent);
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .case-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.1);
+        }
+
+        .case-tag {
+            align-self: flex-start;
+            background: #F1F5F9;
+            color: var(--navy);
+            padding: 0.3rem 0.8rem;
+            border-radius: 4px;
+            font-size: 0.82rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-bottom: 1rem;
+            border-left: 3px solid var(--accent);
+        }
+
+        .case-title {
+            font-size: 1.25rem;
+            color: var(--navy);
+            margin-bottom: 0.8rem;
+        }
+
+        .case-desc {
+            color: var(--text-muted);
+            font-size: 0.95rem;
+            margin-bottom: 1.2rem;
+            flex-grow: 1;
+        }
+
+        .case-result {
+            background: #F8FAFC;
+            border-radius: 8px;
+            padding: 1rem;
+            border-left: 3px solid #10B981;
+        }
+
+        .case-result-title {
+            font-size: 0.85rem;
+            font-weight: 700;
+            color: #047857;
+            text-transform: uppercase;
+            margin-bottom: 0.2rem;
+        }
+
+        .case-result-text {
+            font-size: 0.92rem;
+            color: var(--text-dark);
+            font-weight: 600;
+        }
+
+        /* Інфо-блок заклику */
+        .cta-box {
+            background: var(--navy);
+            color: var(--white);
+            padding: 2.5rem;
+            border-radius: 12px;
+            text-align: center;
+        }
+
+        .cta-box h2 {
+            color: var(--accent);
+            margin-bottom: 1rem;
+            font-size: 1.6rem;
+        }
+
+        .cta-box p {
+            color: #E2E8F0;
+            max-width: 700px;
+            margin: 0 auto 1.5rem;
+            font-size: 1.05rem;
+        }
+
+        .cta-btn {
+            display: inline-block;
+            background: var(--accent);
+            color: var(--navy);
+            padding: 0.8rem 1.8rem;
+            border-radius: 6px;
+            font-weight: 700;
+            text-decoration: none;
+            transition: background 0.3s;
+        }
+
+        .cta-btn:hover {
+            background: var(--accent-hover);
+        }
+
+        /* Мобільна кнопка */
+        .mobile-call-btn {
+            display: none;
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            background-color: var(--accent);
+            color: var(--navy);
+            text-align: center;
+            padding: 1rem;
+            font-weight: 700;
+            text-decoration: none;
+            z-index: 999;
+            box-shadow: 0 -2px 10px rgba(0,0,0,0.15);
+        }
+
+        @media (max-width: 768px) {
+            .nav-menu {
+                display: none;
+                width: 100%;
+                flex-direction: column;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                background-color: var(--navy);
+                padding: 1rem;
+            }
+
+            .hamburger { display: block; }
+            .nav-container.active .nav-menu { display: flex; }
+            .mobile-call-btn { display: block; }
+            .header .btn-contact { display: none; }
+            .page-banner h1 { font-size: 1.8rem; }
+            .cases-grid { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Шапка -->
+    <header class="header">
+        <div class="nav-container">
+            <a href="index.html" class="logo">Адвокат <span>Право</span></a>
+            <button class="hamburger" onclick="toggleMenu()">☰</button>
+            <ul class="nav-menu">
+                <li><a href="index.html" class="nav-link">Головна</a></li>
+                <li><a href="about.html" class="nav-link">Про мене</a></li>
+                <li><a href="services.html" class="nav-link">Послуги</a></li>
+                <li><a href="cases.html" class="nav-link active">Справи</a></li>
+            </ul>
+            <a href="tel:+380937222592" class="btn-contact">Зв'язатися</a>
+        </div>
+    </header>
+
+    <!-- Баннер -->
+    <section class="page-banner">
+        <h1>Судова практика</h1>
+        <p>Приклади успішно вирішених справ та правових спорів</p>
+    </section>
+
+    <div class="container">
+
+        <!-- Статистика в квадратиках -->
+        <div class="stats-grid">
+            <div class="stat-card">
+                <div class="stat-number">15+</div>
+                <div class="stat-label">Років практики</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-number">2012</div>
+                <div class="stat-label">Рік отримання свідоцтва</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-number">100%</div>
+                <div class="stat-label">Офіційність та правозахист</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-number">Київ</div>
+                <div class="stat-label">Географія судів</div>
+            </div>
+        </div>
+
+        <!-- Приклади справ у квадратиках -->
+        <h2 class="section-title">Приклади з судової практики</h2>
+        <div class="cases-grid">
+
+            <!-- Справа 1 -->
+            <div class="case-card">
+                <div>
+                    <span class="case-tag">Земельні спори</span>
+                    <h3 class="case-title">Скасування незаконного рішення та відновлення меж ділянки</h3>
+                    <p class="case-desc">Оскарження в судовому порядку незаконного накладення земельних ділянок та відмови місцевої ради у затвердженні землевпорядної документації.</p>
+                </div>
+                <div class="case-result">
+                    <div class="case-result-title">Результат:</div>
+                    <div class="case-result-text">Позов задоволено повністю, право власності клієнта відновлено.</div>
+                </div>
+            </div>
+
+            <!-- Справа 2 -->
+          <!-- Виправлена Справа 2 -->
+<div class="case-card">
+    <div>
+        <span class="case-tag">Цивільні справи</span>
+        <h3 class="case-title">Стягнення заборгованості за договором та компенсації</h3>
+        <p class="case-desc">Представництво інтересів кредитора щодо стягнення боргу, інфляційних втрат та 3% річних за довготривале невиконання грошового зобов'язання.</p>
+    </div>
+    <div class="case-result">
+        <div class="case-result-title">Результат:</div>
+        <div class="case-result-text">Судом присуджено до стягнення всю суму боргу разом із компенсаціями.</div>
+    </div>
+</div>
+
+            <!-- Справа 3 -->
+            <div class="case-card">
+                <div>
+                    <span class="case-tag">Сімейне право</span>
+                    <h3 class="case-title">Поділ спільної сумісної власності подружжя</h3>
+                    <p class="case-desc">Складний судовий процес щодо поділу нерухомого та рухомого майна, набутого під час шлюбу, із врахуванням інтересів неповнолітньої дитини.</p>
+                </div>
+                <div class="case-result">
+                    <div class="case-result-title">Результат:</div>
+                    <div class="case-result-text">Захищено частку клієнта та визначено справедливий порядок поділу.</div>
+                </div>
+            </div>
+
+            <!-- Справа 4 -->
+            <div class="case-card">
+                <div>
+                    <span class="case-tag">Господарські спори</span>
+                    <h3 class="case-title">Захист підприємства у договорі постачання</h3>
+                    <p class="case-desc">Судовий захист суб'єкта господарювання від безпідставних штрафних санкцій та вимог щодо неякості поставленої продукції.</p>
+                </div>
+                <div class="case-result">
+                    <div class="case-result-title">Результат:</div>
+                    <div class="case-result-text">В позові протилежній стороні відмовлено, грошові претензії знято.</div>
+                </div>
+            </div>
+
+            <!-- Справа 5 -->
+            <div class="case-card">
+                <div>
+                    <span class="case-tag">Адміністративні справи</span>
+                    <h3 class="case-title">Оскарження протиправного рішення держоргану</h3>
+                    <p class="case-desc">Представництво фізичної особи у суперечці з контролюючим органом щодо скасування незаконно винесеної постанови.</p>
+                </div>
+                <div class="case-result">
+                    <div class="case-result-title">Результат:</div>
+                    <div class="case-result-text">Постанову визнано протиправною та скасовано в повному обсязі.</div>
+                </div>
+            </div>
+
+            <!-- Справа 6 -->
+            <div class="case-card">
+                <div>
+                    <span class="case-tag">Цивільне право</span>
+                    <h3 class="case-title">Визнання права власності на спадкове майно</h3>
+                    <p class="case-desc">Судовий супровід оформлення спадщини у випадку відсутності необхідних первинних документів на майно.</p>
+                </div>
+                <div class="case-result">
+                    <div class="case-result-title">Результат:</div>
+                    <div class="case-result-text">Право власності за спадкоємцем визнано в судовому порядку.</div>
+                </div>
+            </div>
+
+        </div>
+
+        <!-- Заклик до дії -->
+        <section class="cta-box">
+            <h2>Потрібна якісна правова оцінка вашої справи?</h2>
+            <p>Кожна правова ситуація індивідуальна. Зв'яжіться для детального аналізу документів та визначення перспектив вирішення вашого питання.</p>
+            <a href="tel:+380937222592" class="cta-btn">📞 Зателефонувати адвокату</a>
+        </section>
+
+    </div>
+
+    <!-- Мобільна кнопка -->
+    <a href="tel:+380937222592" class="mobile-call-btn">📞 Зв'язатися з адвокатом</a>
+
+    <script>
+        function toggleMenu() {
+            document.querySelector('.nav-container').classList.toggle('active');
+        }
+    </script>
+</body>
+</html>

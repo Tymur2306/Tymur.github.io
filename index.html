@@ -3,205 +3,242 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SAYVAN_KINO</title>
+    <title>Адвокат | Юридична допомога та захист</title>
     <style>
-        /* Загальні стилі для всієї сторінки */
+        /* Основні змінні та скидання стилів */
+        :root {
+            --navy: #0F172A;
+            --navy-light: #1E293B;
+            --accent: #C5A059; /* Благородний золотий */
+            --accent-hover: #B08D46;
+            --bg-light: #F8FAFC;
+            --text-dark: #334155;
+            --text-muted: #64748B;
+            --white: #FFFFFF;
+        }
+
         * {
             box-sizing: border-box;
             margin: 0;
             padding: 0;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
         }
 
         body {
-            background-color: #0a0a0a;
-            color: white;
-            font-family: 'Inter', sans-serif;
-            overflow-x: hidden;
+            background-color: var(--bg-light);
+            color: var(--text-dark);
+            line-height: 1.6;
+            padding-bottom: 70px; /* Відступ для мобільної кнопки */
         }
 
-        /* ---------- ШАПКА ---------- */
-        .header {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 80px;
+        @media (min-width: 768px) {
+            body { padding-bottom: 0; }
+        }
 
+        /* Шапка та Навігація */
+        .header {
+            background-color: var(--navy);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
             display: flex;
             justify-content: space-between;
             align-items: center;
-
-            padding: 0 80px;
-            background: rgba(10, 10, 10, 0.85);
-            backdrop-filter: blur(12px);
-
-            z-index: 1000;
-            animation: headerDown 0.8s ease;
+            padding: 1rem 1.5rem;
         }
 
         .logo {
-            color: white;
-            font-size: 30px;
-            font-weight: 800;
-            letter-spacing: 2px;
-        }
-
-        .nav {
-            display: flex;
-            gap: 40px;
-        }
-
-        .nav a {
-            color: #bdbdbd;
+            color: var(--white);
+            font-size: 1.3rem;
+            font-weight: 700;
             text-decoration: none;
-            font-size: 17px;
-            transition: 0.3s;
-        }
-
-        .nav a:hover, .nav a.active {
-            color: white;
-        }
-
-        .header-btn {
-            text-decoration: none;
-            background: #0088cc;
-            color: white;
-            padding: 12px 25px;
-            border-radius: 50px;
-            font-weight: 600;
-            transition: 0.3s;
-        }
-
-        .header-btn:hover {
-            transform: scale(1.05);
-        }
-
-        /* ---------- ГОЛОВНА СЕКЦІЯ ---------- */
-        .hero-section {
-            display: flex;
-            align-items: center;
-            justify-content: space-evenly;
-            min-height: 100vh;
-            width: 100vw;
-            padding: 100px 100px 0 100px; /* Додали відступ зверху під fixed-шапку */
-        }
-
-        .content { 
-            max-width: 600px; 
-            opacity: 0;
-            animation: textLeft 1s ease forwards;
-            animation-delay: 0.3s;
-        }
-
-        h1 {
-            font-size: clamp(60px, 8vw, 120px);
-            line-height: 0.9;
-            color: white;
-            margin: 0 0 30px 0;
             text-transform: uppercase;
-            font-weight: 800;
+            letter-spacing: 1px;
         }
 
-        p {
-            font-size: 20px;
-            color: #a0a0a0;
-            margin-bottom: 40px;
-            line-height: 1.6;
-        }
+        .logo span { color: var(--accent); }
 
-        .image-container img {
-            margin-left: 75px;
-            width: 400px;
-            height: auto;
-            border-radius: 40px;
-            opacity: 0;
-            animation: imageRight 1.2s ease forwards;
-            animation-delay: 0.6s;
-        }
-
-        /* ---------- СТАТИСТИКА ---------- */
-        .stats {
+        .nav-menu {
             display: flex;
-            align-items: center;
-            gap: 40px;
-            margin-top: 50px;
+            list-style: none;
+            gap: 1.5rem;
         }
 
-        .stat {
-            padding-right: 40px;
-            border-right: 1px solid #333;
+        .nav-link {
+            color: #E2E8F0;
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s;
         }
 
-        .stat:last-child {
-            border-right: none;
-            padding-right: 0;
+        .nav-link:hover { color: var(--accent); }
+
+        .btn-contact {
+            background-color: var(--accent);
+            color: var(--navy);
+            padding: 0.6rem 1.2rem;
+            border-radius: 4px;
+            font-weight: 600;
+            text-decoration: none;
+            transition: background-color 0.3s;
         }
 
-        .stat h2 {
-            color: white;
-            font-size: 48px;
-            margin: 0;
-            font-weight: 800;
+        .btn-contact:hover { background-color: var(--accent-hover); }
+
+        /* Мобільне меню */
+        .hamburger {
+            display: none;
+            cursor: pointer;
+            background: none;
+            border: none;
+            color: var(--white);
+            font-size: 1.8rem;
         }
 
-        .stat span {
-            color: #8f8f8f;
-            font-size: 16px;
+        /* Hero Секція */
+        .hero {
+            background: linear-gradient(rgba(15, 23, 42, 0.9), rgba(15, 23, 42, 0.9)), 
+                        url('https://images.unsplash.com/photo-1589829545856-d10d557cf95f?auto=format&fit=crop&w=1200&q=80') center/cover;
+            color: var(--white);
+            padding: 4rem 1.5rem;
+            text-align: center;
         }
 
-        /* ---------- АНІМАЦІЇ ---------- */
-        @keyframes headerDown {
-            from {
-                opacity: 0;
-                transform: translateY(-60px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
+        .hero-content {
+            max-width: 800px;
+            margin: 0 auto;
         }
 
-        @keyframes textLeft {
-            from {
-                opacity: 0;
-                transform: translateX(-80px);
-            }
-            to {
-                opacity: 1;
-                transform: translateX(0);
-            }
+        .hero h1 {
+            font-size: 2.2rem;
+            margin-bottom: 1rem;
+            line-height: 1.2;
         }
 
-        @keyframes imageRight {
-            from {
-                opacity: 0;
-                transform: translateX(80px) scale(0.9);
-            }
-            to {
-                opacity: 1;
-                transform: translateX(0) scale(1);
-            }
+        .hero p {
+            font-size: 1.1rem;
+            color: #94A3B8;
+            margin-bottom: 2rem;
         }
 
-        /* Адаптивність для малих екранів */
-        @media (max-width: 900px) {
-            .hero-section {
-                flex-direction: column;
-                padding: 120px 20px 50px 20px;
-                text-align: center;
-            }
-            .image-container img {
-                margin-left: 0;
-                margin-top: 40px;
+        .hero-buttons {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        /* Основні блоки */
+        .section {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 3.5rem 1.5rem;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 1.8rem;
+            color: var(--navy);
+            margin-bottom: 2.5rem;
+            position: relative;
+        }
+
+        .section-title::after {
+            content: '';
+            display: block;
+            width: 50px;
+            height: 3px;
+            background-color: var(--accent);
+            margin: 0.5rem auto 0;
+        }
+
+        /* Факти / Переваги */
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 1.5rem;
+            text-align: center;
+        }
+
+        .stat-card {
+            background: var(--white);
+            padding: 1.5rem;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px -1px rgba(0,0,0,0.05);
+            border-top: 4px solid var(--accent);
+        }
+
+        .stat-card h3 {
+            font-size: 2rem;
+            color: var(--navy);
+            margin-bottom: 0.5rem;
+        }
+
+        /* Послуги */
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .service-card {
+            background: var(--white);
+            padding: 1.5rem;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px -1px rgba(0,0,0,0.05);
+        }
+
+        .service-card h3 {
+            color: var(--navy);
+            margin-bottom: 0.8rem;
+        }
+
+        .service-card p {
+            color: var(--text-muted);
+            font-size: 0.95rem;
+        }
+
+        /* Плаваюча кнопка для мобільного */
+        .mobile-call-btn {
+            display: none;
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            background-color: var(--accent);
+            color: var(--navy);
+            text-align: center;
+            padding: 1rem;
+            font-weight: 700;
+            text-decoration: none;
+            z-index: 999;
+            box-shadow: 0 -2px 10px rgba(0,0,0,0.15);
+        }
+
+        /* Адаптивність */
+        @media (max-width: 768px) {
+            .nav-menu {
+                display: none; /* Можна розгорнути за допомогою JS */
                 width: 100%;
-                max-width: 350px;
+                flex-direction: column;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                background-color: var(--navy);
+                padding: 1rem;
             }
-            .stats {
-                justify-content: center;
-            }
-            .header {
-                padding: 0 20px;
-            }
+
+            .hamburger { display: block; }
+            .nav-container.active .nav-menu { display: flex; }
+            .mobile-call-btn { display: block; }
+            .header .btn-contact { display: none; }
+            .hero h1 { font-size: 1.8rem; }
         }
     </style>
 </head>
@@ -209,83 +246,83 @@
 
     <!-- Шапка сайту -->
     <header class="header">
-        <div class="logo">SAYVAN</div>
-
-        <nav class="nav">
-            <a href="index.html" class="active">Головна</a>
-            <a href="service.html">Послуги</a>
-            <a href="portfolio.html">Відгуки</a>
-            <a href="about.html">Про мене</a>
-        </nav>
-
-        <a href="https://t.me/SAYVAN_KINO" target="_blank" class="header-btn">Написати</a>
+        <div class="nav-container">
+            <a href="#" class="logo">Адвокат <span>Право</span></a>
+            <button class="hamburger" onclick="toggleMenu()">☰</button>
+            <ul class="nav-menu">
+                <li><a href="#" class="nav-link">Головна</a></li>
+                <li><a href="about.html" class="nav-link">Про мене</a></li>
+                <li><a href="services.html" class="nav-link">Послуги</a></li>
+                <li><a href="#" class="nav-link">Справи</a></li>
+            </ul>
+            <a href="tel:+380937222592" class="btn-contact">Зв'язатися</a>
+        </div>
     </header>
 
-    <!-- Головна секція -->
-    <section class="hero-section">
-
-        <div class="content">
-            <h1>VIDEO <br> PRODUCTION</h1>
-
-            <p>
-                Професійна зйомка та монтаж відео будь-якої складності.
-                Перетворюю ваші ідеї на якісний контент.
-            </p>
-
-            <div class="stats">
-                <div class="stat">
-                    <h2 class="counter" data-target="3">0</h2>
-                    <span>Роки досвіду</span>
-                </div>
-
-                <div class="stat">
-                    <h2 class="counter" data-target="70">0</h2>
-                    <span>Проєктів</span>
-                </div>
-
-                <div class="stat">
-                    <h2 class="counter" data-target="100">0</h2>
-                    <span>Задоволених клієнтів</span>
-                </div>
+    <!-- Головний баннер -->
+    <section class="hero">
+        <div class="hero-content">
+            <h1>Професійна юридична допомога та захист ваших інтересів</h1>
+            <p>Більше 15 років практичного досвіду в судах України. Індивідуальний підхід та робота на результат.</p>
+            <div class="hero-buttons">
+                <a href="tel:+380937222592" class="btn-contact" style="padding: 0.8rem 1.8rem;">Зателефонувати</a>
+                <a href="#services" class="btn-contact" style="background: transparent; border: 2px solid var(--accent); color: var(--white);">Наші послуги</a>
             </div>
         </div>
-
-        <div class="image-container">
-            <img src="https://res.cloudinary.com/dspihbagc/image/upload/v1784023633/444444444444_xjwhee.png" alt="Video Creator">
-        </div>
-
     </section>
 
-    <!-- Скрипт лічильників -->
-   <script>
-        document.addEventListener("DOMContentLoaded", () => {
-            const counters = document.querySelectorAll(".counter");
+    <!-- Досвід у цифрах -->
+    <section class="section">
+        <div class="stats-grid">
+            <div class="stat-card">
+                <h3>15+ років</h3>
+                <p>Практичного досвіду в сфері права</p>
+            </div>
+            <div class="stat-card">
+                <h3>з 2012 року</h3>
+                <p>Офіційна адвокатська діяльність</p>
+            </div>
+            <div class="stat-card">
+                <h3>НЮАУ</h3>
+                <p>ім. Ярослава Мудрого (Вища освіта)</p>
+            </div>
+            <div class="stat-card">
+                <h3>Якість</h3>
+                <p>Принцип роботи — якість, а не кількість</p>
+            </div>
+        </div>
+    </section>
 
-            counters.forEach(counter => {
-                const target = +counter.dataset.target;
-                let count = 0;
-                
-                // Встановлюємо фіксовану швидкість: що вище число, то більший крок
-                const duration = 2000; // Анімація триватиме 2 секунди (2000 мс)
-                const steps = 60; // 60 кадрів
-                const increment = target / steps;
-                const stepTime = duration / steps;
+    <!-- Послуги -->
+    <section class="section" id="services">
+        <h2 class="section-title">Основні напрямки</h2>
+        <div class="services-grid">
+            <div class="service-card">
+                <h3>Сімейне право</h3>
+                <p>Розірвання шлюбу «під ключ», стягнення аліментів, поділ майна, визначення місця проживання дитини.</p>
+            </div>
+            <div class="service-card">
+                <h3>Цивільне право</h3>
+                <p>Визнання права власності, витребування майна, усунення перешкод у користуванні, стягнення коштів.</p>
+            </div>
+            <div class="service-card">
+                <h3>Договірне право</h3>
+                <p>Розробка та правовий аналіз договорів, оспорення договорів у суді, шлюбні договори.</p>
+            </div>
+            <div class="service-card">
+                <h3>Адвокатський захист</h3>
+                <p>Справи за ст. 130 КУпАП, скасування арешту майна, адвокатські запити, захист у судах.</p>
+            </div>
+        </div>
+    </section>
 
-                const updateCounter = () => {
-                    count += increment;
+    <!-- Плаваюча кнопка для швидкого виклику з мобільного -->
+    <a href="tel:+380937222592" class="mobile-call-btn">📞 Зв'язатися з адвокатом</a>
 
-                    if (count < target) {
-                        counter.innerText = Math.floor(count);
-                        setTimeout(updateCounter, stepTime);
-                    } else {
-                        counter.innerText = target + "+";
-                    }
-                };
-
-                updateCounter();
-            });
-        });
+    <script>
+        function toggleMenu() {
+            document.querySelector('.nav-container').classList.toggle('active');
+        }
     </script>
-
 </body>
 </html>
