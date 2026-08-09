@@ -4,21 +4,20 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <!-- Іконка "Судейський молоток" для вкладки -->
-   <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%235C3A21'><path d='M18 2h-4v2h1v3h-1v2h4V7h-1V4h1V2zm-7 4.5l-6 6 1.5 1.5 6-6L11 6.5zm-5.5 8L4 16l4 4 1.5-1.5-4-4zM2 21h12v2H2v-2z'/></svg>">
+    <!-- Іконка для вкладки -->
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%23C5A059'><path d='M18 2h-4v2h1v3h-1v2h4V7h-1V4h1V2zm-7 4.5l-6 6 1.5 1.5 6-6L11 6.5zm-5.5 8L4 16l4 4 1.5-1.5-4-4zM2 21h12v2H2v-2z'/></svg>">
 
     <title>Послуги адвоката | Професійний правовий захист</title>
     <style>
-        /* Основні змінні та скидання стилів */
         :root {
-            --navy: #0F172A;
-            --navy-light: #1E293B;
-            --accent: #C5A059; /* Благородний золотий */
+            /* Палітра як на скриншоті */
+            --navy-header: #0F172A;   /* Темно-синя шапка */
+            --bg-dark: #18191A;       /* Загальний темно-вугільний фон */
+            --card-bg: #242526;       /* Темні картки */
+            --accent: #C5A059;        /* Золотистий колір */
             --accent-hover: #B08D46;
-            --bg-light: #F8FAFC;
-            --text-dark: #334155;
-            --text-muted: #64748B;
-            --white: #FFFFFF;
+            --text-light: #FFFFFF;    /* Білий текст */
+            --text-muted: #A0AAB8;    /* Сірий підтекст */
         }
 
         * {
@@ -29,10 +28,10 @@
         }
 
         body {
-            background-color: var(--bg-light);
-            color: var(--text-dark);
+            background-color: var(--bg-dark) !important;
+            color: var(--text-light);
             line-height: 1.6;
-            padding-bottom: 70px; /* Відступ для мобільної кнопки */
+            padding-bottom: 70px;
         }
 
         @media (min-width: 768px) {
@@ -41,11 +40,11 @@
 
         /* Шапка та Навігація */
         .header {
-            background-color: var(--navy);
+            background-color: var(--navy-header);
             position: sticky;
             top: 0;
             z-index: 1000;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            box-shadow: 0 2px 10px rgba(0,0,0,0.3);
         }
 
         .nav-container {
@@ -58,7 +57,7 @@
         }
 
         .logo {
-            color: var(--white);
+            color: var(--text-light);
             font-size: 1.3rem;
             font-weight: 700;
             text-decoration: none;
@@ -85,7 +84,7 @@
 
         .btn-contact {
             background-color: var(--accent);
-            color: var(--navy);
+            color: #000000;
             padding: 0.6rem 1.2rem;
             border-radius: 4px;
             font-weight: 600;
@@ -101,16 +100,16 @@
             cursor: pointer;
             background: none;
             border: none;
-            color: var(--white);
+            color: var(--text-light);
             font-size: 1.8rem;
         }
 
         /* Hero Секція */
         .hero {
-            background: linear-gradient(rgba(15, 23, 42, 0.9), rgba(15, 23, 42, 0.9)), 
+            background: linear-gradient(rgba(15, 23, 42, 0.85), rgba(15, 23, 42, 0.85)), 
                         url('https://images.unsplash.com/photo-1589829545856-d10d557cf95f?auto=format&fit=crop&w=1200&q=80') center/cover;
-            color: var(--white);
-            padding: 4rem 1.5rem;
+            color: var(--text-light);
+            padding: 5rem 1.5rem;
             text-align: center;
         }
 
@@ -127,7 +126,7 @@
 
         .hero p {
             font-size: 1.1rem;
-            color: #94A3B8;
+            color: var(--text-muted);
             margin-bottom: 2rem;
         }
 
@@ -148,7 +147,7 @@
         .section-title {
             text-align: center;
             font-size: 1.8rem;
-            color: var(--navy);
+            color: var(--text-light);
             margin-bottom: 2.5rem;
             position: relative;
         }
@@ -171,17 +170,22 @@
         }
 
         .stat-card {
-            background: var(--white);
-            padding: 1.5rem;
+            background: var(--card-bg) !important;
+            padding: 1.8rem 1.5rem;
             border-radius: 8px;
-            box-shadow: 0 4px 6px -1px rgba(0,0,0,0.05);
+            box-shadow: 0 4px 15px rgba(0,0,0,0.3);
             border-top: 4px solid var(--accent);
         }
 
         .stat-card h3 {
             font-size: 2rem;
-            color: var(--navy);
+            color: var(--text-light);
             margin-bottom: 0.5rem;
+        }
+
+        .stat-card p {
+            color: var(--text-muted);
+            font-size: 0.95rem;
         }
 
         /* Послуги */
@@ -192,14 +196,21 @@
         }
 
         .service-card {
-            background: var(--white);
-            padding: 1.5rem;
+            background: var(--card-bg) !important;
+            padding: 1.8rem 1.5rem;
             border-radius: 8px;
-            box-shadow: 0 4px 6px -1px rgba(0,0,0,0.05);
+            box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+            border-top: 3px solid transparent;
+            transition: border-color 0.3s, transform 0.3s;
+        }
+
+        .service-card:hover {
+            border-top-color: var(--accent);
+            transform: translateY(-3px);
         }
 
         .service-card h3 {
-            color: var(--navy);
+            color: var(--text-light);
             margin-bottom: 0.8rem;
         }
 
@@ -216,25 +227,25 @@
             left: 0;
             width: 100%;
             background-color: var(--accent);
-            color: var(--navy);
+            color: #000000;
             text-align: center;
             padding: 1rem;
             font-weight: 700;
             text-decoration: none;
             z-index: 999;
-            box-shadow: 0 -2px 10px rgba(0,0,0,0.15);
+            box-shadow: 0 -2px 10px rgba(0,0,0,0.3);
         }
 
         /* Адаптивність */
         @media (max-width: 768px) {
             .nav-menu {
-                display: none; /* Можна розгорнути за допомогою JS */
+                display: none;
                 width: 100%;
                 flex-direction: column;
                 position: absolute;
                 top: 100%;
                 left: 0;
-                background-color: var(--navy);
+                background-color: var(--navy-header);
                 padding: 1rem;
             }
 
@@ -257,7 +268,7 @@
                 <li><a href="#" class="nav-link">Головна</a></li>
                 <li><a href="about.html" class="nav-link">Про мене</a></li>
                 <li><a href="services.html" class="nav-link">Послуги</a></li>
-                <li><a href="#" class="nav-link">Справи</a></li>
+                <li><a href="cases.html" class="nav-link">Справи</a></li>
             </ul>
             <a href="tel:+380937222592" class="btn-contact">Зв'язатися</a>
         </div>
@@ -270,7 +281,7 @@
             <p>Більше 15 років практичного досвіду в судах України. Індивідуальний підхід та робота на результат.</p>
             <div class="hero-buttons">
                 <a href="tel:+380937222592" class="btn-contact" style="padding: 0.8rem 1.8rem;">Зателефонувати</a>
-                <a href="#services" class="btn-contact" style="background: transparent; border: 2px solid var(--accent); color: var(--white);">Наші послуги</a>
+                <a href="#services" class="btn-contact" style="background: transparent; border: 2px solid var(--accent); color: var(--text-light);">Наші послуги</a>
             </div>
         </div>
     </section>

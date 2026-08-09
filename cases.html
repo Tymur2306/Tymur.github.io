@@ -4,20 +4,26 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <!-- Іконка "Судейський молоток" для вкладки -->
-   <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%235C3A21'><path d='M18 2h-4v2h1v3h-1v2h4V7h-1V4h1V2zm-7 4.5l-6 6 1.5 1.5 6-6L11 6.5zm-5.5 8L4 16l4 4 1.5-1.5-4-4zM2 21h12v2H2v-2z'/></svg>">
+    <!-- Іконка для вкладки -->
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%23C5A059'><path d='M18 2h-4v2h1v3h-1v2h4V7h-1V4h1V2zm-7 4.5l-6 6 1.5 1.5 6-6L11 6.5zm-5.5 8L4 16l4 4 1.5-1.5-4-4zM2 21h12v2H2v-2z'/></svg>">
 
-    <title>Послуги адвоката | Професійний правовий захист</title>
+    <title>Судова практика | Приклади справ</title>
     <style>
         :root {
-            --navy: #0F172A;
-            --navy-light: #1E293B;
-            --accent: #C5A059;
+            /* Палітра Dark Mode */
+            --navy-header: #0F172A;   /* Темно-синя шапка та баннер */
+            --bg-dark: #18191A;       /* Загальний темно-вугільний фон */
+            --card-bg: #242526;       /* Темні картки */
+            --card-hover: #2D2E2F;
+            --accent: #C5A059;        /* Золотистий колір */
             --accent-hover: #B08D46;
-            --bg-light: #F8FAFC;
-            --text-dark: #334155;
-            --text-muted: #64748B;
-            --white: #FFFFFF;
+            --text-light: #FFFFFF;    /* Білий текст */
+            --text-muted: #A0AAB8;    /* Сірий підтекст */
+            --border-color: #3A3B3C;
+            --tag-bg: #1E293B;        /* Фон для тегів */
+            --success-bg: #112A21;    /* Темно-зелений акцент для успішного результату */
+            --success-border: #10B981;
+            --success-text: #34D399;
         }
 
         * {
@@ -28,8 +34,8 @@
         }
 
         body {
-            background-color: var(--bg-light);
-            color: var(--text-dark);
+            background-color: var(--bg-dark);
+            color: var(--text-light);
             line-height: 1.6;
             padding-bottom: 70px;
         }
@@ -40,11 +46,11 @@
 
         /* Шапка */
         .header {
-            background-color: var(--navy);
+            background-color: var(--navy-header);
             position: sticky;
             top: 0;
             z-index: 1000;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            box-shadow: 0 2px 10px rgba(0,0,0,0.4);
         }
 
         .nav-container {
@@ -57,7 +63,7 @@
         }
 
         .logo {
-            color: var(--white);
+            color: var(--text-light);
             font-size: 1.3rem;
             font-weight: 700;
             text-decoration: none;
@@ -84,7 +90,7 @@
 
         .btn-contact {
             background-color: var(--accent);
-            color: var(--navy);
+            color: #000000;
             padding: 0.6rem 1.2rem;
             border-radius: 4px;
             font-weight: 600;
@@ -99,14 +105,14 @@
             cursor: pointer;
             background: none;
             border: none;
-            color: var(--white);
+            color: var(--text-light);
             font-size: 1.8rem;
         }
 
         /* Баннер */
         .page-banner {
-            background-color: var(--navy);
-            color: var(--white);
+            background-color: var(--navy-header);
+            color: var(--text-light);
             padding: 3rem 1.5rem;
             text-align: center;
             border-bottom: 3px solid var(--accent);
@@ -118,7 +124,7 @@
         }
 
         .page-banner p {
-            color: #94A3B8;
+            color: var(--text-muted);
             font-size: 1.1rem;
         }
 
@@ -131,9 +137,19 @@
 
         .section-title {
             font-size: 1.8rem;
-            color: var(--navy);
+            color: var(--text-light);
             margin-bottom: 2rem;
             text-align: center;
+            position: relative;
+        }
+
+        .section-title::after {
+            content: '';
+            display: block;
+            width: 50px;
+            height: 3px;
+            background-color: var(--accent);
+            margin: 0.5rem auto 0;
         }
 
         /* Блок статистики */
@@ -145,12 +161,15 @@
         }
 
         .stat-card {
-            background: var(--white);
+            background: var(--card-bg);
             padding: 1.8rem;
             border-radius: 10px;
             text-align: center;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+            box-shadow: 0 4px 15px rgba(0,0,0,0.3);
             border-bottom: 3px solid var(--accent);
+            border-top: 1px solid var(--border-color);
+            border-left: 1px solid var(--border-color);
+            border-right: 1px solid var(--border-color);
         }
 
         .stat-number {
@@ -161,25 +180,28 @@
         }
 
         .stat-label {
-            color: var(--text-dark);
+            color: var(--text-light);
             font-size: 0.95rem;
             font-weight: 600;
         }
 
-        /* Сітка справ (квадратики) */
+        /* Сітка справ */
         .cases-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
             gap: 2rem;
-            margin-bottom: 3rem;
+            margin-bottom: 3.5rem;
         }
 
         .case-card {
-            background: var(--white);
+            background: var(--card-bg);
             border-radius: 12px;
             padding: 2rem;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+            box-shadow: 0 4px 15px rgba(0,0,0,0.3);
             border-top: 4px solid var(--accent);
+            border-left: 1px solid var(--border-color);
+            border-right: 1px solid var(--border-color);
+            border-bottom: 1px solid var(--border-color);
             display: flex;
             flex-direction: column;
             justify-content: space-between;
@@ -188,13 +210,14 @@
 
         .case-card:hover {
             transform: translateY(-5px);
-            box-shadow: 0 8px 25px rgba(0,0,0,0.1);
+            background: var(--card-hover);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.5);
         }
 
         .case-tag {
             align-self: flex-start;
-            background: #F1F5F9;
-            color: var(--navy);
+            background: var(--tag-bg);
+            color: var(--accent);
             padding: 0.3rem 0.8rem;
             border-radius: 4px;
             font-size: 0.82rem;
@@ -207,45 +230,47 @@
 
         .case-title {
             font-size: 1.25rem;
-            color: var(--navy);
+            color: var(--text-light);
             margin-bottom: 0.8rem;
         }
 
         .case-desc {
             color: var(--text-muted);
             font-size: 0.95rem;
-            margin-bottom: 1.2rem;
+            margin-bottom: 1.5rem;
             flex-grow: 1;
         }
 
         .case-result {
-            background: #F8FAFC;
+            background: var(--success-bg);
             border-radius: 8px;
             padding: 1rem;
-            border-left: 3px solid #10B981;
+            border-left: 3px solid var(--success-border);
         }
 
         .case-result-title {
             font-size: 0.85rem;
             font-weight: 700;
-            color: #047857;
+            color: var(--success-text);
             text-transform: uppercase;
             margin-bottom: 0.2rem;
         }
 
         .case-result-text {
             font-size: 0.92rem;
-            color: var(--text-dark);
+            color: var(--text-light);
             font-weight: 600;
         }
 
         /* Інфо-блок заклику */
         .cta-box {
-            background: var(--navy);
-            color: var(--white);
+            background: var(--navy-header);
+            color: var(--text-light);
             padding: 2.5rem;
             border-radius: 12px;
             text-align: center;
+            border: 1px solid var(--border-color);
+            box-shadow: 0 4px 20px rgba(0,0,0,0.3);
         }
 
         .cta-box h2 {
@@ -264,7 +289,7 @@
         .cta-btn {
             display: inline-block;
             background: var(--accent);
-            color: var(--navy);
+            color: #000000;
             padding: 0.8rem 1.8rem;
             border-radius: 6px;
             font-weight: 700;
@@ -284,13 +309,13 @@
             left: 0;
             width: 100%;
             background-color: var(--accent);
-            color: var(--navy);
+            color: #000000;
             text-align: center;
             padding: 1rem;
             font-weight: 700;
             text-decoration: none;
             z-index: 999;
-            box-shadow: 0 -2px 10px rgba(0,0,0,0.15);
+            box-shadow: 0 -2px 10px rgba(0,0,0,0.3);
         }
 
         @media (max-width: 768px) {
@@ -301,7 +326,7 @@
                 position: absolute;
                 top: 100%;
                 left: 0;
-                background-color: var(--navy);
+                background-color: var(--navy-header);
                 padding: 1rem;
             }
 
@@ -377,18 +402,17 @@
             </div>
 
             <!-- Справа 2 -->
-          <!-- Виправлена Справа 2 -->
-<div class="case-card">
-    <div>
-        <span class="case-tag">Цивільні справи</span>
-        <h3 class="case-title">Стягнення заборгованості за договором та компенсації</h3>
-        <p class="case-desc">Представництво інтересів кредитора щодо стягнення боргу, інфляційних втрат та 3% річних за довготривале невиконання грошового зобов'язання.</p>
-    </div>
-    <div class="case-result">
-        <div class="case-result-title">Результат:</div>
-        <div class="case-result-text">Судом присуджено до стягнення всю суму боргу разом із компенсаціями.</div>
-    </div>
-</div>
+            <div class="case-card">
+                <div>
+                    <span class="case-tag">Цивільні справи</span>
+                    <h3 class="case-title">Стягнення заборгованості за договором та компенсації</h3>
+                    <p class="case-desc">Представництво інтересів кредитора щодо стягнення боргу, інфляційних втрат та 3% річних за довготривале невиконання грошового зобов'язання.</p>
+                </div>
+                <div class="case-result">
+                    <div class="case-result-title">Результат:</div>
+                    <div class="case-result-text">Судом присуджено до стягнення всю суму боргу разом із компенсаціями.</div>
+                </div>
+            </div>
 
             <!-- Справа 3 -->
             <div class="case-card">
