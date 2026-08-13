@@ -2,459 +2,460 @@
 <html lang="uk">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <title>Послуги | Діана Гаркуша</title>
+    <meta name="description" content="Послуги фотомоделі та акторки Діани Гаркуші: зйомки каталогів, реклама, Reels, TikTok, серіали.">
+    
+    <!-- Шрифти Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;600&family=Plus+Jakarta+Sans:wght@300;400;600&display=swap" rel="stylesheet">
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='25' fill='%230c0c0e'/><text x='50%' y='65%' font-family='Georgia, serif' font-size='48' font-weight='bold' fill='%23e2b714' text-anchor='middle'>DG</text></svg>">
 
-    <!-- Іконка для вкладки -->
-    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%23C5A059'><path d='M18 2h-4v2h1v3h-1v2h4V7h-1V4h1V2zm-7 4.5l-6 6 1.5 1.5 6-6L11 6.5zm-5.5 8L4 16l4 4 1.5-1.5-4-4zM2 21h12v2H2v-2z'/></svg>">
-
-    <title>Послуги адвоката | Професійний правовий захист</title>
+    <!-- CSS СТИЛІ -->
     <style>
         :root {
-            /* Палітра Dark Mode */
-            --navy-header: #0F172A;   /* Темно-синя шапка та баннер */
-            --bg-dark: #18191A;       /* Загальний темно-вугільний фон */
-            --card-bg: #242526;       /* Темні картки */
-            --card-hover: #2D2E2F;
-            --accent: #C5A059;        /* Золотистий колір */
-            --accent-hover: #B08D46;
-            --text-light: #FFFFFF;    /* Білий текст */
-            --text-muted: #A0AAB8;    /* Сірий підтекст */
-            --border-color: #3A3B3C;
+            --bg-color: #0c0c0e;
+            --card-bg: rgba(255, 255, 255, 0.04);
+            --card-hover: rgba(255, 255, 255, 0.08);
+            --accent-color: #e2b714;
+            --text-main: #f4f4f6;
+            --text-muted: #a0a0ab;
+            --border-color: rgba(255, 255, 255, 0.08);
+            --font-title: 'Cormorant Garamond', serif;
+            --font-body: 'Plus Jakarta Sans', sans-serif;
         }
 
         * {
             box-sizing: border-box;
             margin: 0;
             padding: 0;
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        html {
+            scroll-behavior: smooth;
         }
 
         body {
-            background-color: var(--bg-dark) !important;
-            color: var(--text-light);
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            font-family: var(--font-body);
             line-height: 1.6;
-            padding-bottom: 70px;
+            overflow-x: hidden;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
         }
 
-        @media (min-width: 768px) {
-            body { padding-bottom: 0; }
+        /* --- СЯЙВО НА ФОНІ --- */
+        .glow-bg {
+            position: fixed;
+            top: -5%;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 350px;
+            height: 350px;
+            background: radial-gradient(circle, rgba(226, 183, 20, 0.18) 0%, rgba(0,0,0,0) 70%);
+            filter: blur(60px);
+            z-index: -1;
+            pointer-events: none;
+            animation: pulseGlow 8s infinite alternate ease-in-out;
         }
 
-        /* Шапка */
-        .header {
-            background-color: var(--navy-header);
-            position: sticky;
-            top: 0;
-            z-index: 1000;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.4);
+        @keyframes pulseGlow {
+            0% { transform: translateX(-50%) scale(1); opacity: 0.5; }
+            100% { transform: translateX(-50%) scale(1.3); opacity: 0.8; }
         }
 
-        .nav-container {
-            max-width: 1200px;
-            margin: 0 auto;
+        /* --- ШАПКА --- */
+        header {
+            position: relative;
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 1rem 1.5rem;
+            padding: 24px 20px;
+            max-width: 1100px;
+            width: 100%;
+            margin: 0 auto;
+            z-index: 1000;
         }
 
         .logo {
-            color: var(--text-light);
-            font-size: 1.3rem;
-            font-weight: 700;
-            text-decoration: none;
-            text-transform: uppercase;
+            font-family: var(--font-title);
+            font-size: 1.8rem;
+            font-weight: 600;
             letter-spacing: 1px;
+            text-transform: uppercase;
+            color: var(--text-main);
+            text-decoration: none;
         }
 
-        .logo span { color: var(--accent); }
+        .logo span { color: var(--accent-color); }
 
-        .nav-menu {
-            display: flex;
-            list-style: none;
-            gap: 1.5rem;
+        /* Навігація ПК */
+        .desktop-nav {
+            display: none;
+            gap: 28px;
         }
 
         .nav-link {
-            color: #E2E8F0;
+            color: var(--text-muted);
             text-decoration: none;
-            font-weight: 500;
+            font-size: 1rem;
+            font-weight: 400;
             transition: color 0.3s;
         }
 
-        .nav-link:hover, .nav-link.active { color: var(--accent); }
-
-        .btn-contact {
-            background-color: var(--accent);
-            color: #000000;
-            padding: 0.6rem 1.2rem;
-            border-radius: 4px;
-            font-weight: 600;
-            text-decoration: none;
-            transition: background-color 0.3s;
+        .nav-link:hover, .nav-link.active {
+            color: var(--accent-color);
         }
 
-        .btn-contact:hover { background-color: var(--accent-hover); }
-
-        .hamburger {
-            display: none;
-            cursor: pointer;
-            background: none;
+        /* Гамбургер кнопка */
+        .hamburger-btn {
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            width: 30px;
+            height: 20px;
+            background: transparent;
             border: none;
-            color: var(--text-light);
-            font-size: 1.8rem;
+            cursor: pointer;
+            padding: 0;
+            z-index: 1001;
         }
 
-        /* Баннер */
-        .page-banner {
-            background-color: var(--navy-header);
-            color: var(--text-light);
-            padding: 3rem 1.5rem;
-            text-align: center;
-            border-bottom: 3px solid var(--accent);
+        .hamburger-btn span {
+            width: 100%;
+            height: 2px;
+            background-color: var(--text-main);
+            border-radius: 2px;
+            transition: all 0.3s ease-in-out;
         }
 
-        .page-banner h1 {
-            font-size: 2.2rem;
-            margin-bottom: 0.5rem;
+        .hamburger-btn.open span:nth-child(1) {
+            transform: translateY(9px) rotate(45deg);
+            background-color: var(--accent-color);
         }
 
-        .page-banner p {
-            color: var(--text-muted);
-            font-size: 1.1rem;
+        .hamburger-btn.open span:nth-child(2) {
+            opacity: 0;
         }
 
-        /* Контейнер */
+        .hamburger-btn.open span:nth-child(3) {
+            transform: translateY(-9px) rotate(-45deg);
+            background-color: var(--accent-color);
+        }
+
+        /* Висувне мобільне меню */
+        .mobile-menu-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100vh;
+            background: rgba(12, 12, 14, 0.96);
+            backdrop-filter: blur(15px);
+            -webkit-backdrop-filter: blur(15px);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            gap: 24px;
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.3s ease, visibility 0.3s ease;
+            z-index: 999;
+        }
+
+        .mobile-menu-overlay.active {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .mobile-menu-overlay .nav-link {
+            font-family: var(--font-title);
+            font-size: 2rem;
+            color: var(--text-main);
+        }
+
+        .mobile-menu-overlay .nav-link.active {
+            color: var(--accent-color);
+        }
+
+        /* --- ОСНОВНИЙ КОНТЕЙНЕР --- */
         .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 3rem 1.5rem;
+            max-width: 1100px;
+            width: 100%;
+            margin: auto;
+            padding: 20px 24px 60px;
         }
 
-        /* Заголовки розділів */
-        .section-title {
-            font-size: 1.8rem;
-            color: var(--text-light);
-            margin-bottom: 2rem;
+        .hero-section {
             text-align: center;
-            position: relative;
+            margin-bottom: 50px;
         }
 
-        .section-title::after {
-            content: '';
-            display: block;
-            width: 50px;
-            height: 3px;
-            background-color: var(--accent);
-            margin: 0.5rem auto 0;
+        .page-title {
+            font-family: var(--font-title);
+            font-size: clamp(2.5rem, 7vw, 4rem);
+            font-weight: 400;
+            line-height: 1.1;
+            margin-bottom: 16px;
         }
 
-        /* Сітка з деталізованими квадратиками послуг */
+        .page-subtitle {
+            color: var(--text-muted);
+            font-size: clamp(1rem, 3vw, 1.2rem);
+            max-width: 650px;
+            margin: 0 auto;
+        }
+
+        /* --- СІТКА ПОСЛУГ --- */
         .services-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-            gap: 2rem;
-            margin-bottom: 4rem;
+            grid-template-columns: 1fr;
+            gap: 24px;
+            margin-bottom: 60px;
         }
 
         .service-card {
             background: var(--card-bg);
-            border-radius: 12px;
-            padding: 2.2rem;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.3);
-            transition: transform 0.3s, box-shadow 0.3s;
-            border-top: 4px solid var(--accent);
-            border-left: 1px solid var(--border-color);
-            border-right: 1px solid var(--border-color);
-            border-bottom: 1px solid var(--border-color);
+            border: 1px solid var(--border-color);
+            border-radius: 24px;
+            padding: 32px 28px;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
             display: flex;
             flex-direction: column;
+            justify-content: space-between;
         }
 
         .service-card:hover {
-            transform: translateY(-5px);
             background: var(--card-hover);
-            box-shadow: 0 8px 25px rgba(0,0,0,0.5);
+            transform: translateY(-4px);
+            border-color: rgba(226, 183, 20, 0.3);
         }
 
-        .service-icon {
-            font-size: 2.5rem;
-            margin-bottom: 1rem;
-        }
-
-        .service-title {
-            font-size: 1.4rem;
-            color: var(--text-light);
-            margin-bottom: 0.8rem;
-        }
-
-        .service-desc {
-            color: var(--text-muted);
-            font-size: 0.98rem;
-            margin-bottom: 1.2rem;
-            flex-grow: 1;
-        }
-
-        .service-list {
-            list-style: none;
-            margin-bottom: 1.5rem;
-            border-top: 1px solid var(--border-color);
-            padding-top: 1rem;
-        }
-
-        .service-list li {
-            position: relative;
-            padding-left: 1.3rem;
-            margin-bottom: 0.6rem;
-            font-size: 0.92rem;
-            color: #E2E8F0;
-        }
-
-        .service-list li::before {
-            content: "✓";
-            position: absolute;
-            left: 0;
-            color: var(--accent);
-            font-weight: bold;
-        }
-
-        /* Блок про супровід у судах */
-        .info-box {
-            background: var(--navy-header);
-            color: var(--text-light);
-            padding: 2.5rem;
-            border-radius: 12px;
-            margin-bottom: 4rem;
-            border: 1px solid var(--border-color);
-            box-shadow: 0 4px 20px rgba(0,0,0,0.3);
-        }
-
-        .info-box h2 {
-            color: var(--accent);
-            margin-bottom: 1rem;
-            font-size: 1.6rem;
-        }
-
-        .info-box p {
-            color: #E2E8F0;
-            font-size: 1.05rem;
-            line-height: 1.8;
-        }
-
-        /* Секція "Як ми працюємо" у квадратиках */
-        .process-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 1.5rem;
-            margin-bottom: 2rem;
-        }
-
-        .process-card {
-            background: var(--card-bg);
-            border-radius: 12px;
-            padding: 2rem 1.5rem;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.3);
-            border-left: 4px solid var(--accent);
-            border-top: 1px solid var(--border-color);
-            border-right: 1px solid var(--border-color);
-            border-bottom: 1px solid var(--border-color);
-            position: relative;
-            transition: transform 0.3s;
-        }
-
-        .process-card:hover {
-            transform: translateY(-3px);
-            background: var(--card-hover);
-        }
-
-        .process-number {
-            font-size: 1.8rem;
-            font-weight: 800;
-            color: var(--accent);
-            margin-bottom: 0.5rem;
-        }
-
-        .process-card-title {
+        .service-number {
+            font-family: var(--font-title);
             font-size: 1.2rem;
-            color: var(--text-light);
-            margin-bottom: 0.5rem;
-            font-weight: 700;
+            color: var(--accent-color);
+            margin-bottom: 12px;
+            font-weight: 600;
         }
 
-        .process-card-desc {
+        .service-card h3 {
+            font-family: var(--font-title);
+            font-size: 1.9rem;
+            margin-bottom: 12px;
+            color: var(--text-main);
+            font-weight: 400;
+        }
+
+        .service-card p {
             color: var(--text-muted);
-            font-size: 0.95rem;
-            line-height: 1.5;
+            font-size: 1rem;
+            line-height: 1.6;
+            margin-bottom: 20px;
         }
 
-        /* Мобільна кнопка */
-        .mobile-call-btn {
-            display: none;
-            position: fixed;
-            bottom: 0;
-            left: 0;
-            width: 100%;
-            background-color: var(--accent);
-            color: #000000;
+        .service-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+
+        .tag {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            color: var(--text-muted);
+            font-size: 0.82rem;
+            padding: 4px 12px;
+            border-radius: 20px;
+        }
+
+        /* --- БЛОК ЗАКЛИКУ ДО ДІЇ --- */
+        .cta-section {
+            background: linear-gradient(135deg, rgba(226, 183, 20, 0.1), rgba(255, 255, 255, 0.02));
+            border: 1px solid var(--border-color);
+            border-radius: 24px;
+            padding: 40px 24px;
             text-align: center;
-            padding: 1rem;
-            font-weight: 700;
-            text-decoration: none;
-            z-index: 999;
-            box-shadow: 0 -2px 10px rgba(0,0,0,0.3);
         }
 
-        @media (max-width: 768px) {
-            .nav-menu {
-                display: none;
-                width: 100%;
-                flex-direction: column;
-                position: absolute;
-                top: 100%;
-                left: 0;
-                background-color: var(--navy-header);
-                padding: 1rem;
+        .cta-title {
+            font-family: var(--font-title);
+            font-size: 2rem;
+            margin-bottom: 12px;
+        }
+
+        .cta-text {
+            color: var(--text-muted);
+            font-size: 1.05rem;
+            margin-bottom: 24px;
+            max-width: 550px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .btn-primary {
+            display: inline-block;
+            background-color: var(--accent-color);
+            color: #0c0c0e;
+            padding: 14px 32px;
+            border-radius: 30px;
+            font-weight: 600;
+            font-size: 1rem;
+            text-decoration: none;
+            transition: transform 0.3s, background-color 0.3s;
+        }
+
+        .btn-primary:hover {
+            background-color: #f0c72d;
+            transform: translateY(-2px);
+        }
+
+        /* --- АДАПТИВНІСТЬ (min-width: 768px) --- */
+        @media (min-width: 768px) {
+            .desktop-nav { display: flex; }
+            .hamburger-btn { display: none; }
+            .mobile-menu-overlay { display: none; }
+
+            .services-grid {
+                grid-template-columns: repeat(2, 1fr);
             }
 
-            .hamburger { display: block; }
-            .nav-container.active .nav-menu { display: flex; }
-            .mobile-call-btn { display: block; }
-            .header .btn-contact { display: none; }
-            .page-banner h1 { font-size: 1.8rem; }
-            .services-grid, .process-grid { grid-template-columns: 1fr; }
+            .cta-section {
+                padding: 50px 40px;
+            }
         }
     </style>
 </head>
 <body>
+    <!-- ФОНОВЕ СЯЙВО -->
+    <div class="glow-bg"></div>
 
-    <!-- Шапка -->
-    <header class="header">
-        <div class="nav-container">
-            <a href="index.html" class="logo">Адвокат <span>Право</span></a>
-            <button class="hamburger" onclick="toggleMenu()">☰</button>
-            <ul class="nav-menu">
-                <li><a href="index.html" class="nav-link">Головна</a></li>
-                <li><a href="about.html" class="nav-link">Про мене</a></li>
-                <li><a href="services.html" class="nav-link active">Послуги</a></li>
-                <li><a href="cases.html" class="nav-link">Справи</a></li>
-            </ul>
-            <a href="tel:+380937222592" class="btn-contact">Зв'язатися</a>
-        </div>
+    <!-- ШАПКА -->
+    <header>
+        <a href="index.html" class="logo">Діана <span>Гаркуша</span></a>
+        
+        <!-- Навігація для ПК -->
+        <nav class="desktop-nav">
+            <a href="index.html" class="nav-link">Головна</a>
+            <a href="about.html" class="nav-link">Про мене</a>
+            <a href="services.html" class="nav-link active">Послуги</a>
+            <a href="contacts.html" class="nav-link">Контакти</a>
+        </nav>
+
+        <!-- Кнопка «3 смужки» для телефона -->
+        <button class="hamburger-btn" id="hamburgerBtn" aria-label="Відкрити меню">
+            <span></span>
+            <span></span>
+            <span></span>
+        </button>
     </header>
 
-    <!-- Баннер -->
-    <section class="page-banner">
-        <h1>Спеціалізація та Послуги</h1>
-        <p>Кваліфікована правова допомога та захист ваших інтересів</p>
-    </section>
+    <!-- Висувне мобільне меню -->
+    <div class="mobile-menu-overlay" id="mobileMenu">
+        <a href="index.html" class="nav-link">Головна</a>
+        <a href="about.html" class="nav-link">Про мене</a>
+        <a href="services.html" class="nav-link active">Послуги</a>
+        <a href="contacts.html" class="nav-link">Контакти</a>
+    </div>
 
+    <!-- ОСНОВНИЙ КОНТЕНТ -->
     <div class="container">
-
-        <!-- Напрямки у вигляді деталізованих квадратиків -->
-        <h2 class="section-title">Основні напрямки практики</h2>
-        <div class="services-grid">
-
-            <!-- Квадратик 1: Цивільне право -->
-            <div class="service-card">
-                <div class="service-icon">🏛️</div>
-                <h3 class="service-title">Цивільне законодавство</h3>
-                <p class="service-desc">Захист прав та інтересів фізичних осіб у цивільних правовідносинах і майнових спорах.</p>
-                <ul class="service-list">
-                    <li>Спори щодо права власності</li>
-                    <li>Стягнення боргів та заборгованостей</li>
-                    <li>Договірні спори та зобов'язання</li>
-                    <li>Відшкодування шкоди та збитків</li>
-                </ul>
-            </div>
-
-            <!-- Квадратик 2: Господарське право -->
-            <div class="service-card">
-                <div class="service-icon">💼</div>
-                <h3 class="service-title">Господарське право</h3>
-                <p class="service-desc">Правовий захист бізнесу, супровід суб'єктів господарювання та договірних відносин.</p>
-                <ul class="service-list">
-                    <li>Абонентський супровід бізнесу</li>
-                    <li>Спори між підприємствами та ФОП</li>
-                    <li>Стягнення дебіторської заборгованості</li>
-                    <li>Правовий аналіз та розробка договорів</li>
-                </ul>
-            </div>
-
-            <!-- Квадратик 3: Земельне право -->
-            <div class="service-card">
-                <div class="service-icon">🌳</div>
-                <h3 class="service-title">Земельне законодавство</h3>
-                <p class="service-desc">Вирішення складних спорів щодо права власності, користування та оренди землі.</p>
-                <ul class="service-list">
-                    <li>Спори щодо меж земельних ділянок</li>
-                    <li>Захист прав на земельну частку (пай)</li>
-                    <li>Угоди купівлі-продажу та оренди землі</li>
-                    <li>Оскарження незаконних рішень держорганів</li>
-                </ul>
-            </div>
-
-            <!-- Квадратик 4: Сімейне право -->
-            <div class="service-card">
-                <div class="service-icon">👨‍👩‍👧‍👦</div>
-                <h3 class="service-title">Сімейне право</h3>
-                <p class="service-desc">Делікатне та професійне вирішення сімейних конфлікти з дотриманням ваших інтересів.</p>
-                <ul class="service-list">
-                    <li>Розірвання шлюбу (розлучення)</li>
-                    <li>Поділ спільного майна подружжя</li>
-                    <li>Стягнення та зміна розміру аліментів</li>
-                    <li>Визначення місця проживання дитини</li>
-                </ul>
-            </div>
-
-        </div>
-
-        <!-- Блок про супровід у судах -->
-        <section class="info-box">
-            <h2>Представництво та супровід у судах</h2>
-            <p>
-                Забезпечую повний супровід справ у судах України в цивільному, господарському та адміністративному процесах. Захист прав, свобод і законних інтересів фізичних та юридичних осіб здійснюється на основі понад 15-річного практичного досвіду.
-            </p>
+        
+        <section class="hero-section">
+            <h1 class="page-title">Мої Послуги</h1>
+            <p class="page-subtitle">Відкрита до співпраці з брендами, фотографами, шоурумами, знімальними групами та проєктами будь-якого масштабу.</p>
         </section>
 
-        <!-- Блок "Як ми працюємо" в квадратиках -->
-        <h2 class="section-title">Як ми працюємо</h2>
-        <div class="process-grid">
-
-            <div class="process-card">
-                <div class="process-number">01</div>
-                <div class="process-card-title">Звернення</div>
-                <div class="process-card-desc">Первинний зв'язок по телефону</div>
+        <!-- СІТКА ПОСЛУГ -->
+        <section class="services-grid">
+            
+            <div class="service-card">
+                <div>
+                    <div class="service-number">01</div>
+                    <h3>Зйомки для каталогів та лукбуків</h3>
+                    <p>Професійна демонтрація одягу, взуття та аксесуарів для інтернет-магазинів, брендів та маркетплейсів. Швидке змінення образів та чітка робота зі світлом.</p>
+                </div>
+                <div class="service-tags">
+                    <span class="tag">Каталоги</span>
+                    <span class="tag">Лукбуки</span>
+                    <span class="tag">Showroom</span>
+                </div>
             </div>
 
-            <div class="process-card">
-                <div class="process-number">02</div>
-                <div class="process-card-title">Аналіз документів</div>
-                <div class="process-card-desc">Вивчення матеріалів справи, детальна оцінка ризиків та перспектив.</div>
+            <div class="service-card">
+                <div>
+                    <div class="service-number">02</div>
+                    <h3>Контент для Reels, TikTok & UGC</h3>
+                    <p>Створення естетичного, живого та вірусного відеоконтенту. Огляди товарів, розпакування, трендові роликi та прикладання образів для соцмереж брендів.</p>
+                </div>
+                <div class="service-tags">
+                    <span class="tag">Reels</span>
+                    <span class="tag">TikTok</span>
+                    <span class="tag">UGC Content</span>
+                </div>
             </div>
 
-            <div class="process-card">
-                <div class="process-number">03</div>
-                <div class="process-card-title">Стратегія та Угода</div>
-                <div class="process-card-desc">Узгодження плану дій, фіксування вартості та підписання договору.</div>
+            <div class="service-card">
+                <div>
+                    <div class="service-number">03</div>
+                    <h3>Рекламні кампейни та імідж</h3>
+                    <p>Участь у іміджевих фото- та відеозйомках для банерів, зовнішньої реклами, журналів та промо-кампейнів брендів.</p>
+                </div>
+                <div class="service-tags">
+                    <span class="tag">Реклама</span>
+                    <span class="tag">Fashion</span>
+                    <span class="tag">Editorial</span>
+                </div>
             </div>
 
-            <div class="process-card">
-                <div class="process-number">04</div>
-                <div class="process-card-title">Захист та Результат</div>
-                <div class="process-card-desc">Повний правовий супровід у суді або держустановах до фінального рішення.</div>
+            <div class="service-card">
+                <div>
+                    <div class="service-number">04</div>
+                    <h3>Акторські зйомки та кліпи</h3>
+                    <p>Участь у зйомках серіалів, короткометражних фільмів, музичних відеокліпів та художніх рекламних проєктів з відтворенням емоцій та сюжетних ролей.</p>
+                </div>
+                <div class="service-tags">
+                    <span class="tag">Серіали</span>
+                    <span class="tag">Відеокліпи</span>
+                    <span class="tag">Акторство</span>
+                </div>
             </div>
 
-        </div>
+        </section>
+
+        <!-- ЗАКЛИК ДО ДІЇ -->
+        <section class="cta-section">
+            <h2 class="cta-title">Маєте ідею для проєкту?</h2>
+            <p class="cta-text">Зв'яжіться зі мною, щоб обговорити деталі зйомки, дати та умови співпраці.</p>
+            <a href="@https://t.me/agussha_sha" class="btn-primary" target="blank">Зв'язатися</a>
+        </section>
 
     </div>
 
-    <!-- Мобільна кнопка -->
-    <a href="tel:+380937222592" class="mobile-call-btn">📞 Зв'язатися з адвокатом</a>
-
+    <!-- JAVASCRIPT -->
     <script>
-        function toggleMenu() {
-            document.querySelector('.nav-container').classList.toggle('active');
-        }
+        // Робота мобільного меню
+        const hamburgerBtn = document.getElementById('hamburgerBtn');
+        const mobileMenu = document.getElementById('mobileMenu');
+
+        hamburgerBtn.addEventListener('click', () => {
+            hamburgerBtn.classList.toggle('open');
+            mobileMenu.classList.toggle('active');
+            
+            if (mobileMenu.classList.contains('active')) {
+                document.body.style.overflow = 'hidden';
+            } else {
+                document.body.style.overflow = '';
+            }
+        });
     </script>
 </body>
 </html>

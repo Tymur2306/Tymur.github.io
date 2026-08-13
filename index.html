@@ -2,341 +2,383 @@
 <html lang="uk">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <title>Діана Гаркуша | Офіційний сайт</title>
+    <meta name="description" content="Офіційний сайт Діани Гаркуші — фотомодель та акторка.">
+    
+    <!-- Шрифти Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;600&family=Plus+Jakarta+Sans:wght@300;400;600&display=swap" rel="stylesheet">
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='25' fill='%230c0c0e'/><text x='50%' y='65%' font-family='Georgia, serif' font-size='48' font-weight='bold' fill='%23e2b714' text-anchor='middle'>DG</text></svg>">
 
-    <!-- Іконка для вкладки -->
-    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%23C5A059'><path d='M18 2h-4v2h1v3h-1v2h4V7h-1V4h1V2zm-7 4.5l-6 6 1.5 1.5 6-6L11 6.5zm-5.5 8L4 16l4 4 1.5-1.5-4-4zM2 21h12v2H2v-2z'/></svg>">
-
-    <title>Послуги адвоката | Професійний правовий захист</title>
+    <!-- CSS СТИЛІ -->
     <style>
         :root {
-            /* Палітра як на скриншоті */
-            --navy-header: #0F172A;   /* Темно-синя шапка */
-            --bg-dark: #18191A;       /* Загальний темно-вугільний фон */
-            --card-bg: #242526;       /* Темні картки */
-            --accent: #C5A059;        /* Золотистий колір */
-            --accent-hover: #B08D46;
-            --text-light: #FFFFFF;    /* Білий текст */
-            --text-muted: #A0AAB8;    /* Сірий підтекст */
+            --bg-color: #0c0c0e;
+            --card-bg: rgba(255, 255, 255, 0.04);
+            --accent-color: #e2b714;
+            --text-main: #f4f4f6;
+            --text-muted: #a0a0ab;
+            --border-color: rgba(255, 255, 255, 0.08);
+            --font-title: 'Cormorant Garamond', serif;
+            --font-body: 'Plus Jakarta Sans', sans-serif;
         }
 
         * {
             box-sizing: border-box;
             margin: 0;
             padding: 0;
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        html {
+            scroll-behavior: smooth;
         }
 
         body {
-            background-color: var(--bg-dark) !important;
-            color: var(--text-light);
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            font-family: var(--font-body);
             line-height: 1.6;
-            padding-bottom: 70px;
+            overflow-x: hidden;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
         }
 
-        @media (min-width: 768px) {
-            body { padding-bottom: 0; }
+        /* --- СЯЙВО НА ФОНІ --- */
+        .glow-bg {
+            position: fixed;
+            top: -5%;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 350px;
+            height: 350px;
+            background: radial-gradient(circle, rgba(226, 183, 20, 0.18) 0%, rgba(0,0,0,0) 70%);
+            filter: blur(60px);
+            z-index: -1;
+            pointer-events: none;
+            animation: pulseGlow 8s infinite alternate ease-in-out;
         }
 
-        /* Шапка та Навігація */
-        .header {
-            background-color: var(--navy-header);
-            position: sticky;
-            top: 0;
-            z-index: 1000;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.3);
+        @keyframes pulseGlow {
+            0% { transform: translateX(-50%) scale(1); opacity: 0.5; }
+            100% { transform: translateX(-50%) scale(1.3); opacity: 0.8; }
         }
 
-        .nav-container {
-            max-width: 1200px;
-            margin: 0 auto;
+        /* --- ШАПКА --- */
+        header {
+            position: relative;
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 1rem 1.5rem;
+            padding: 24px 20px;
+            max-width: 1100px;
+            width: 100%;
+            margin: 0 auto;
+            z-index: 1000;
         }
 
         .logo {
-            color: var(--text-light);
-            font-size: 1.3rem;
-            font-weight: 700;
-            text-decoration: none;
-            text-transform: uppercase;
+            font-family: var(--font-title);
+            font-size: 1.8rem;
+            font-weight: 600;
             letter-spacing: 1px;
+            text-transform: uppercase;
+            color: var(--text-main);
+            text-decoration: none;
         }
 
-        .logo span { color: var(--accent); }
+        .logo span { color: var(--accent-color); }
 
-        .nav-menu {
-            display: flex;
-            list-style: none;
-            gap: 1.5rem;
+        /* Навігація ПК */
+        .desktop-nav {
+            display: none;
+            gap: 28px;
         }
 
         .nav-link {
-            color: #E2E8F0;
+            color: var(--text-muted);
             text-decoration: none;
-            font-weight: 500;
+            font-size: 1rem;
+            font-weight: 400;
             transition: color 0.3s;
         }
 
-        .nav-link:hover { color: var(--accent); }
-
-        .btn-contact {
-            background-color: var(--accent);
-            color: #000000;
-            padding: 0.6rem 1.2rem;
-            border-radius: 4px;
-            font-weight: 600;
-            text-decoration: none;
-            transition: background-color 0.3s;
+        .nav-link:hover, .nav-link.active {
+            color: var(--accent-color);
         }
 
-        .btn-contact:hover { background-color: var(--accent-hover); }
-
-        /* Мобільне меню */
-        .hamburger {
-            display: none;
-            cursor: pointer;
-            background: none;
-            border: none;
-            color: var(--text-light);
-            font-size: 1.8rem;
-        }
-
-        /* Hero Секція */
-        .hero {
-            background: linear-gradient(rgba(15, 23, 42, 0.85), rgba(15, 23, 42, 0.85)), 
-                        url('https://images.unsplash.com/photo-1589829545856-d10d557cf95f?auto=format&fit=crop&w=1200&q=80') center/cover;
-            color: var(--text-light);
-            padding: 5rem 1.5rem;
-            text-align: center;
-        }
-
-        .hero-content {
-            max-width: 800px;
-            margin: 0 auto;
-        }
-
-        .hero h1 {
-            font-size: 2.2rem;
-            margin-bottom: 1rem;
-            line-height: 1.2;
-        }
-
-        .hero p {
-            font-size: 1.1rem;
-            color: var(--text-muted);
-            margin-bottom: 2rem;
-        }
-
-        .hero-buttons {
+        /* Кнопка-гамбургер (три смужки) */
+        .hamburger-btn {
             display: flex;
-            gap: 1rem;
-            justify-content: center;
-            flex-wrap: wrap;
+            flex-direction: column;
+            justify-content: space-between;
+            width: 30px;
+            height: 20px;
+            background: transparent;
+            border: none;
+            cursor: pointer;
+            padding: 0;
+            z-index: 1001;
         }
 
-        /* Основні блоки */
-        .section {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 3.5rem 1.5rem;
+        .hamburger-btn span {
+            width: 100%;
+            height: 2px;
+            background-color: var(--text-main);
+            border-radius: 2px;
+            transition: all 0.3s ease-in-out;
         }
 
-        .section-title {
-            text-align: center;
-            font-size: 1.8rem;
-            color: var(--text-light);
-            margin-bottom: 2.5rem;
-            position: relative;
+        /* Анімація перетворення гамбургера на хрестик */
+        .hamburger-btn.open span:nth-child(1) {
+            transform: translateY(9px) rotate(45deg);
+            background-color: var(--accent-color);
         }
 
-        .section-title::after {
-            content: '';
-            display: block;
-            width: 50px;
-            height: 3px;
-            background-color: var(--accent);
-            margin: 0.5rem auto 0;
+        .hamburger-btn.open span:nth-child(2) {
+            opacity: 0;
         }
 
-        /* Факти / Переваги */
-        .stats-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-            gap: 1.5rem;
-            text-align: center;
+        .hamburger-btn.open span:nth-child(3) {
+            transform: translateY(-9px) rotate(-45deg);
+            background-color: var(--accent-color);
         }
 
-        .stat-card {
-            background: var(--card-bg) !important;
-            padding: 1.8rem 1.5rem;
-            border-radius: 8px;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.3);
-            border-top: 4px solid var(--accent);
-        }
-
-        .stat-card h3 {
-            font-size: 2rem;
-            color: var(--text-light);
-            margin-bottom: 0.5rem;
-        }
-
-        .stat-card p {
-            color: var(--text-muted);
-            font-size: 0.95rem;
-        }
-
-        /* Послуги */
-        .services-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-            gap: 1.5rem;
-        }
-
-        .service-card {
-            background: var(--card-bg) !important;
-            padding: 1.8rem 1.5rem;
-            border-radius: 8px;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.3);
-            border-top: 3px solid transparent;
-            transition: border-color 0.3s, transform 0.3s;
-        }
-
-        .service-card:hover {
-            border-top-color: var(--accent);
-            transform: translateY(-3px);
-        }
-
-        .service-card h3 {
-            color: var(--text-light);
-            margin-bottom: 0.8rem;
-        }
-
-        .service-card p {
-            color: var(--text-muted);
-            font-size: 0.95rem;
-        }
-
-        /* Плаваюча кнопка для мобільного */
-        .mobile-call-btn {
-            display: none;
+        /* Висувне мобільне меню */
+        .mobile-menu-overlay {
             position: fixed;
-            bottom: 0;
+            top: 0;
             left: 0;
             width: 100%;
-            background-color: var(--accent);
-            color: #000000;
-            text-align: center;
-            padding: 1rem;
-            font-weight: 700;
-            text-decoration: none;
+            height: 100vh;
+            background: rgba(12, 12, 14, 0.96);
+            backdrop-filter: blur(15px);
+            -webkit-backdrop-filter: blur(15px);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            gap: 24px;
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.3s ease, visibility 0.3s ease;
             z-index: 999;
-            box-shadow: 0 -2px 10px rgba(0,0,0,0.3);
         }
 
-        /* Адаптивність */
-        @media (max-width: 768px) {
-            .nav-menu {
-                display: none;
-                width: 100%;
-                flex-direction: column;
-                position: absolute;
-                top: 100%;
-                left: 0;
-                background-color: var(--navy-header);
-                padding: 1rem;
+        .mobile-menu-overlay.active {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .mobile-menu-overlay .nav-link {
+            font-family: var(--font-title);
+            font-size: 2rem;
+            color: var(--text-main);
+        }
+
+        .mobile-menu-overlay .nav-link.active {
+            color: var(--accent-color);
+        }
+
+        /* --- ОСНОВНИЙ КОНТЕЙНЕР --- */
+        .container {
+            max-width: 1100px;
+            width: 100%;
+            margin: auto;
+            padding: 20px 24px;
+        }
+
+        /* --- HERO SECTION --- */
+        .hero-section {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            padding: 20px 0;
+        }
+
+        /* Рамка для фотографії */
+        .avatar-frame {
+            width: 210px;
+            height: 280px;
+            border-radius: 110px;
+            overflow: hidden;
+            border: 1px solid var(--border-color);
+            margin-bottom: 28px;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.6);
+            flex-shrink: 0;
+            position: relative;
+            background: #141418;
+        }
+
+        .avatar-img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+        }
+
+        .avatar-placeholder {
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, #1c1c24, #101014);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--text-muted);
+            font-size: 0.95rem;
+        }
+
+        .badge {
+            color: var(--accent-color);
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            margin-bottom: 12px;
+        }
+
+        .main-title {
+            font-family: var(--font-title);
+            font-size: clamp(3.2rem, 10vw, 5.2rem);
+            font-weight: 400;
+            line-height: 1.05;
+            margin-bottom: 16px;
+        }
+
+        .hero-desc {
+            color: var(--text-muted);
+            max-width: 600px;
+            margin: 0 auto 28px;
+            font-size: clamp(1.1rem, 4vw, 1.35rem);
+            line-height: 1.6;
+        }
+
+        .tags-container {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .tag {
+            background: var(--card-bg);
+            border: 1px solid var(--border-color);
+            padding: 8px 18px;
+            border-radius: 30px;
+            font-size: 0.95rem;
+            color: var(--text-main);
+        }
+
+        /* --- АДАПТИВНІСТЬ ДЛЯ ПК (min-width: 768px) --- */
+        @media (min-width: 768px) {
+            .desktop-nav { display: flex; }
+            .hamburger-btn { display: none; }
+            .mobile-menu-overlay { display: none; }
+
+            .hero-section {
+                flex-direction: row;
+                text-align: left;
+                justify-content: center;
+                gap: 70px;
+                padding: 60px 0;
             }
 
-            .hamburger { display: block; }
-            .nav-container.active .nav-menu { display: flex; }
-            .mobile-call-btn { display: block; }
-            .header .btn-contact { display: none; }
-            .hero h1 { font-size: 1.8rem; }
+            .avatar-frame {
+                width: 300px;
+                height: 400px;
+                border-radius: 150px;
+                margin-bottom: 0;
+            }
+
+            .hero-desc { 
+                margin: 0 0 28px 0; 
+            }
+
+            .tags-container { justify-content: flex-start; }
         }
     </style>
 </head>
 <body>
+    <!-- ФОНОВЕ СЯЙВО -->
+    <div class="glow-bg"></div>
 
-    <!-- Шапка сайту -->
-    <header class="header">
-        <div class="nav-container">
-            <a href="#" class="logo">Адвокат <span>Право</span></a>
-            <button class="hamburger" onclick="toggleMenu()">☰</button>
-            <ul class="nav-menu">
-                <li><a href="#" class="nav-link">Головна</a></li>
-                <li><a href="about.html" class="nav-link">Про мене</a></li>
-                <li><a href="services.html" class="nav-link">Послуги</a></li>
-                <li><a href="cases.html" class="nav-link">Справи</a></li>
-            </ul>
-            <a href="tel:+380937222592" class="btn-contact">Зв'язатися</a>
-        </div>
+    <!-- ШАПКА -->
+    <header>
+        <a href="index.html" class="logo">Діана <span>Гаркуша</span></a>
+        
+        <!-- Меню для комп'ютера -->
+        <nav class="desktop-nav">
+            <a href="index.html" class="nav-link active">Головна</a>
+            <a href="about.html" class="nav-link">Про мене</a>
+            <a href="services.html" class="nav-link">Послуги</a>
+            <a href="contacts.html" class="nav-link">Контакти</a>
+        </nav>
+
+        <!-- Кнопка «3 смужки» для телефона -->
+        <button class="hamburger-btn" id="hamburgerBtn" aria-label="Відкрити меню">
+            <span></span>
+            <span></span>
+            <span></span>
+        </button>
     </header>
 
-    <!-- Головний баннер -->
-    <section class="hero">
-        <div class="hero-content">
-            <h1>Професійна юридична допомога та захист ваших інтересів</h1>
-            <p>Більше 15 років практичного досвіду в судах України. Індивідуальний підхід та робота на результат.</p>
-            <div class="hero-buttons">
-                <a href="tel:+380937222592" class="btn-contact" style="padding: 0.8rem 1.8rem;">Зателефонувати</a>
-                <a href="#services" class="btn-contact" style="background: transparent; border: 2px solid var(--accent); color: var(--text-light);">Наші послуги</a>
-            </div>
-        </div>
-    </section>
+    <!-- Висувне мобільне меню -->
+    <div class="mobile-menu-overlay" id="mobileMenu">
+        <a href="index.html" class="nav-link active">Головна</a>
+        <a href="about.html" class="nav-link">Про мене</a>
+        <a href="services.html" class="nav-link">Послуги</a>
+        <a href="contacts.html" class="nav-link">Контакти</a>
+    </div>
 
-    <!-- Досвід у цифрах -->
-    <section class="section">
-        <div class="stats-grid">
-            <div class="stat-card">
-                <h3>15+ років</h3>
-                <p>Практичного досвіду в сфері права</p>
+    <!-- ОСНОВНИЙ КОНТЕНТ -->
+    <div class="container">
+        <section class="hero-section">
+            <div class="avatar-frame" id="avatarFrame">
+                <img id="avatarImg" src="Діана 2.jpg" alt="Діана Гаркуша" class="avatar-img" onerror="showPlaceholder()">
             </div>
-            <div class="stat-card">
-                <h3>з 2012 року</h3>
-                <p>Офіційна адвокатська діяльність</p>
-            </div>
-            <div class="stat-card">
-                <h3>НЮАУ</h3>
-                <p>ім. Ярослава Мудрого (Вища освіта)</p>
-            </div>
-            <div class="stat-card">
-                <h3>Якість</h3>
-                <p>Принцип роботи — якість, а не кількість</p>
-            </div>
-        </div>
-    </section>
+            
+            <div class="hero-info">
+                <p class="badge">Model & Actress • 17 y.o.</p>
+                <h1 class="main-title">Діана Гаркуша</h1>
+                <p class="hero-desc">
+                    Професійна фотомодель та акторка з досвідом зйомок у серіалах та рекламних кампейнах провідних брендів одягу.
+                </p>
 
-    <!-- Послуги -->
-    <section class="section" id="services">
-        <h2 class="section-title">Основні напрямки</h2>
-        <div class="services-grid">
-            <div class="service-card">
-                <h3>Сімейне право</h3>
-                <p>Розірвання шлюбу «під ключ», стягнення аліментів, поділ майна, визначення місця проживання дитини.</p>
+                <div class="tags-container">
+                    <span class="tag">Fashion Model</span>
+                    <span class="tag">Акторка</span>
+                    <span class="tag">Commercial / Reels</span>
+                </div>
             </div>
-            <div class="service-card">
-                <h3>Цивільне право</h3>
-                <p>Визнання права власності, витребування майна, усунення перешкод у користуванні, стягнення коштів.</p>
-            </div>
-            <div class="service-card">
-                <h3>Договірне право</h3>
-                <p>Розробка та правовий аналіз договорів, оспорення договорів у суді, шлюбні договори.</p>
-            </div>
-            <div class="service-card">
-                <h3>Адвокатський захист</h3>
-                <p>Справи за ст. 130 КУпАП, скасування арешту майна, адвокатські запити, захист у судах.</p>
-            </div>
-        </div>
-    </section>
+        </section>
+    </div>
 
-    <!-- Плаваюча кнопка для швидкого виклику з мобільного -->
-    <a href="tel:+380937222592" class="mobile-call-btn">📞 Зв'язатися з адвокатом</a>
-
+    <!-- JAVASCRIPT -->
     <script>
-        function toggleMenu() {
-            document.querySelector('.nav-container').classList.toggle('active');
+        // Робота мобільного меню
+        const hamburgerBtn = document.getElementById('hamburgerBtn');
+        const mobileMenu = document.getElementById('mobileMenu');
+
+        hamburgerBtn.addEventListener('click', () => {
+            hamburgerBtn.classList.toggle('open');
+            mobileMenu.classList.toggle('active');
+            
+            if (mobileMenu.classList.contains('active')) {
+                document.body.style.overflow = 'hidden';
+            } else {
+                document.body.style.overflow = '';
+            }
+        });
+
+        // Показ заглушки, якщо фото не завантажилося або шлях вказано невірно
+        function showPlaceholder() {
+            const frame = document.getElementById('avatarFrame');
+            frame.innerHTML = '<div class="avatar-placeholder"><span>[ Фото Діани ]</span></div>';
         }
     </script>
 </body>

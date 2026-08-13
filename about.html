@@ -2,426 +2,543 @@
 <html lang="uk">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <title>Про мене | Діана Гаркуша</title>
+    <meta name="description" content="Інформація про Діану Гаркушу — параметри, досвід та біографія.">
+    
+    <!-- Шрифти Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;600&family=Plus+Jakarta+Sans:wght@300;400;600&display=swap" rel="stylesheet">
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='25' fill='%230c0c0e'/><text x='50%' y='65%' font-family='Georgia, serif' font-size='48' font-weight='bold' fill='%23e2b714' text-anchor='middle'>DG</text></svg>">
 
-    <!-- Іконка для вкладки -->
-    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%23C5A059'><path d='M18 2h-4v2h1v3h-1v2h4V7h-1V4h1V2zm-7 4.5l-6 6 1.5 1.5 6-6L11 6.5zm-5.5 8L4 16l4 4 1.5-1.5-4-4zM2 21h12v2H2v-2z'/></svg>">
-
-    <title>Про адвоката | Професійний правовий захист</title>
+    <!-- CSS СТИЛІ -->
     <style>
         :root {
-            /* Палітра Dark Mode */
-            --navy-header: #0F172A;   /* Темно-синя шапка та баннер */
-            --bg-dark: #18191A;       /* Загальний темно-вугільний фон */
-            --card-bg: #242526;       /* Темні картки */
-            --card-hover: #2D2E2F;
-            --accent: #C5A059;        /* Золотистий колір */
-            --accent-hover: #B08D46;
-            --text-light: #FFFFFF;    /* Білий текст */
-            --text-muted: #A0AAB8;    /* Сірий підтекст */
-            --border-color: #3A3B3C;
+            --bg-color: #0c0c0e;
+            --card-bg: rgba(255, 255, 255, 0.04);
+            --card-hover: rgba(255, 255, 255, 0.08);
+            --accent-color: #e2b714;
+            --accent-hover: #c9a10e;
+            --text-main: #f4f4f6;
+            --text-muted: #a0a0ab;
+            --border-color: rgba(255, 255, 255, 0.08);
+            --font-title: 'Cormorant Garamond', serif;
+            --font-body: 'Plus Jakarta Sans', sans-serif;
         }
 
         * {
             box-sizing: border-box;
             margin: 0;
             padding: 0;
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        html {
+            scroll-behavior: smooth;
         }
 
         body {
-            background-color: var(--bg-dark) !important;
-            color: var(--text-light);
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            font-family: var(--font-body);
             line-height: 1.6;
-            padding-bottom: 70px;
+            overflow-x: hidden;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
         }
 
-        @media (min-width: 768px) {
-            body { padding-bottom: 0; }
+        /* --- СЯЙВО НА ФОНІ --- */
+        .glow-bg {
+            position: fixed;
+            top: -5%;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 350px;
+            height: 350px;
+            background: radial-gradient(circle, rgba(226, 183, 20, 0.18) 0%, rgba(0,0,0,0) 70%);
+            filter: blur(60px);
+            z-index: -1;
+            pointer-events: none;
+            animation: pulseGlow 8s infinite alternate ease-in-out;
         }
 
-        /* Шапка */
-        .header {
-            background-color: var(--navy-header);
-            position: sticky;
-            top: 0;
-            z-index: 1000;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.4);
+        @keyframes pulseGlow {
+            0% { transform: translateX(-50%) scale(1); opacity: 0.5; }
+            100% { transform: translateX(-50%) scale(1.3); opacity: 0.8; }
         }
 
-        .nav-container {
-            max-width: 1200px;
-            margin: 0 auto;
+        /* --- ШАПКА --- */
+        header {
+            position: relative;
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 1rem 1.5rem;
+            padding: 24px 20px;
+            max-width: 1100px;
+            width: 100%;
+            margin: 0 auto;
+            z-index: 1000;
         }
 
         .logo {
-            color: var(--text-light);
-            font-size: 1.3rem;
-            font-weight: 700;
-            text-decoration: none;
-            text-transform: uppercase;
+            font-family: var(--font-title);
+            font-size: 1.8rem;
+            font-weight: 600;
             letter-spacing: 1px;
+            text-transform: uppercase;
+            color: var(--text-main);
+            text-decoration: none;
         }
 
-        .logo span { color: var(--accent); }
+        .logo span { color: var(--accent-color); }
 
-        .nav-menu {
-            display: flex;
-            list-style: none;
-            gap: 1.5rem;
+        /* Навігація ПК */
+        .desktop-nav {
+            display: none;
+            gap: 28px;
         }
 
         .nav-link {
-            color: #E2E8F0;
+            color: var(--text-muted);
             text-decoration: none;
-            font-weight: 500;
+            font-size: 1rem;
+            font-weight: 400;
             transition: color 0.3s;
         }
 
-        .nav-link:hover, .nav-link.active { color: var(--accent); }
-
-        .btn-contact {
-            background-color: var(--accent);
-            color: #000000;
-            padding: 0.6rem 1.2rem;
-            border-radius: 4px;
-            font-weight: 600;
-            text-decoration: none;
-            transition: background-color 0.3s;
+        .nav-link:hover, .nav-link.active {
+            color: var(--accent-color);
         }
 
-        .btn-contact:hover { background-color: var(--accent-hover); }
-
-        .hamburger {
-            display: none;
-            cursor: pointer;
-            background: none;
+        /* Кнопка-гамбургер (три смужки) */
+        .hamburger-btn {
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            width: 30px;
+            height: 20px;
+            background: transparent;
             border: none;
-            color: var(--text-light);
-            font-size: 1.8rem;
+            cursor: pointer;
+            padding: 0;
+            z-index: 1001;
         }
 
-        /* Заголовок сторінки */
-        .page-banner {
-            background-color: var(--navy-header);
-            color: var(--text-light);
-            padding: 3rem 1.5rem;
-            text-align: center;
-            border-bottom: 3px solid var(--accent);
+        .hamburger-btn span {
+            width: 100%;
+            height: 2px;
+            background-color: var(--text-main);
+            border-radius: 2px;
+            transition: all 0.3s ease-in-out;
         }
 
-        .page-banner h1 {
-            font-size: 2.2rem;
-            margin-bottom: 0.5rem;
+        .hamburger-btn.open span:nth-child(1) {
+            transform: translateY(9px) rotate(45deg);
+            background-color: var(--accent-color);
         }
 
-        .page-banner p {
-            color: var(--text-muted);
-            font-size: 1.1rem;
+        .hamburger-btn.open span:nth-child(2) {
+            opacity: 0;
         }
 
-        /* Контентний блок */
+        .hamburger-btn.open span:nth-child(3) {
+            transform: translateY(-9px) rotate(-45deg);
+            background-color: var(--accent-color);
+        }
+
+        /* Висувне мобільне меню */
+        .mobile-menu-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100vh;
+            background: rgba(12, 12, 14, 0.96);
+            backdrop-filter: blur(15px);
+            -webkit-backdrop-filter: blur(15px);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            gap: 24px;
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.3s ease, visibility 0.3s ease;
+            z-index: 999;
+        }
+
+        .mobile-menu-overlay.active {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .mobile-menu-overlay .nav-link {
+            font-family: var(--font-title);
+            font-size: 2rem;
+            color: var(--text-main);
+        }
+
+        .mobile-menu-overlay .nav-link.active {
+            color: var(--accent-color);
+        }
+
+        /* --- ОСНОВНИЙ КОНТЕЙНЕР --- */
         .container {
             max-width: 1100px;
-            margin: 0 auto;
-            padding: 3rem 1.5rem;
-        }
-
-        /* Секція з фото та короткими фактами */
-        .about-hero {
-            display: grid;
-            grid-template-columns: 340px 1fr;
-            gap: 2.5rem;
-            align-items: center;
-            background: var(--card-bg);
-            padding: 2.5rem;
-            border-radius: 12px;
-            box-shadow: 0 4px 20px rgba(0,0,0,0.3);
-            margin-bottom: 3rem;
-            border: 1px solid var(--border-color);
-        }
-
-        .about-img-placeholder {
             width: 100%;
-            height: 480px;
-            background-color: var(--navy-header);
-            border-radius: 8px;
-            overflow: hidden;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.4);
-            border: 2px solid var(--border-color);
+            margin: auto;
+            padding: 20px 24px 60px;
         }
 
-        .about-img-placeholder img {
+        /* --- ВЕРХНІЙ БЛОК (ПРО МЕНЕ) --- */
+        .about-hero {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            margin-bottom: 50px;
+        }
+
+        /* Овальна рамка для фото */
+        .avatar-frame {
+            width: 210px;
+            height: 280px;
+            border-radius: 110px;
+            overflow: hidden;
+            border: 1px solid var(--border-color);
+            margin-bottom: 28px;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.6);
+            flex-shrink: 0;
+            position: relative;
+            background: #141418;
+        }
+
+        .avatar-img {
             width: 100%;
             height: 100%;
             object-fit: cover;
-            object-position: center top;
             display: block;
         }
 
-        .about-summary h2 {
-            font-size: 1.8rem;
-            color: var(--text-light);
-            margin-bottom: 1rem;
+        .avatar-placeholder {
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, #1c1c24, #101014);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--text-muted);
+            font-size: 0.95rem;
         }
 
-        .about-summary p {
-            margin-bottom: 1.2rem;
+        .page-title {
+            font-family: var(--font-title);
+            font-size: clamp(2.8rem, 8vw, 4.5rem);
+            font-weight: 400;
+            line-height: 1.1;
+            margin-bottom: 16px;
+        }
+
+        .about-text {
+            color: var(--text-muted);
+            font-size: clamp(1.05rem, 3.5vw, 1.25rem);
+            max-width: 700px;
+            line-height: 1.7;
+        }
+
+        /* --- БЛОК ПАРАМЕТРІВ (МОДЕЛЬНІ ДАНІ) --- */
+        .section-title {
+            font-family: var(--font-title);
+            font-size: 2.2rem;
+            color: var(--text-main);
+            margin-bottom: 24px;
+            text-align: center;
+        }
+
+        .params-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+            gap: 16px;
+            margin-bottom: 60px;
+        }
+
+        .param-card {
+            background: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 20px;
+            padding: 20px;
+            text-align: center;
+            transition: background 0.3s, transform 0.3s;
+        }
+
+        .param-card:hover {
+            background: var(--card-hover);
+            transform: translateY(-3px);
+        }
+
+        .param-label {
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 6px;
+        }
+
+        .param-value {
+            font-size: 1.4rem;
+            font-weight: 600;
+            color: var(--accent-color);
+        }
+
+        /* --- ДОСВІД ТА НАВИЧКИ --- */
+        .info-cards {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 24px;
+            margin-bottom: 60px;
+        }
+
+        .info-card {
+            background: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 24px;
+            padding: 28px;
+        }
+
+        .info-card h3 {
+            font-family: var(--font-title);
+            font-size: 1.8rem;
+            color: var(--accent-color);
+            margin-bottom: 12px;
+        }
+
+        .info-card p, .info-card ul {
             color: var(--text-muted);
             font-size: 1.05rem;
+            line-height: 1.6;
         }
 
-        .badges {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 0.8rem;
-            margin-top: 1.5rem;
+        .info-card ul {
+            list-style: none;
+            padding-left: 0;
         }
 
-        .badge {
-            background: #1E2229;
-            color: var(--text-light);
-            padding: 0.5rem 1rem;
-            border-radius: 6px;
-            font-size: 0.9rem;
-            font-weight: 600;
-            border-left: 3px solid var(--accent);
-        }
-
-        /* Блок принципів роботи */
-        .principles-section {
-            background: var(--navy-header);
-            color: var(--text-light);
-            padding: 2.5rem;
-            border-radius: 12px;
-            margin-bottom: 3rem;
-            border: 1px solid var(--border-color);
-            box-shadow: 0 4px 20px rgba(0,0,0,0.3);
-        }
-
-        .principles-section h2 {
-            color: var(--accent);
-            margin-bottom: 1rem;
-            font-size: 1.6rem;
-        }
-
-        .principles-section p {
-            font-size: 1.1rem;
-            line-height: 1.8;
-            color: #E2E8F0;
-        }
-
-        .quote-box {
-            margin-top: 1.5rem;
-            padding-left: 1.5rem;
-            border-left: 4px solid var(--accent);
-            font-style: italic;
-            color: var(--text-muted);
-        }
-
-        /* Часова лінія (Досвід та Освіта) */
-        .section-title {
-            font-size: 1.8rem;
-            color: var(--text-light);
-            margin-bottom: 2rem;
-            text-align: center;
+        .info-card ul li {
             position: relative;
+            padding-left: 20px;
+            margin-bottom: 8px;
         }
 
-        .section-title::after {
-            content: '';
-            display: block;
-            width: 50px;
-            height: 3px;
-            background-color: var(--accent);
-            margin: 0.5rem auto 0;
-        }
-
-        .timeline {
-            position: relative;
-            max-width: 800px;
-            margin: 0 auto;
-            padding: 1rem 0;
-        }
-
-        .timeline-item {
-            background: var(--card-bg);
-            padding: 1.5rem;
-            border-radius: 8px;
-            margin-bottom: 1.5rem;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.3);
-            border-left: 4px solid var(--accent);
-            border-top: 1px solid var(--border-color);
-            border-right: 1px solid var(--border-color);
-            border-bottom: 1px solid var(--border-color);
-        }
-
-        .timeline-date {
-            font-weight: 700;
-            color: var(--accent);
-            font-size: 0.95rem;
-            text-transform: uppercase;
-            margin-bottom: 0.3rem;
-        }
-
-        .timeline-title {
-            font-size: 1.2rem;
-            color: var(--text-light);
-            margin-bottom: 0.5rem;
-        }
-
-        .timeline-desc {
-            color: var(--text-muted);
-            font-size: 0.95rem;
-        }
-
-        /* Плаваюча кнопка для мобільного */
-        .mobile-call-btn {
-            display: none;
-            position: fixed;
-            bottom: 0;
+        .info-card ul li::before {
+            content: "•";
+            color: var(--accent-color);
+            position: absolute;
             left: 0;
-            width: 100%;
-            background-color: var(--accent);
-            color: #000000;
-            text-align: center;
-            padding: 1rem;
-            font-weight: 700;
-            text-decoration: none;
-            z-index: 999;
-            box-shadow: 0 -2px 10px rgba(0,0,0,0.3);
+            font-size: 1.3rem;
+            line-height: 1;
         }
 
-        /* Адаптивність під телефон */
-        @media (max-width: 768px) {
-            .nav-menu {
-                display: none;
-                width: 100%;
-                flex-direction: column;
-                position: absolute;
-                top: 100%;
-                left: 0;
-                background-color: var(--navy-header);
-                padding: 1rem;
-            }
+        /* --- БЛОК ЗАКЛИКУ ДО ДІЇ (CTA) --- */
+        .cta-section {
+            background: linear-gradient(135deg, rgba(226, 183, 20, 0.08) 0%, rgba(255, 255, 255, 0.02) 100%);
+            border: 1px solid rgba(226, 183, 20, 0.2);
+            border-radius: 28px;
+            padding: 40px 24px;
+            text-align: center;
+            margin-top: 20px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+        }
 
-            .hamburger { display: block; }
-            .nav-container.active .nav-menu { display: flex; }
-            .mobile-call-btn { display: block; }
-            .header .btn-contact { display: none; }
+        .cta-title {
+            font-family: var(--font-title);
+            font-size: clamp(2rem, 5vw, 2.8rem);
+            color: var(--text-main);
+            margin-bottom: 12px;
+        }
+
+        .cta-description {
+            color: var(--text-muted);
+            font-size: 1.1rem;
+            max-width: 600px;
+            margin: 0 auto 28px;
+            line-height: 1.6;
+        }
+
+        .cta-button {
+            display: inline-block;
+            background-color: var(--accent-color);
+            color: #0c0c0e;
+            font-family: var(--font-body);
+            font-size: 1.05rem;
+            font-weight: 600;
+            padding: 16px 36px;
+            border-radius: 50px;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            box-shadow: 0 8px 20px rgba(226, 183, 20, 0.25);
+        }
+
+        .cta-button:hover {
+            background-color: var(--accent-hover);
+            transform: translateY(-3px);
+            box-shadow: 0 12px 25px rgba(226, 183, 20, 0.4);
+        }
+
+        /* --- АДАПТИВНІСТЬ ДЛЯ ПК (min-width: 768px) --- */
+        @media (min-width: 768px) {
+            .desktop-nav { display: flex; }
+            .hamburger-btn { display: none; }
+            .mobile-menu-overlay { display: none; }
 
             .about-hero {
-                grid-template-columns: 1fr;
-                padding: 1.5rem;
+                flex-direction: row;
+                text-align: left;
+                justify-content: center;
+                gap: 60px;
+                margin-bottom: 70px;
             }
 
-            .about-img-placeholder {
-                max-width: 340px;
-                height: 480px;
-                margin: 0 auto;
+            .avatar-frame {
+                width: 280px;
+                height: 370px;
+                border-radius: 140px;
+                margin-bottom: 0;
             }
 
-            .page-banner h1 { font-size: 1.8rem; }
-            .principles-section { padding: 1.5rem; }
+            .section-title { text-align: left; }
+
+            .info-cards {
+                grid-template-columns: 1fr 1fr;
+            }
+
+            .cta-section {
+                padding: 50px 40px;
+            }
         }
     </style>
 </head>
 <body>
+    <!-- ФОНОВЕ СЯЙВО -->
+    <div class="glow-bg"></div>
 
-    <!-- Шапка сайту -->
-    <header class="header">
-        <div class="nav-container">
-            <a href="index.html" class="logo">Адвокат <span>Право</span></a>
-            <button class="hamburger" onclick="toggleMenu()">☰</button>
-            <ul class="nav-menu">
-                <li><a href="index.html" class="nav-link">Головна</a></li>
-                <li><a href="about.html" class="nav-link active">Про мене</a></li>
-                <li><a href="services.html" class="nav-link">Послуги</a></li>
-                <li><a href="cases.html" class="nav-link">Справи</a></li>
-            </ul>
-            <a href="tel:+380937222592" class="btn-contact">Зв'язатися</a>
-        </div>
+    <!-- ШАПКА -->
+    <header>
+        <a href="index.html" class="logo">Діана <span>Гаркуша</span></a>
+        
+        <!-- Меню для комп'ютера -->
+        <nav class="desktop-nav">
+            <a href="index.html" class="nav-link">Головна</a>
+            <a href="about.html" class="nav-link active">Про мене</a>
+            <a href="services.html" class="nav-link">Послуги</a>
+            <a href="contacts.html" class="nav-link">Контакти</a>
+        </nav>
+
+        <!-- Кнопка «3 смужки» для телефона -->
+        <button class="hamburger-btn" id="hamburgerBtn" aria-label="Відкрити меню">
+            <span></span>
+            <span></span>
+            <span></span>
+        </button>
     </header>
 
-    <!-- Баннер сторінки -->
-    <section class="page-banner">
-        <h1>Про адвоката</h1>
-        <p>Кваліфікований правовий захист з 15-річним досвідом практики</p>
-    </section>
+    <!-- Висувне мобільне меню -->
+    <div class="mobile-menu-overlay" id="mobileMenu">
+        <a href="index.html" class="nav-link">Головна</a>
+        <a href="about.html" class="nav-link active">Про мене</a>
+        <a href="services.html" class="nav-link">Послуги</a>
+        <a href="contacts.html" class="nav-link">Контакти</a>
+    </div>
 
+    <!-- ОСНОВНИЙ КОНТЕНТ -->
     <div class="container">
-
-        <!-- Основна картка з фото та короткими даними -->
+        
+        <!-- ВЕРХНІЙ БЛОК -->
         <section class="about-hero">
-            <div class="about-img-placeholder">
-                <img src="kovalenko-k (1).jpg" alt="Адвокат">
+            <div class="avatar-frame" id="avatarFrame">
+                <img id="avatarImg" src="Diana 1.jpg" alt="Діана Гаркуша" class="avatar-img" onerror="showPlaceholder()">
             </div>
-            <div class="about-summary">
-                <h2>Адвокатська діяльність та досвід</h2>
-                <p>Маю практичний досвід роботи понад 15 років у сфері цивільного, господарського, земельного та сімейного законодавства України.</p>
-                <p>Забезпечую повний супровід справ у судах України в цивільному, господарському та адміністративному процесах.</p>
-                
-                <div class="badges">
-                    <span class="badge">🎓 Вища юридична освіта</span>
-                    <span class="badge">📜 Свідоцтво від 27.02.2012</span>
-                    <span class="badge">⚖️ 15+ років практики</span>
+
+            <div class="about-intro">
+                <h1 class="page-title">Про мене</h1>
+                <p class="about-text">
+                    Привіт! Я Діана — професійна фотомодель та акторка. Маю великий досвід у фешн-зйомках, зйомках рекламних кампейнів, каталогів одягу, а також у зйомках серіалів та Reels/TikTok вмісту. Вмію швидко втілювати потрібні образи та професійно працювати перед камерою.
+                </p>
+            </div>
+        </section>
+
+        <!-- ПАРАМЕТРИ (МОДЕЛЬНІ ДАНІ) -->
+        <section>
+            <h2 class="section-title">Параметри</h2>
+            <div class="params-grid">
+                <div class="param-card">
+                    <div class="param-label">Зріст</div>
+                    <div class="param-value">165+ см</div>
+                </div>
+                <div class="param-card">
+                    <div class="param-label">Вік</div>
+                    <div class="param-value">17 років</div>
                 </div>
             </div>
         </section>
 
-        <!-- Принципи та філософія -->
-        <section class="principles-section">
-            <h2>Принципи роботи та філософія</h2>
-            <p>
-                Маю на меті надати кваліфіковану правову допомогу та отримати за це відповідний гонорар. Намагаюсь робити свою справу так, щоб клієнт не тільки отримав позитивний результат, а й мав бажання звернутися до мене знову при виникненні інших питань, а також рекомендував мене як фахівця.
+        <!-- ДОСВІД ТА НАВИЧКИ -->
+        <section class="info-cards">
+            <div class="info-card">
+                <h3>Досвід зйомок</h3>
+                <ul>
+                    <li>Модель для лукбуків та каталогів брендів одягу.</li>
+                    <li>Зйомки у комерційних рекламних відеороликах.</li>
+                    <li>Участь у серіалах та акторських проєктах.</li>
+                    <li>Створення естетичного та вірусного контенту для UGC, Reels, TikTok.</li>
+                </ul>
+            </div>
+
+            <div class="info-card">
+                <h3>Навички та особливості</h3>
+                <ul>
+                    <li>Відмінне позирування та відчуття кадру.</li>
+                    <li>Вміння швидко працювати з емоціями.</li>
+                    <li>Відповідальне ставлення до таймінгів та знімального процесу.</li>
+                    <li>Готовність до експериментів зі стилем та образом.</li>
+                </ul>
+            </div>
+        </section>
+
+        <!-- ЗАКЛИК ДО ДІЇ ТА КНОПКА ЗВ'ЯЗКУ -->
+        <section class="cta-section">
+            <h2 class="cta-title">Готові створити щось особливе?</h2>
+            <p class="cta-description">
+                Відкрита до співпраці з брендами, фотографами, режисерами та креативними командами. Обговоримо ваш проєкт та втілимо найсміливіші ідеї в життя!
             </p>
-            <div class="quote-box">
-                «Робота "не на кількість, а на якість" генерує найкращу рекламу — рекомендацію Адвоката близьким, знайомим та колегам.»
-            </div>
+            <a href="https://t.me/agussha_sha" class="cta-button">Зв'язатися зі мною</a>
         </section>
-
-        <!-- Хронологія досвіду та освіти -->
-        <h2 class="section-title">Освіта та професійний шлях</h2>
-        <div class="timeline">
-
-            <div class="timeline-item">
-                <div class="timeline-date">2003 – 2008 рр.</div>
-                <div class="timeline-title">Національна юридична академія України імені Ярослава Мудрого</div>
-                <div class="timeline-desc">
-                    Здобув вищу юридичну освіту за спеціальністю «Право / Правознавство». Кваліфікація — юрист-спеціаліст.
-                </div>
-            </div>
-
-            <div class="timeline-item">
-                <div class="timeline-date">27.02.2012 року – по теперішній час</div>
-                <div class="timeline-title">Офіційна адвокатська діяльність</div>
-                <div class="timeline-desc">
-                    Здійснюю адвокатську діяльність на підставі Свідоцтва про право на заняття адвокатською діяльністю. Надаю правову допомогу та здійснюю захист прав, свобод і законних інтересів фізичних та юридичних осіб.
-                </div>
-            </div>
-
-            <div class="timeline-item">
-                <div class="timeline-date">15+ років досвіду</div>
-                <div class="timeline-title">Судова практика та представництво</div>
-                <div class="timeline-desc">
-                    Спеціалізація та супровід складних справ у цивільному, господарському, адміністративному та сімейному процесах по всій території України.
-                </div>
-            </div>
-
-        </div>
 
     </div>
 
-    <!-- Мобільна кнопка виклику -->
-    <a href="tel:+380937222592" class="mobile-call-btn">📞 Зв'язатися з адвокатом</a>
-
+    <!-- JAVASCRIPT -->
     <script>
-        function toggleMenu() {
-            document.querySelector('.nav-container').classList.toggle('active');
+        // Робота мобільного меню
+        const hamburgerBtn = document.getElementById('hamburgerBtn');
+        const mobileMenu = document.getElementById('mobileMenu');
+
+        hamburgerBtn.addEventListener('click', () => {
+            hamburgerBtn.classList.toggle('open');
+            mobileMenu.classList.toggle('active');
+            
+            if (mobileMenu.classList.contains('active')) {
+                document.body.style.overflow = 'hidden';
+            } else {
+                document.body.style.overflow = '';
+            }
+        });
+
+        // Показ заглушки, якщо фото не завантажилося або шлях вказано невірно
+        function showPlaceholder() {
+            const frame = document.getElementById('avatarFrame');
+            frame.innerHTML = '<div class="avatar-placeholder"><span>[ Фото Діани ]</span></div>';
         }
     </script>
 </body>
