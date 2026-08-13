@@ -3,341 +3,318 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-    <!-- Іконка для вкладки -->
-    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%23C5A059'><path d='M18 2h-4v2h1v3h-1v2h4V7h-1V4h1V2zm-7 4.5l-6 6 1.5 1.5 6-6L11 6.5zm-5.5 8L4 16l4 4 1.5-1.5-4-4zM2 21h12v2H2v-2z'/></svg>">
-
-    <title>Послуги адвоката | Професійний правовий захист</title>
+    <title>Model & Actress Portfolio</title>
+    <!-- Шрифти Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link rel="icon" href="https://fav.farm/✨" />
+    
     <style>
         :root {
-            /* Палітра як на скриншоті */
-            --navy-header: #0F172A;   /* Темно-синя шапка */
-            --bg-dark: #18191A;       /* Загальний темно-вугільний фон */
-            --card-bg: #242526;       /* Темні картки */
-            --accent: #C5A059;        /* Золотистий колір */
-            --accent-hover: #B08D46;
-            --text-light: #FFFFFF;    /* Білий текст */
-            --text-muted: #A0AAB8;    /* Сірий підтекст */
+            --bg-color: #0b0b0d;
+            --card-bg: #141418;
+            --accent-color: #d4af37;
+            --text-main: #f8f9fa;
+            --text-muted: #8e8e93;
+            --font-title: 'Cormorant Garamond', serif;
+            --font-body: 'Montserrat', sans-serif;
         }
 
         * {
-            box-sizing: border-box;
             margin: 0;
             padding: 0;
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+            box-sizing: border-box;
+            scroll-behavior: smooth;
         }
 
         body {
-            background-color: var(--bg-dark) !important;
-            color: var(--text-light);
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            font-family: var(--font-body);
             line-height: 1.6;
-            padding-bottom: 70px;
+            min-height: 100vh;
         }
 
-        @media (min-width: 768px) {
-            body { padding-bottom: 0; }
-        }
-
-        /* Шапка та Навігація */
-        .header {
-            background-color: var(--navy-header);
-            position: sticky;
-            top: 0;
-            z-index: 1000;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.3);
-        }
-
-        .nav-container {
+        /* Головна сітка: для ПК розгортається у 2 колонки */
+        .layout {
+            display: grid;
+            grid-template-columns: 1fr;
+            min-height: 100vh;
             max-width: 1200px;
             margin: 0 auto;
+        }
+
+        /* Ліва частина (Hero / Фото) */
+        .hero-sidebar {
+            position: relative;
+            padding: 40px 20px;
             display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 1rem 1.5rem;
-        }
-
-        .logo {
-            color: var(--text-light);
-            font-size: 1.3rem;
-            font-weight: 700;
-            text-decoration: none;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-        }
-
-        .logo span { color: var(--accent); }
-
-        .nav-menu {
-            display: flex;
-            list-style: none;
-            gap: 1.5rem;
-        }
-
-        .nav-link {
-            color: #E2E8F0;
-            text-decoration: none;
-            font-weight: 500;
-            transition: color 0.3s;
-        }
-
-        .nav-link:hover { color: var(--accent); }
-
-        .btn-contact {
-            background-color: var(--accent);
-            color: #000000;
-            padding: 0.6rem 1.2rem;
-            border-radius: 4px;
-            font-weight: 600;
-            text-decoration: none;
-            transition: background-color 0.3s;
-        }
-
-        .btn-contact:hover { background-color: var(--accent-hover); }
-
-        /* Мобільне меню */
-        .hamburger {
-            display: none;
-            cursor: pointer;
-            background: none;
-            border: none;
-            color: var(--text-light);
-            font-size: 1.8rem;
-        }
-
-        /* Hero Секція */
-        .hero {
-            background: linear-gradient(rgba(15, 23, 42, 0.85), rgba(15, 23, 42, 0.85)), 
-                        url('https://images.unsplash.com/photo-1589829545856-d10d557cf95f?auto=format&fit=crop&w=1200&q=80') center/cover;
-            color: var(--text-light);
-            padding: 5rem 1.5rem;
-            text-align: center;
-        }
-
-        .hero-content {
-            max-width: 800px;
-            margin: 0 auto;
-        }
-
-        .hero h1 {
-            font-size: 2.2rem;
-            margin-bottom: 1rem;
-            line-height: 1.2;
-        }
-
-        .hero p {
-            font-size: 1.1rem;
-            color: var(--text-muted);
-            margin-bottom: 2rem;
-        }
-
-        .hero-buttons {
-            display: flex;
-            gap: 1rem;
+            flex-direction: column;
             justify-content: center;
-            flex-wrap: wrap;
+            align-items: center;
+            text-align: center;
+            background: radial-gradient(circle at center, rgba(212, 175, 55, 0.05) 0%, transparent 70%);
         }
 
-        /* Основні блоки */
-        .section {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 3.5rem 1.5rem;
+        .avatar-container {
+            position: relative;
+            width: 220px;
+            height: 280px;
+            margin-bottom: 25px;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.6);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            transition: transform 0.5s ease;
+        }
+
+        .avatar-container:hover {
+            transform: scale(1.02);
+        }
+
+        .avatar {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .hero-sidebar h1 {
+            font-family: var(--font-title);
+            font-size: 2.5rem;
+            font-weight: 400;
+            letter-spacing: 1px;
+            margin-bottom: 5px;
+        }
+
+        .hero-sidebar .tag {
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            color: var(--accent-color);
+            margin-bottom: 15px;
+        }
+
+        /* Права частина (Контент) */
+        .content-area {
+            padding: 40px 25px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        section {
+            margin-bottom: 35px;
+            animation: fadeInUp 0.8s ease-out;
         }
 
         .section-title {
-            text-align: center;
+            font-family: var(--font-title);
             font-size: 1.8rem;
-            color: var(--text-light);
-            margin-bottom: 2.5rem;
+            margin-bottom: 15px;
             position: relative;
+            display: inline-block;
         }
 
         .section-title::after {
             content: '';
-            display: block;
-            width: 50px;
-            height: 3px;
-            background-color: var(--accent);
-            margin: 0.5rem auto 0;
-        }
-
-        /* Факти / Переваги */
-        .stats-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-            gap: 1.5rem;
-            text-align: center;
-        }
-
-        .stat-card {
-            background: var(--card-bg) !important;
-            padding: 1.8rem 1.5rem;
-            border-radius: 8px;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.3);
-            border-top: 4px solid var(--accent);
-        }
-
-        .stat-card h3 {
-            font-size: 2rem;
-            color: var(--text-light);
-            margin-bottom: 0.5rem;
-        }
-
-        .stat-card p {
-            color: var(--text-muted);
-            font-size: 0.95rem;
-        }
-
-        /* Послуги */
-        .services-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-            gap: 1.5rem;
-        }
-
-        .service-card {
-            background: var(--card-bg) !important;
-            padding: 1.8rem 1.5rem;
-            border-radius: 8px;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.3);
-            border-top: 3px solid transparent;
-            transition: border-color 0.3s, transform 0.3s;
-        }
-
-        .service-card:hover {
-            border-top-color: var(--accent);
-            transform: translateY(-3px);
-        }
-
-        .service-card h3 {
-            color: var(--text-light);
-            margin-bottom: 0.8rem;
-        }
-
-        .service-card p {
-            color: var(--text-muted);
-            font-size: 0.95rem;
-        }
-
-        /* Плаваюча кнопка для мобільного */
-        .mobile-call-btn {
-            display: none;
-            position: fixed;
-            bottom: 0;
+            position: absolute;
+            bottom: -3px;
             left: 0;
-            width: 100%;
-            background-color: var(--accent);
-            color: #000000;
-            text-align: center;
-            padding: 1rem;
-            font-weight: 700;
-            text-decoration: none;
-            z-index: 999;
-            box-shadow: 0 -2px 10px rgba(0,0,0,0.3);
+            width: 35px;
+            height: 1px;
+            background-color: var(--accent-color);
         }
 
-        /* Адаптивність */
-        @media (max-width: 768px) {
-            .nav-menu {
-                display: none;
-                width: 100%;
-                flex-direction: column;
-                position: absolute;
-                top: 100%;
-                left: 0;
-                background-color: var(--navy-header);
-                padding: 1rem;
+        .about-text {
+            color: var(--text-muted);
+            font-size: 0.95rem;
+            font-weight: 300;
+            line-height: 1.7;
+        }
+
+        /* Картки проєктів */
+        .cards-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 15px;
+            margin-top: 15px;
+        }
+
+        .card {
+            background: var(--card-bg);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            padding: 20px;
+            border-radius: 14px;
+            position: relative;
+            overflow: hidden;
+            transition: all 0.3s ease;
+        }
+
+        .card::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0;
+            width: 3px;
+            height: 100%;
+            background: var(--accent-color);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .card:hover {
+            transform: translateX(5px);
+            background: #1a1a20;
+            border-color: rgba(255, 255, 255, 0.15);
+        }
+
+        .card:hover::before {
+            opacity: 1;
+        }
+
+        .card-tag {
+            font-size: 0.7rem;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            color: var(--accent-color);
+            margin-bottom: 6px;
+        }
+
+        .card-title {
+            font-size: 1.1rem;
+            font-weight: 500;
+            margin-bottom: 4px;
+        }
+
+        .card-desc {
+            font-size: 0.85rem;
+            color: var(--text-muted);
+        }
+
+        /* Кнопка Instagram */
+        .btn-instagram {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 12px;
+            width: 100%;
+            padding: 16px 24px;
+            background: linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%);
+            color: #fff;
+            text-decoration: none;
+            border-radius: 30px;
+            font-weight: 500;
+            font-size: 0.95rem;
+            box-shadow: 0 10px 25px rgba(220, 39, 67, 0.25);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .btn-instagram:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 12px 30px rgba(220, 39, 67, 0.4);
+        }
+
+        footer {
+            text-align: center;
+            padding: 20px;
+            font-size: 0.75rem;
+            color: var(--text-muted);
+        }
+
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(15px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* 💻 АДАПТИВ ДЛЯ КОМП'ЮТЕРА (Screens > 768px) */
+        @media (min-width: 768px) {
+            .layout {
+                grid-template-columns: 400px 1fr;
+                gap: 40px;
+                padding: 40px 20px;
             }
 
-            .hamburger { display: block; }
-            .nav-container.active .nav-menu { display: flex; }
-            .mobile-call-btn { display: block; }
-            .header .btn-contact { display: none; }
-            .hero h1 { font-size: 1.8rem; }
+            .hero-sidebar {
+                position: sticky;
+                top: 40px;
+                height: calc(100vh - 80px);
+                border-right: 1px solid rgba(255, 255, 255, 0.05);
+                padding: 20px;
+            }
+
+            .avatar-container {
+                width: 260px;
+                height: 340px;
+            }
+
+            .hero-sidebar h1 {
+                font-size: 3rem;
+            }
+
+            .cards-grid {
+                grid-template-columns: 1fr 1fr; /* Ролі вишиковуються у 2 колонки на ПК */
+            }
+
+            .btn-instagram {
+                width: auto;
+                padding: 16px 32px;
+            }
         }
     </style>
 </head>
 <body>
 
-    <!-- Шапка сайту -->
-    <header class="header">
-        <div class="nav-container">
-            <a href="#" class="logo">Адвокат <span>Право</span></a>
-            <button class="hamburger" onclick="toggleMenu()">☰</button>
-            <ul class="nav-menu">
-                <li><a href="#" class="nav-link">Головна</a></li>
-                <li><a href="about.html" class="nav-link">Про мене</a></li>
-                <li><a href="services.html" class="nav-link">Послуги</a></li>
-                <li><a href="cases.html" class="nav-link">Справи</a></li>
-            </ul>
-            <a href="tel:+380937222592" class="btn-contact">Зв'язатися</a>
-        </div>
-    </header>
+    <div class="layout">
+        <!-- Ліва колонка (На ПК зафіксована) -->
+        <aside class="hero-sidebar">
+            <div class="avatar-container">
+                <img src="Діана 2.jpg" alt="Model Portfolio" class="avatar">
+            </div>
+            <h1>Гаркуша Діана</h1>
+            <p class="tag">Model & Actress</p>
+        </aside>
 
-    <!-- Головний баннер -->
-    <section class="hero">
-        <div class="hero-content">
-            <h1>Професійна юридична допомога та захист ваших інтересів</h1>
-            <p>Більше 15 років практичного досвіду в судах України. Індивідуальний підхід та робота на результат.</p>
-            <div class="hero-buttons">
-                <a href="tel:+380937222592" class="btn-contact" style="padding: 0.8rem 1.8rem;">Зателефонувати</a>
-                <a href="#services" class="btn-contact" style="background: transparent; border: 2px solid var(--accent); color: var(--text-light);">Наші послуги</a>
-            </div>
-        </div>
-    </section>
+        <!-- Права колонка з контентом -->
+        <main class="content-area">
+            <section>
+                <h2 class="section-title">Про мене</h2>
+                <p class="about-text">
+                   «Життя в кадрі — це про вміння відчувати момент і транслювати справжні емоції. Поєдную фотомоделінг із роботою на знімальному майданчику: за моїми плечима ролі в серіалах «Код» та «Лікар», а також десятки фотосесій у різних стилях та концептах. Для мене кожен проєкт — це нова історія, гармонія естетики та можливість створити щось візуально довершене. Відкрита до співпраці з режисерами, фотографами та брендовими проєктами.»
+                </p>
+            </section>
 
-    <!-- Досвід у цифрах -->
-    <section class="section">
-        <div class="stats-grid">
-            <div class="stat-card">
-                <h3>15+ років</h3>
-                <p>Практичного досвіду в сфері права</p>
-            </div>
-            <div class="stat-card">
-                <h3>з 2012 року</h3>
-                <p>Офіційна адвокатська діяльність</p>
-            </div>
-            <div class="stat-card">
-                <h3>НЮАУ</h3>
-                <p>ім. Ярослава Мудрого (Вища освіта)</p>
-            </div>
-            <div class="stat-card">
-                <h3>Якість</h3>
-                <p>Принцип роботи — якість, а не кількість</p>
-            </div>
-        </div>
-    </section>
+            <section>
+                <h2 class="section-title">Досвід та проєкти</h2>
+                <div class="cards-grid">
+                    <div class="card">
+                        <div class="card-tag">Fashion</div>
+                        <div class="card-title">Фотомодель</div>
+                        <div class="card-desc">Студійні, портретні та концептуальні зйомки.</div>
+                    </div>
 
-    <!-- Послуги -->
-    <section class="section" id="services">
-        <h2 class="section-title">Основні напрямки</h2>
-        <div class="services-grid">
-            <div class="service-card">
-                <h3>Сімейне право</h3>
-                <p>Розірвання шлюбу «під ключ», стягнення аліментів, поділ майна, визначення місця проживання дитини.</p>
-            </div>
-            <div class="service-card">
-                <h3>Цивільне право</h3>
-                <p>Визнання права власності, витребування майна, усунення перешкод у користуванні, стягнення коштів.</p>
-            </div>
-            <div class="service-card">
-                <h3>Договірне право</h3>
-                <p>Розробка та правовий аналіз договорів, оспорення договорів у суді, шлюбні договори.</p>
-            </div>
-            <div class="service-card">
-                <h3>Адвокатський захист</h3>
-                <p>Справи за ст. 130 КУпАП, скасування арешту майна, адвокатські запити, захист у судах.</p>
-            </div>
-        </div>
-    </section>
+                    <div class="card">
+                        <div class="card-tag">Cinema</div>
+                        <div class="card-title">Серіал «К.О.Д.»</div>
+                        <div class="card-desc">Участь у зйомках популярного телесеріалу.</div>
+                    </div>
 
-    <!-- Плаваюча кнопка для швидкого виклику з мобільного -->
-    <a href="tel:+380937222592" class="mobile-call-btn">📞 Зв'язатися з адвокатом</a>
+                    <div class="card">
+                        <div class="card-tag">Cinema</div>
+                        <div class="card-title">Серіал «Лікар»</div>
+                        <div class="card-desc">Роль у драматичному серіалі.</div>
+                    </div>
+                </div>
+            </section>
 
-    <script>
-        function toggleMenu() {
-            document.querySelector('.nav-container').classList.toggle('active');
-        }
-    </script>
+            <section>
+                <a href="https://www.instagram.com/garkusha1831/" target="_blank" class="btn-instagram">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect>
+                        <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path>
+                        <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line>
+                    </svg>
+                    Зв'язатися в Instagram
+                </a>
+            </section>
 </body>
 </html>
