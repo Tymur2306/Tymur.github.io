@@ -223,14 +223,23 @@
         }
 
         .avatar-placeholder {
+            display: none;
             width: 100%;
             height: 100%;
             background: linear-gradient(135deg, #1c1c24, #101014);
-            display: flex;
             align-items: center;
             justify-content: center;
             color: var(--text-muted);
             font-size: 0.95rem;
+        }
+
+        /* Показ заглушки у разі помилки завантаження фото */
+        .avatar-frame.has-error .avatar-img {
+            display: none;
+        }
+
+        .avatar-frame.has-error .avatar-placeholder {
+            display: flex;
         }
 
         .badge {
@@ -316,11 +325,11 @@
             <a href="index.html" class="nav-link active">Головна</a>
             <a href="about.html" class="nav-link">Про мене</a>
             <a href="services.html" class="nav-link">Послуги</a>
-            <a href="reviews.html" class="nav-link">Відгуки</a>
+            <a href="portfolio.html" class="nav-link">Портфоліо</a>
         </nav>
 
         <!-- Кнопка «3 смужки» для телефона -->
-        <button class="hamburger-btn" id="hamburgerBtn" aria-label="Відкрити меню">
+        <button class="hamburger-btn" id="hamburgerBtn" aria-label="Відкрити меню" aria-expanded="false">
             <span></span>
             <span></span>
             <span></span>
@@ -332,14 +341,15 @@
         <a href="index.html" class="nav-link active">Головна</a>
         <a href="about.html" class="nav-link">Про мене</a>
         <a href="services.html" class="nav-link">Послуги</a>
-        <a href="reviews.html" class="nav-link">Відгуки</a>
+        <a href="portfolio.html" class="nav-link">Портфоліо</a>
     </div>
 
     <!-- ОСНОВНИЙ КОНТЕНТ -->
-    <div class="container">
+    <main class="container">
         <section class="hero-section">
             <div class="avatar-frame" id="avatarFrame">
                 <img id="avatarImg" src="Діана 2.jpg" alt="Діана Гаркуша" class="avatar-img" onerror="showPlaceholder()">
+                <div class="avatar-placeholder"><span>[ Фото Діани ]</span></div>
             </div>
             
             <div class="hero-info">
@@ -356,29 +366,34 @@
                 </div>
             </div>
         </section>
-    </div>
+    </main>
 
     <!-- JAVASCRIPT -->
     <script>
-        // Робота мобільного меню
         const hamburgerBtn = document.getElementById('hamburgerBtn');
         const mobileMenu = document.getElementById('mobileMenu');
 
-        hamburgerBtn.addEventListener('click', () => {
-            hamburgerBtn.classList.toggle('open');
+        function toggleMenu() {
+            const isOpen = hamburgerBtn.classList.toggle('open');
             mobileMenu.classList.toggle('active');
-            
-            if (mobileMenu.classList.contains('active')) {
-                document.body.style.overflow = 'hidden';
-            } else {
-                document.body.style.overflow = '';
-            }
+            hamburgerBtn.setAttribute('aria-expanded', isOpen);
+            document.body.style.overflow = isOpen ? 'hidden' : '';
+        }
+
+        hamburgerBtn.addEventListener('click', toggleMenu);
+
+        // Закриваємо меню при натисканні на посилання у мобільному меню
+        mobileMenu.querySelectorAll('.nav-link').forEach(link => {
+            link.addEventListener('click', () => {
+                if (mobileMenu.classList.contains('active')) {
+                    toggleMenu();
+                }
+            });
         });
 
-        // Показ заглушки, якщо фото не завантажилося або шлях вказано невірно
+        // Заглушка, якщо фото не завантажилося
         function showPlaceholder() {
-            const frame = document.getElementById('avatarFrame');
-            frame.innerHTML = '<div class="avatar-placeholder"><span>[ Фото Діани ]</span></div>';
+            document.getElementById('avatarFrame').classList.add('has-error');
         }
     </script>
 </body>

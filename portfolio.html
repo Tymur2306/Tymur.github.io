@@ -1,385 +1,365 @@
 <!DOCTYPE html>
 <html lang="uk">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Відгуки | SAYVAN</title>
-  <style>
-    /* Основні скидання та шрифти */
-    * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-    }
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <title>Портфоліо | Діана Гаркуша</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;600&family=Plus+Jakarta+Sans:wght@300;400;600&display=swap" rel="stylesheet">
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='25' fill='%230c0c0e'/><text x='50%' y='65%' font-family='Georgia, serif' font-size='48' font-weight='bold' fill='%23e2b714' text-anchor='middle'>DG</text></svg>">
+    
+    <style>
+        :root {
+            --bg-color: #0c0c0e;
+            --card-bg: rgba(255, 255, 255, 0.04);
+            --card-hover: rgba(255, 255, 255, 0.08);
+            --accent-color: #e2b714;
+            --text-main: #f4f4f6;
+            --text-muted: #a0a0ab;
+            --border-color: rgba(255, 255, 255, 0.08);
+            --font-title: 'Cormorant Garamond', serif;
+            --font-body: 'Plus Jakarta Sans', sans-serif;
+        }
 
-    body {
-      font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
-      background-color: #0f0f12;
-      color: #e0e0e6;
-      line-height: 1.7;
-      padding: 120px 20px 60px 20px;
-    }
+        * { box-sizing: border-box; margin: 0; padding: 0; -webkit-tap-highlight-color: transparent; }
+        html { scroll-behavior: smooth; }
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            font-family: var(--font-body);
+            line-height: 1.6;
+            overflow-x: hidden;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
 
-    /* --- ШАПКА НА CSS GRID --- */
-    header {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 80px;
+        .glow-bg {
+            position: fixed;
+            top: -5%; left: 50%;
+            transform: translateX(-50%);
+            width: 350px; height: 350px;
+            background: radial-gradient(circle, rgba(226, 183, 20, 0.18) 0%, rgba(0,0,0,0) 70%);
+            filter: blur(60px);
+            z-index: -1;
+            pointer-events: none;
+            animation: pulseGlow 8s infinite alternate ease-in-out;
+        }
+        @keyframes pulseGlow {
+            0% { transform: translateX(-50%) scale(1); opacity: 0.5; }
+            100% { transform: translateX(-50%) scale(1.3); opacity: 0.8; }
+        }
 
-      display: grid;
-      grid-template-columns: 1fr auto 1fr;
-      align-items: center;
+        header {
+            position: relative;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 24px 20px;
+            max-width: 1100px;
+            width: 100%;
+            margin: 0 auto;
+            z-index: 1000;
+        }
+        .logo { font-family: var(--font-title); font-size: 1.8rem; font-weight: 600; text-transform: uppercase; color: var(--text-main); text-decoration: none; }
+        .logo span { color: var(--accent-color); }
+        .desktop-nav { display: none; gap: 28px; }
+        
+        .nav-link { 
+            color: var(--text-muted); 
+            text-decoration: none; 
+            font-size: 1rem; 
+            transition: color 0.3s ease; 
+            outline: none;
+        }
 
-      padding: 0 80px;
-      box-sizing: border-box;
+        .nav-link:hover,
+        .nav-link.active { 
+            color: var(--accent-color); 
+        }
 
-      background: rgba(10, 10, 10, 0.85);
-      backdrop-filter: blur(12px);
+        .hamburger-btn { display: flex; flex-direction: column; justify-content: space-between; width: 30px; height: 20px; background: transparent; border: none; cursor: pointer; padding: 0; z-index: 1001; }
+        .hamburger-btn span { width: 100%; height: 2px; background-color: var(--text-main); border-radius: 2px; transition: all 0.3s ease-in-out; }
+        .hamburger-btn.open span:nth-child(1) { transform: translateY(9px) rotate(45deg); background-color: var(--accent-color); }
+        .hamburger-btn.open span:nth-child(2) { opacity: 0; }
+        .hamburger-btn.open span:nth-child(3) { transform: translateY(-9px) rotate(-45deg); background-color: var(--accent-color); }
 
-      z-index: 1000;
-      animation: headerDown 0.8s ease;
-    }
+        .mobile-menu-overlay {
+            position: fixed; top: 0; left: 0; width: 100%; height: 100vh;
+            background: rgba(12, 12, 14, 0.96); backdrop-filter: blur(15px);
+            display: flex; flex-direction: column; justify-content: center; align-items: center; gap: 24px;
+            opacity: 0; visibility: hidden; transition: opacity 0.3s ease, visibility 0.3s ease; z-index: 999;
+        }
+        .mobile-menu-overlay.active { opacity: 1; visibility: visible; }
+        .mobile-menu-overlay .nav-link { font-family: var(--font-title); font-size: 2rem; color: var(--text-main); }
+        .mobile-menu-overlay .nav-link.active { color: var(--accent-color); }
 
-    @keyframes headerDown {
-      from { transform: translateY(-100%); }
-      to { transform: translateY(0); }
-    }
+        .container { max-width: 1100px; width: 100%; margin: auto; padding: 20px 24px 60px; }
+        .hero-section { text-align: center; margin-bottom: 30px; }
+        .page-title { font-family: var(--font-title); font-size: clamp(2.5rem, 7vw, 4rem); font-weight: 400; line-height: 1.1; margin-bottom: 16px; }
+        .page-subtitle { color: var(--text-muted); font-size: clamp(1rem, 3vw, 1.2rem); max-width: 600px; margin: 0 auto; }
 
-    .logo {
-      color: white;
-      font-size: 30px;
-      font-weight: 800;
-      letter-spacing: 2px;
-      font-family: 'Inter', sans-serif;
-    }
+        /* Обгортка каруселі з відносним позиціонуванням для стрілок */
+        .portfolio-wrapper {
+            position: relative;
+            margin-bottom: 50px;
+        }
 
-    .nav {
-      display: flex;
-      gap: 40px;
-      justify-self: center;
-    }
+        .portfolio-grid {
+            display: flex;
+            overflow-x: auto;
+            scroll-snap-type: x mandatory;
+            scroll-behavior: smooth;
+            gap: 20px;
+            padding: 10px 0;
+            -webkit-overflow-scrolling: touch;
+            scrollbar-width: none;
+        }
 
-    .nav a {
-      color: #bdbdbd;
-      text-decoration: none;
-      font-size: 17px;
-      transition: 0.3s;
-      font-family: 'Inter', sans-serif;
-    }
+        .portfolio-grid::-webkit-scrollbar {
+            display: none;
+        }
 
-    .nav a:hover, .nav a.active {
-      color: white;
-    }
+        .portfolio-card {
+            flex: 0 0 85%;
+            max-width: 320px;
+            scroll-snap-align: center;
+            background: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 24px;
+            overflow: hidden;
+            transition: all 0.3s ease;
+            display: flex;
+            flex-direction: column;
+        }
 
-    /* --- ОСНОВНИЙ КОНТЕЙНЕР --- */
-    .container {
-      max-width: 1100px;
-      margin: 0 auto;
-    }
+        .portfolio-card:hover {
+            background: var(--card-hover);
+            transform: translateY(-4px);
+            border-color: rgba(226, 183, 20, 0.3);
+        }
 
-    /* --- СТИЛІ ТА АНІМАЦІЯ ЗАГОЛОВКА --- */
-    .header-section {
-      text-align: center;
-      margin-bottom: 20px;
-    }
+        .portfolio-img {
+            width: 100%;
+            height: 320px;
+            object-fit: cover;
+            background: #141418;
+            display: block;
+        }
 
-    .main-title {
-      font-size: 3rem;
-      font-weight: 800;
-      letter-spacing: 1px;
-      color: #ffffff;
-      display: inline-block;
-      opacity: 0;
-      transform: translateY(-20px);
-      animation: fadeInTitle 0.8s ease-out forwards;
-    }
+        .portfolio-info {
+            padding: 20px;
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
 
-    .title-line {
-      height: 4px;
-      width: 0;
-      background: linear-gradient(90deg, #ff4655, #ff8533);
-      margin: 15px auto 0 auto;
-      border-radius: 2px;
-      animation: expandLine 1s ease-out 0.6s forwards;
-    }
+        .portfolio-tag {
+            font-size: 0.8rem;
+            color: var(--accent-color);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 8px;
+        }
 
-    @keyframes fadeInTitle {
-      to {
-        opacity: 1;
-        transform: translateY(0);
-      }
-    }
+        .portfolio-title {
+            font-family: var(--font-title);
+            font-size: 1.6rem;
+            color: var(--text-main);
+            margin-bottom: 8px;
+        }
 
-    @keyframes expandLine {
-      to {
-        width: 100px;
-      }
-    }
+        .portfolio-desc {
+            color: var(--text-muted);
+            font-size: 0.95rem;
+            line-height: 1.5;
+        }
 
-    .subtitle {
-      font-size: 1.3rem;
-      color: #ff8533;
-      text-align: center;
-      margin-bottom: 60px;
-      font-weight: 600;
-    }
+        /* Стилі для стрілок по боках */
+        .arrow-btn {
+            position: absolute;
+            top: 40%; /* Вирівнюємо приблизно по центру фотографій */
+            transform: translateY(-50%);
+            z-index: 10;
+            background: rgba(12, 12, 14, 0.75);
+            backdrop-filter: blur(8px);
+            border: 1px solid var(--border-color);
+            color: var(--text-main);
+            width: 44px;
+            height: 44px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
+        }
 
-    /* --- СІТКА З ВІДГУКАМИ --- */
-    .reviews-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-      gap: 35px;
-      width: 100%;
-      padding: 10px;
-    }
+        .arrow-btn.prev { left: 5px; }
+        .arrow-btn.next { right: 5px; }
 
-    /* Стиль картки відгуку */
-    .review-card {
-      background: #18181c;
-      border: 1px solid #2a2a32;
-      border-radius: 16px;
-      padding: 28px;
-      box-shadow: 0 10px 30px rgba(0,0,0,0.3);
-      
-      opacity: 0;
-      transform: translateY(30px);
-      transition: opacity 0.8s ease, transform 0.4s ease, border-color 0.4s ease, box-shadow 0.4s ease;
-    }
+        .arrow-btn:hover:not(:disabled) {
+            background: var(--accent-color);
+            color: #0c0c0e;
+            border-color: var(--accent-color);
+        }
 
-    .review-card.visible {
-      opacity: 1;
-    }
+        .arrow-btn:disabled {
+            opacity: 0; /* Приховуємо стрілку, якщо далі нема куди скролити */
+            pointer-events: none;
+        }
 
-    .review-card:hover {
-      border-color: #ff4655;
-      box-shadow: 0 12px 30px rgba(255, 70, 85, 0.25);
-    }
+        .cta-section { background: linear-gradient(135deg, rgba(226, 183, 20, 0.08), rgba(255, 255, 255, 0.02)); border: 1px solid rgba(226, 183, 20, 0.2); border-radius: 28px; padding: 40px 24px; text-align: center; }
+        .cta-title { font-family: var(--font-title); font-size: clamp(2rem, 5vw, 2.5rem); margin-bottom: 12px; }
+        .btn-social { display: inline-block; background: var(--accent-color); color: #0c0c0e; padding: 14px 32px; border-radius: 30px; text-decoration: none; font-weight: 600; transition: all 0.3s ease; }
+        .btn-social:hover { transform: translateY(-2px); opacity: 0.9; }
 
-    .card-header {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      margin-bottom: 14px;
-    }
+        @media (min-width: 768px) {
+            .desktop-nav { display: flex; }
+            .hamburger-btn, .mobile-menu-overlay { display: none; }
 
-    .author-name {
-      font-size: 1.2rem;
-      font-weight: 700;
-      color: #ffffff;
-      font-family: 'Inter', sans-serif;
-    }
-
-    .stars {
-      color: #ff8533;
-      font-size: 1.1rem;
-      letter-spacing: 2px;
-    }
-
-    .review-text {
-      color: #b0b0ba;
-      font-size: 1rem;
-      line-height: 1.6;
-    }
-
-    /* Асиметричний розкид карток на комп'ютерах */
-    @media (min-width: 769px) {
-      .card-1 { transform: rotate(-2deg); }
-      .card-1.visible:hover { transform: translateY(-8px) rotate(-2deg); }
-
-      .card-2 { transform: translateY(40px) rotate(1.5deg); }
-      .card-2.visible:hover { transform: translateY(32px) rotate(1.5deg); }
-
-      .card-3 { transform: translateY(-15px) rotate(-1deg); }
-      .card-3.visible:hover { transform: translateY(-23px) rotate(-1deg); }
-
-      .card-4 { transform: translateY(30px) rotate(2deg); }
-      .card-4.visible:hover { transform: translateY(22px) rotate(2deg); }
-
-      .card-5 { transform: rotate(-1.5deg); }
-      .card-5.visible:hover { transform: translateY(-8px) rotate(-1.5deg); }
-
-      .card-6 { transform: translateY(25px) rotate(1deg); }
-      .card-6.visible:hover { transform: translateY(17px) rotate(1deg); }
-    }
-
-    /* --- БЛОК КНОПКИ ЗВ'ЯЗКУ --- */
-    .cta-section {
-      text-align: center;
-      margin-top: 80px;
-      padding-top: 20px;
-    }
-
-    .btn-contact {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      padding: 16px 42px;
-      font-size: 1.1rem;
-      font-weight: 700;
-      color: #ffffff;
-      text-decoration: none;
-      background: linear-gradient(135deg, #ff4655 0%, #ff8533 100%);
-      border-radius: 50px;
-      box-shadow: 0 8px 25px rgba(255, 70, 85, 0.35);
-      transition: all 0.3s ease;
-      font-family: 'Inter', sans-serif;
-      letter-spacing: 0.5px;
-    }
-
-    .btn-contact:hover {
-      transform: translateY(-4px) scale(1.03);
-      box-shadow: 0 14px 35px rgba(255, 70, 85, 0.5);
-    }
-
-    .btn-contact:active {
-      transform: translateY(-1px);
-    }
-
-    /* Адаптивність */
-    @media (max-width: 768px) {
-      header {
-        padding: 0 20px;
-      }
-      .nav {
-        gap: 15px;
-      }
-      .nav a {
-        font-size: 14px;
-      }
-      .main-title { font-size: 2.2rem; }
-      .subtitle { font-size: 1.1rem; }
-      body { padding-top: 100px; }
-      .btn-contact {
-        width: 100%;
-        max-width: 300px;
-      }
-      .review-card {
-        transform: none !important;
-      }
-    }
-  </style>
+            .portfolio-grid {
+                display: grid;
+                grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+                overflow-x: visible;
+                padding-bottom: 0;
+            }
+            .portfolio-card {
+                flex: none;
+                max-width: 100%;
+            }
+            .arrow-btn {
+                display: none; /* Приховуємо стрілки на ПК, де є сітка */
+            }
+        }
+    </style>
 </head>
 <body>
+    <div class="glow-bg"></div>
 
-  <!-- Шапка сайту -->
-  <header class="header">
-    <div class="logo">SAYVAN</div>
-    <nav class="nav">
-      <a href="index.html">Головна</a>
-      <a href="service.html">Послуги</a>
-      <a href="portfolio.html" class="active">Відгуки</a>
-      <a href="about.html">Про мене</a>
-    </nav>
-  </header>
+    <header>
+        <a href="index.html" class="logo">Діана <span>Гаркуша</span></a>
+        <nav class="desktop-nav">
+            <a href="index.html" class="nav-link">Головна</a>
+            <a href="about.html" class="nav-link">Про мене</a>
+            <a href="services.html" class="nav-link">Послуги</a>
+            <a href="portfolio.html" class="nav-link active">Портфоліо</a>
+        </nav>
+        <button class="hamburger-btn" id="hamburgerBtn" aria-label="Відкрити меню">
+            <span></span><span></span><span></span>
+        </button>
+    </header>
 
-  <!-- Контент сторінки -->
-  <div class="container">
-    
-    <!-- Заголовок з анімованою лінією -->
-    <div class="header-section">
-      <h1 class="main-title">Відгуки</h1>
-      <div class="title-line"></div>
+    <div class="mobile-menu-overlay" id="mobileMenu">
+        <a href="index.html" class="nav-link">Головна</a>
+        <a href="about.html" class="nav-link">Про мене</a>
+        <a href="services.html" class="nav-link">Послуги</a>
+        <a href="portfolio.html" class="nav-link active">Портфоліо</a>
     </div>
 
-    <p class="subtitle">Враження клієнтів про монтаж, зйомку та 2D/3D анімації</p>
+    <div class="container">
+        <section class="hero-section">
+            <h1 class="page-title">Портфоліо та Роботи</h1>
+            <p class="page-subtitle">Кадри із зйомок у серіалах, моделювання для каталогів та брендові фотосесії.</p>
+        </section>
 
-    <!-- СІТКА З ХАОТИЧНИМИ ВІДГУКАМИ -->
-    <div class="reviews-grid">
-      
-      <!-- Відгук 1 -->
-      <div class="review-card fade-in-card card-1">
-        <div class="card-header">
-          <span class="author-name">Олексій</span>
-          <div class="stars">★★★★★</div>
+        <div class="portfolio-wrapper">
+            <!-- Стрілки розміщені по боках контейнера -->
+            <button class="arrow-btn prev" id="prevBtn" aria-label="Попередній слайд">&#8592;</button>
+            <button class="arrow-btn next" id="nextBtn" aria-label="Наступний слайд">&#8594;</button>
+
+            <section class="portfolio-grid" id="portfolioGrid">
+                <div class="portfolio-card">
+                    <img src="Diana 2.jpg" alt="Серіал Код" class="portfolio-img" onerror="this.src='data:image/svg+xml,<svg xmlns=\'http://www.w3.org/2000/svg\' width=\'100%\' height=\'100%\'><rect width=\'100%\' height=\'100%\' fill=\'%23141418\'/><text x=\'50%\' y=\'50%\' fill=\'%23a0a0ab\' text-anchor=\'middle\'>[ Кадр з серіалу ]</text></svg>'">
+                    <div class="portfolio-info">
+                        <div>
+                            <div class="portfolio-tag">Акторська робота</div>
+                            <h3 class="portfolio-title">Серіал «К.О.Д.»</h3>
+                        </div>
+                        <p class="portfolio-desc">Робота у драматичних та детективних сценах, втілення образу персонажа на майданчику.</p>
+                    </div>
+                </div>
+
+                <div class="portfolio-card">
+                    <img src="Diana 3.jpg" alt="Серіал Лікар" class="portfolio-img" onerror="this.src='data:image/svg+xml,<svg xmlns=\'http://www.w3.org/2000/svg\' width=\'100%\' height=\'100%\'><rect width=\'100%\' height=\'100%\' fill=\'%23141418\'/><text x=\'50%\' y=\'50%\' fill=\'%23a0a0ab\' text-anchor=\'middle\'>[ Кадр з серіалу ]</text></svg>'">
+                    <div class="portfolio-info">
+                        <div>
+                            <div class="portfolio-tag">Акторська робота</div>
+                            <h3 class="portfolio-title">Серіал «Лікар»</h3>
+                        </div>
+                        <p class="portfolio-desc">Виконання ролі у драматичних епізодах, взаємодія з акторським складом та робота в кадрі.</p>
+                    </div>
+                </div>
+
+                <div class="portfolio-card">
+                    <img src="Diana 4.jpg" alt="Модельні зйомки" class="portfolio-img" onerror="this.src='data:image/svg+xml,<svg xmlns=\'http://www.w3.org/2000/svg\' width=\'100%\' height=\'100%\'><rect width=\'100%\' height=\'100%\' fill=\'%23141418\'/><text x=\'50%\' y=\'50%\' fill=\'%23a0a0ab\' text-anchor=\'middle\'>[ Fashion / Лукбук ]</text></svg>'">
+                    <div class="portfolio-info">
+                        <div>
+                            <div class="portfolio-tag">Моделінг</div>
+                            <h3 class="portfolio-title">Fashion & Лукбуки</h3>
+                        </div>
+                        <p class="portfolio-desc">Зйомки для каталогів брендового одягу, позирування та створення естетичних кадрів.</p>
+                    </div>
+                </div>
+            </section>
         </div>
-        <p class="review-text">
-          Монтаж просто вогонь! Анімація графіки зроблена дуже якісно, ролик виглядає дорого й динамічно.
-        </p>
-      </div>
 
-      <!-- Відгук 2 -->
-      <div class="review-card fade-in-card card-2">
-        <div class="card-header">
-          <span class="author-name">Максим</span>
-          <div class="stars">★★★★★</div>
-        </div>
-        <p class="review-text">
-          Замовляв зйомку та підсумковий монтаж відео. Відеограф підібрав круті ракурси, а саунд-дизайн взагалі розрив!
-        </p>
-      </div>
-
-      <!-- Відгук 3 -->
-      <div class="review-card fade-in-card card-3">
-        <div class="card-header">
-          <span class="author-name">Владислав</span>
-          <div class="stars">★★★★★</div>
-        </div>
-        <p class="review-text">
-          Дуже сподобалася робота з 3D-анімаціями логотипа. Все зроблено вчасно, без зайвих правок і точно за правками.
-        </p>
-      </div>
-
-      <!-- Відгук 4 -->
-      <div class="review-card fade-in-card card-4">
-        <div class="card-header">
-          <span class="author-name">Дмитро</span>
-          <div class="stars">★★★★</div>
-        </div>
-        <p class="review-text">
-          Анімації та переходи виглядають максимально плавно і стильно. Працювати разом було дуже легко і приємно!
-        </p>
-      </div>
-
-      <!-- Відгук 5 -->
-      <div class="review-card fade-in-card card-5">
-        <div class="card-header">
-          <span class="author-name">Артем</span>
-          <div class="stars">★★★★★</div>
-        </div>
-        <p class="review-text">
-          Зйомка на найвищому рівні. Монтажер чудово відчуває ритм кадру і вміє передати потрібну атмосферу в ролику.
-        </p>
-      </div>
-
-      <!-- Відгук 6 -->
-      <div class="review-card fade-in-card card-6">
-        <div class="card-header">
-          <span class="author-name">Ігор</span>
-          <div class="stars">★★★★</div>
-        </div>
-        <p class="review-text">
-          Перетворив звичайне відео на справжній кінематографічний шедевр завдяки кольорокорекції та спецефектам.
-        </p>
-      </div>
-
+        <section class="cta-section">
+            <h2 class="cta-title">Запросити на зйомку</h2>
+            <p style="color: var(--text-muted); margin-bottom: 20px;">Обговорити кастинг, фотосесію або комерційний проєкт можна у Telegram.</p>
+            <a href="https://t.me/agussha_sha" class="btn-social" target="_blank" rel="noopener noreferrer">Написати в Telegram</a>
+        </section>
     </div>
 
-    <!-- КНОПКА ЗВ'ЯЗКУ ПІД СІТКОЮ -->
-    <div class="cta-section">
-      <a href="https://t.me/SAYVAN_KINO" class="btn-contact">Замовити монтаж</a>
-    </div>
+    <script>
+        const hamburgerBtn = document.getElementById('hamburgerBtn');
+        const mobileMenu = document.getElementById('mobileMenu');
+        const mobileNavLinks = mobileMenu.querySelectorAll('.nav-link');
 
-  </div>
+        function toggleMenu() {
+            hamburgerBtn.classList.toggle('open');
+            mobileMenu.classList.toggle('active');
+            document.body.style.overflow = mobileMenu.classList.contains('active') ? 'hidden' : '';
+        }
 
-  <!-- Скрипт появи карток при скролі -->
-  <script>
-    document.addEventListener("DOMContentLoaded", function() {
-      const observerOptions = { threshold: 0.15 };
-      const observer = new IntersectionObserver((entries, observer) => {
-        entries.forEach(entry => {
-          if (entry.isIntersecting) {
-            entry.target.classList.add('visible');
-            observer.unobserve(entry.target);
-          }
+        hamburgerBtn.addEventListener('click', toggleMenu);
+
+        mobileNavLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                if (mobileMenu.classList.contains('active')) {
+                    toggleMenu();
+                }
+            });
         });
-      }, observerOptions);
 
-      document.querySelectorAll('.fade-in-card').forEach(card => {
-        observer.observe(card);
-      });
-    });
-  </script>
+        const grid = document.getElementById('portfolioGrid');
+        const prevBtn = document.getElementById('prevBtn');
+        const nextBtn = document.getElementById('nextBtn');
+
+        function updateButtons() {
+            prevBtn.disabled = grid.scrollLeft <= 10;
+            nextBtn.disabled = grid.scrollLeft + grid.clientWidth >= grid.scrollWidth - 10;
+        }
+
+        prevBtn.addEventListener('click', () => {
+            const cardWidth = grid.querySelector('.portfolio-card').offsetWidth + 20;
+            grid.scrollBy({ left: -cardWidth, behavior: 'smooth' });
+        });
+
+        nextBtn.addEventListener('click', () => {
+            const cardWidth = grid.querySelector('.portfolio-card').offsetWidth + 20;
+            grid.scrollBy({ left: cardWidth, behavior: 'smooth' });
+        });
+
+        grid.addEventListener('scroll', updateButtons);
+        window.addEventListener('resize', updateButtons);
+        updateButtons();
+    </script>
 </body>
 </html>

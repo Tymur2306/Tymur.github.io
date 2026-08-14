@@ -347,7 +347,7 @@
             <a href="index.html" class="nav-link">Головна</a>
             <a href="about.html" class="nav-link">Про мене</a>
             <a href="services.html" class="nav-link active">Послуги</a>
-            <a href="reviews.html" class="nav-link">Відгуки</a>
+            <a href="portfolio.html" class="nav-link">Портфоліо</a>
         </nav>
 
         <!-- Кнопка «3 смужки» для телефона -->
@@ -363,7 +363,7 @@
         <a href="index.html" class="nav-link">Головна</a>
         <a href="about.html" class="nav-link">Про мене</a>
         <a href="services.html" class="nav-link active">Послуги</a>
-        <a href="reviews.html" class="nav-link">Відгуки</a>
+        <a href="portfolio.html" class="nav-link">Портфоліо</a>
     </div>
 
     <!-- ОСНОВНИЙ КОНТЕНТ -->
@@ -381,7 +381,7 @@
                 <div>
                     <div class="service-number">01</div>
                     <h3>Зйомки для каталогів та лукбуків</h3>
-                    <p>Професійна демонтрація одягу, взуття та аксесуарів для інтернет-магазинів, брендів та маркетплейсів. Швидке змінення образів та чітка робота зі світлом.</p>
+                    <p>Професійна демонстрація одягу, взуття та аксесуарів для інтернет-магазинів, брендів та маркетплейсів. Швидке змінення образів та чітка робота зі світлом.</p>
                 </div>
                 <div class="service-tags">
                     <span class="tag">Каталоги</span>
@@ -394,7 +394,7 @@
                 <div>
                     <div class="service-number">02</div>
                     <h3>Контент для Reels, TikTok & UGC</h3>
-                    <p>Створення естетичного, живого та вірусного відеоконтенту. Огляди товарів, розпакування, трендові роликi та прикладання образів для соцмереж брендів.</p>
+                    <p>Створення естетичного, живого та вірусного відеоконтенту. Огляди товарів, розпакування, трендові ролики та прикладання образів для соцмереж брендів.</p>
                 </div>
                 <div class="service-tags">
                     <span class="tag">Reels</span>
@@ -435,7 +435,7 @@
         <section class="cta-section">
             <h2 class="cta-title">Маєте ідею для проєкту?</h2>
             <p class="cta-text">Зв'яжіться зі мною, щоб обговорити деталі зйомки, дати та умови співпраці.</p>
-            <a href="https://t.me/agussha_sha" class="btn-primary" target="blank">Зв'язатися</a>
+            <a href="https://t.me/agussha_sha" class="btn-primary" target="_blank" rel="noopener noreferrer">Зв'язатися</a>
         </section>
 
     </div>
@@ -445,8 +445,9 @@
         // Робота мобільного меню
         const hamburgerBtn = document.getElementById('hamburgerBtn');
         const mobileMenu = document.getElementById('mobileMenu');
+        const mobileNavLinks = mobileMenu.querySelectorAll('.nav-link');
 
-        hamburgerBtn.addEventListener('click', () => {
+        function toggleMenu() {
             hamburgerBtn.classList.toggle('open');
             mobileMenu.classList.toggle('active');
             
@@ -455,6 +456,16 @@
             } else {
                 document.body.style.overflow = '';
             }
+        }
+
+        hamburgerBtn.addEventListener('click', toggleMenu);
+
+        mobileNavLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                if (mobileMenu.classList.contains('active')) {
+                    toggleMenu();
+                }
+            });
         });
     </script>
 </body>
