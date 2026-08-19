@@ -1,0 +1,428 @@
+@import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700&family=Montserrat:wght@300;400;500;600&display=swap');
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html, body {
+  height: 100%;
+  font-family: 'Montserrat', sans-serif;
+  overflow: hidden;
+  background-color: #f2f0eb;
+  color: #2b2b2b;
+}
+
+/* ЗАДНІЙ ФОН */
+.global-bg {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  object-fit: cover;
+  z-index: 1;
+  pointer-events: none;
+}
+
+/* СКРОЛ-КОНТЕЙНЕР */
+.scroll-container {
+  position: relative;
+  z-index: 2;
+  height: 100vh;
+  overflow-y: scroll;
+  scroll-snap-type: y mandatory;
+  scroll-behavior: smooth;
+}
+
+.screen-section {
+  height: 100vh;
+  width: 100vw;
+  scroll-snap-align: start;
+  scroll-snap-stop: always;
+  position: relative;
+}
+
+/* ШАПКА */
+.header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 1000;
+  background: transparent;
+  pointer-events: auto;
+}
+
+.header__container {
+  width: 100%;
+  padding: 35px 60px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.logo {
+  font-family: 'Cinzel', serif;
+  font-size: 1.8rem;
+  font-weight: 500;
+  letter-spacing: 4px;
+  text-decoration: none;
+  color: #1a1a1a;
+}
+
+/* НАВІГАЦІЯ ПО ЦЕНТРУ */
+.nav__list {
+  display: flex;
+  list-style: none;
+  gap: 35px;
+}
+
+.nav__link {
+  font-size: 0.75rem;
+  letter-spacing: 2.5px;
+  text-decoration: none;
+  color: #2b2b2b;
+  font-weight: 500;
+  text-transform: uppercase;
+  transition: opacity 0.2s ease;
+}
+
+.nav__link:hover {
+  opacity: 0.6;
+}
+
+/* МОВИ В ПРАВОМУ КУТКУ */
+.lang-switch {
+  font-size: 0.75rem;
+  letter-spacing: 2px;
+  font-weight: 500;
+  z-index: 1001;
+}
+
+.lang-switch a {
+  text-decoration: none;
+  color: #888888;
+  transition: color 0.2s ease;
+  cursor: pointer;
+}
+
+.lang-switch a.active {
+  color: #1a1a1a;
+  font-weight: 700;
+}
+
+.burger {
+  display: none;
+}
+
+/* HERO СЕКЦІЯ */
+.hero-section {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  padding-right: 14%;
+  overflow: hidden;
+}
+
+/* ВЕРТИКАЛЬНИЙ ТЕКСТ ЗЛІВА */
+.vertical-text {
+  position: absolute;
+  left: 60px;
+  top: 18%;
+  z-index: 10;
+  display: flex;
+  flex-direction: column;    
+  align-items: flex-start;   
+  gap: 20px;                 
+}
+
+/* Сам японський текст */
+.vertical-text span:first-child {
+  writing-mode: vertical-rl;
+  text-orientation: upright;
+  font-size: 0.9rem;
+  font-weight: 700;
+  letter-spacing: 5px;
+  color: #1a1a1a;
+}
+
+/* ЧЕРВОНА КВАДРАТНА ПЕЧАТКА ЗНИЗУ */
+.vertical-text .seal-icon {
+  width: 26px;
+  height: 26px;
+  border: 2px solid #b32424;
+  background-color: rgba(179, 36, 36, 0.08);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: 'Cinzel', serif;
+  font-size: 0.7rem;
+  color: #b32424;
+  border-radius: 2px;
+}
+
+/* ДІВЧИНА */
+.artwork-girl {
+  position: absolute;
+  left: 8%;
+  bottom: 0;
+  height: 108vh;
+  width: auto;
+  object-fit: contain;
+  pointer-events: none;
+  z-index: 3;
+
+  -webkit-mask-image: linear-gradient(to right, transparent 0%, black 18%),
+                      linear-gradient(to top, transparent 0%, black 12%);
+  mask-image: linear-gradient(to right, transparent 0%, black 18%),
+              linear-gradient(to top, transparent 0%, black 12%);
+  -webkit-mask-composite: source-in;
+  mask-composite: intersect;
+}
+
+/* ЖАБА (СПРАВА ВНИЗУ НА ДЕСКТОПІ) */
+.artwork-frog {
+  position: absolute;
+  right: 30px;
+  bottom: 15px;
+  width: 240px;
+  height: auto;
+  object-fit: contain;
+  pointer-events: none;
+  z-index: 4;
+}
+
+/* ТЕМНА РОЗМИТА ПЛЯМА ПІД ЖАБОЮ НА ДЕСКТОПІ */
+.hero-section::after {
+  content: '';
+  position: absolute;
+  right: 67px;
+  bottom: 35px;
+  width: 180px;
+  height: 20px;
+  background: #000000;
+  opacity: 1.5;
+  border-radius: 50%;
+  filter: blur(10px);
+  z-index: 3;
+  pointer-events: none;
+}
+
+/* БЛОК ENSO ТА ТЕКСТ */
+.hero__content {
+  position: relative;
+  z-index: 20;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.hero__content .title,
+.hero__content h1 {
+  font-family: 'Cinzel', serif;
+  font-size: clamp(4.5rem, 8vw, 7.5rem);
+  font-weight: 400;
+  letter-spacing: 14px;
+  color: #111111;
+  line-height: 1;
+}
+
+.hero__content .subtitle,
+.hero__content p {
+  font-size: 0.75rem;
+  letter-spacing: 4px;
+  margin-top: 18px;
+  color: #333333;
+  font-weight: 500;
+  text-transform: uppercase;
+}
+
+/* СКРОЛ-ІНДИКАТОР ВНИЗУ ЗЛІВА */
+.scroll-indicator {
+  position: absolute;
+  left: 60px;
+  bottom: 40px;
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  z-index: 10;
+}
+
+.scroll-line {
+  width: 2px;
+  height: 48px;
+  background-color: #222222;
+  opacity: 0.8;
+}
+
+.scroll-indicator span {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 0.8rem;
+  font-weight: 700;
+  letter-spacing: 3.5px;
+  color: #1a1a1a;
+  text-transform: uppercase;
+}
+
+/* ІНШІ СЕКЦІЇ */
+.transparent-section {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 80px 20px;
+  background: transparent;
+}
+
+.portfolio-section {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 80px 20px;
+  background-color: #ffffff;
+}
+
+.section-container {
+  max-width: 800px;
+  text-align: center;
+}
+
+.screen-section h2 {
+  font-family: 'Cinzel', serif;
+  font-size: 2.5rem;
+  font-weight: 400;
+  letter-spacing: 4px;
+  margin-bottom: 20px;
+}
+
+/* МОБІЛЬНА АДАПТИВНІСТЬ */
+.mobile-menu-footer {
+  display: none;
+}
+
+@media (max-width: 768px) {
+  .header__container {
+    padding: 20px;
+  }
+
+  .burger {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 26px;
+    height: 18px;
+    background: transparent;
+    border: none;
+    z-index: 1002;
+    cursor: pointer;
+  }
+
+  .burger span {
+    width: 100%;
+    height: 2px;
+    background-color: #000000;
+    transition: all 0.3s ease;
+  }
+
+  /* Анімація бургера у хрестик */
+  .burger.active span:nth-child(1) {
+    transform: translateY(8px) rotate(45deg);
+  }
+  .burger.active span:nth-child(2) {
+    opacity: 0;
+  }
+  .burger.active span:nth-child(3) {
+    transform: translateY(-8px) rotate(-45deg);
+  }
+
+  .nav {
+    position: fixed;
+    top: 0;
+    right: 0;
+    width: 100%;
+    height: 100vh;
+    background: rgba(242, 240, 235, 0.98);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    transform: translateX(100%);
+    transition: transform 0.35s ease-in-out;
+    z-index: 1001;
+  }
+
+  .nav.active {
+    transform: translateX(0);
+  }
+
+  .nav__list {
+    flex-direction: column;
+    gap: 25px;
+    text-align: center;
+  }
+
+  /* Ховаємо звичайну жабу та її тінь на головному екрані мобільного */
+  .artwork-frog,
+  .hero-section::after {
+    display: none;
+  }
+
+  .hero-section {
+    padding-right: 0;
+    justify-content: space-between;
+    flex-direction: column;
+    padding-top: 100px;
+    padding-bottom: 30px;
+  }
+
+  .vertical-text, .scroll-indicator {
+    display: none;
+  }
+
+  .hero__content .title,
+  .hero__content h1 {
+    font-size: 3.5rem;
+    letter-spacing: 6px;
+  }
+
+  .artwork-girl {
+    position: relative;
+    left: 0;
+    max-height: 68vh;
+    width: auto;
+
+    -webkit-mask-image: linear-gradient(to right, transparent 0%, black 15%),
+                        linear-gradient(to top, transparent 0%, black 10%);
+    mask-image: linear-gradient(to right, transparent 0%, black 15%),
+                linear-gradient(to top, transparent 0%, black 10%);
+    -webkit-mask-composite: source-in;
+    mask-composite: intersect;
+  }
+
+  /* Показуємо жабу з тіню всередині мобільного меню внизу */
+  .mobile-menu-footer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: absolute;
+    bottom: 40px;
+  }
+
+  .mobile-artwork-frog {
+    width: 130px;
+    height: auto;
+    object-fit: contain;
+  }
+
+  .mobile-frog-shadow {
+    width: 90px;
+    height: 14px;
+    background: #000000;
+    opacity: 0.3;
+    border-radius: 50%;
+    filter: blur(6px);
+    margin-bottom: -10px;
+  }
+}
